@@ -1,0 +1,27 @@
+<div class="lug_table lug_detail">
+    <table>
+        <thead>
+            <tr>
+                <th>订货量</th>
+                <th>运费(元)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="l in data.luggList">
+                <td>
+                    <div class="input-w">
+                        <span>大于等于</span>
+                    </div>
+                    <div class="input-w">
+                        <input type="text" class="form-control" ng-model="l.start_count" ng-disabled="true">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-w">
+                        <input type="text" class="form-control" ng-model="l.price" ng-disabled="true">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

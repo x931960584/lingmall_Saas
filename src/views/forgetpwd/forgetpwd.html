@@ -1,0 +1,24 @@
+<div class="forgetpwd">
+    <div class="title">找回密码</div>
+    <!-- <div class="accounttype">
+        <div class="account">
+            <input type="radio" name="radio" class="input" ng-click="choosebox()">主账号
+        </div>
+        <div class="account">
+            <input type="radio" name="radio" class="input" ng-click="choosebox()">员工账号
+        </div>
+        <span class="span">请选择账号类型</span>
+    </div> -->
+    <div class="message">{{errMessage}}</div>
+    <div class="user-box input">
+        <i class="iconfont">&#xe615;</i>
+        <input type="text" placeholder="请输入手机号码" class="base" ng-model="mobile" ng-blur="validateMobile(mobile)" ng-click="mobileValidateErr=false">
+        <span class="notice warn" ng-show="mobileValidateErr">请输入正确的手机号</span>
+    </div>
+    <div class="vali-box">
+        <input type="text" placeholder="输入验证码" class="vali-text base" ng-model="captcha">
+        <div class="get-vali base" ng-click="getvercode()" ng-class="{'gray':second!=0}">{{vercodebtntext}}</div>
+        <span class="notice warn" ng-show="validateCaptchaErr">请输入正确的验证码</span>
+    </div>
+    <div class="submit-btn base" ng-click="validateCaptcha()">下一步</div>
+</div>

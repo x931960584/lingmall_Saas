@@ -1,0 +1,143 @@
+<div class="audit_outstoct">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>{{auditTitle}}</span>
+            </div>
+            <div class="auditoutstoct_cent col-sm-12 col-md-12 col-lg-12 row-padding-1">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">入库单编号:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{auditDetail.warehouse_in_bill_number}}
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">入库类型:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{outType[auditDetail.in_type].outTypeName}}
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">入库仓库:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{auditDetail.warehouse.name}}
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">入库时间:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{inTime}}
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+            			<label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            				<span class="bef_span">入库状态:</span>
+            				<div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{outStatue[auditDetail.in_status].outStatueName}}
+                            </div>
+            			</label>
+            		</div>
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+            			<label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            				<span class="bef_span">审核状态:</span>
+            				<div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{outAudit[auditDetail.review_status].outAuditName}}
+                            </div>
+            			</label>
+            		</div>
+            	</div>
+            	<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+            			<label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            				<span class="bef_span">制单人:</span>
+            				<div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{auditDetail.make_bill_user.name!="" ? auditDetail.make_bill_user.name : auditDetail.make_bill_user.user_group_name}}
+                            </div>
+            			</label>
+            		</div>
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+            			<label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            				<span class="bef_span">审核时间:</span>
+            				<div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                                {{auditDetail.updated_at}}
+                            </div>
+            			</label>
+            		</div>
+            	</div>
+            	<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+            			
+            		</div>
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+            			<label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+            				<span class="bef_span">审核人:</span>
+            				<div class="col-sm-6 col-md-6 col-lg-6 right_span">
+                               	{{auditDetail.review_user.name!="" ? auditDetail.review_user.name : auditDetail.review_user.user_group_name}}
+                            </div>
+            			</label>
+            		</div>
+            	</div>
+            	<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+            			<span class="title_span">入库商品列表</span>
+            		</div>
+            		<div class="col-sm-6 col-md-6 col-lg-6 col-padding-0 audit_btn" ng-show="auditShow">
+            			<button class="btn btn-primary btn_can" ng-click="Marlboro()">审核通过</button>
+            			<button class="btn btn-default" ng-click="Noaudit()">审核不通过</button>
+            		</div>
+            	</div>
+            	<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+            		<table class="table table-hover stock_table">
+            			<thead>
+            				<tr>
+            					<th>序号</th>
+            					<th>商品</th>
+            					<th>单位</th>
+            					<th>金额</th>
+            					<th>入库数量</th>
+								<th class="out_memo">备注</th>
+            				</tr>
+            			</thead>
+            			<tbody>
+            				<tr ng-repeat="x in auditDetail.warehouse_in_bill_skus">
+            					<td>{{$index+1}}</td>
+            					<td>
+                                    <div class="td_pro">
+                                        <div class="pro_img" ng-repeat="img in imgUrlList" ng-show="x.sku.img_sku_id==img.bundle_number"><img ng-src="{{img.type?img.domain+ '/'+img.key+'-thumbnail100':img.domain+ '/'+img.key}}" /></div>
+                                        <div class="pro_li">
+                                            <ul>
+                                                <li><span>商品编码:</span>{{x.sku.sku_code}}</li>
+                                                <li><span>商品条码:</span>{{x.sku.barcode}}</li>
+                                                <li>{{x.sku.spu_name}}&nbsp;&nbsp;{{x.sku.sku_name}}【<span ng-repeat="spe in x.sku.specification">{{spe.key+':'+spe.value}},</span>】</li>
+                                            </ul>
+                                        </div>
+                                    </div>               
+                                </td>
+            					<td>{{x.unit}}</td>
+            					<td>{{x.price}}</td>
+            					<td>{{x.count}}</td>
+            					<td class="td_memo">{{x.memo}}</td>
+            				</tr>
+            			</tbody>
+            		</table>
+            	</div>
+            	<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+            		<button class="btn btn-default" ui-sref="main.outstock">返回</button>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>

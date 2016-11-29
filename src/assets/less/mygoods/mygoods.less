@@ -1,0 +1,172 @@
+@import "../common/colors.less";
+.mygoods {
+	font-family: "微软雅黑";
+	height: 100%;
+	.content-bg {
+        height: 100%;
+        padding-bottom: 15px;
+        .bg-color {
+            background-color: #fff;
+            height: 100%;
+	        .page-title {
+	            font-size: 1.6em;
+	            padding-top:20px;
+	            padding-bottom:20px;
+	            background-color: @main-color-background;
+	        }
+			.content {
+				display: inline-block;
+				background-color:#fff;
+				.mygoods-content {
+					padding-bottom:40px;
+					.mygoods-top {
+						width: 100%;
+						display: inline-block;
+						border-bottom:1px solid @main-color-border;
+						.add-icon {
+							font-size: 14px;
+						}
+						.search-box {
+							width: 100%;
+							.keyword {
+								float: left;
+								line-height: 34px;
+								display: inline-block;
+							}
+							.keyword-input {
+								float: left;
+								display: inline-block;
+							}
+						}
+						.title-list {
+							width: 100%;
+							display: inline-block;
+							.search-input-box {
+								min-width:210px;
+							}
+							.search-input {
+								width: 20%;
+							}
+						}
+						.disabled {
+							cursor: no-drop;
+						}
+						.addgoods-btn {
+							float:right;
+						}
+						.brand-box {
+							max-height:455px;
+							overflow: auto;
+						}
+						.category-box-bg:hover {
+							background-color: rgb(237,241,242);
+						}
+						.category-box {
+							position: relative;
+							cursor: pointer;
+							.category-list {
+								position: absolute;
+								top:36px;
+								left:0;
+								width: 100%;
+								min-width: 160px;
+								max-height: 500px;
+								overflow: auto;
+								background-color: #fff;
+								border: 1px solid @main-color-border;
+								padding-top:5px;
+								-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    							box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+								.all-category {
+									line-height: 22px;
+								    padding-left: 20px;
+								    font-size: 14px;
+								    cursor: pointer;
+								}
+							}
+						}
+					}
+					.mygoods-list {
+						margin-top:20px;
+						table {
+							width:100%;
+							border:1px solid @main-color-border;
+							.title {
+								background-color:@main-color-background-table-title;
+								td {
+									line-height: 50px;
+									text-align: center;
+									font-size:14px;
+								}
+							}
+							tr {
+								border-bottom:1px solid @main-color-border;
+								.middle {
+									vertical-align: middle;
+								}
+								td {
+									border:1px solid @main-color-border;
+									text-align: center;
+									vertical-align: middle;
+									.img-box {
+										float:left;
+										width:60px;
+										height: 60px;
+										line-height: 60px;
+										vertical-align: middle;
+										background-color:#fff;
+										margin:0 20px;
+										img {
+											width:60px;
+											height:60px;
+											vertical-align: middle;
+										}
+									}
+									.goods-detail {
+										display: table-cell;
+										text-align: left;
+										li {
+											line-height: 20px;
+											color:#949494;
+										}
+										.params {
+											color:@main-color-text;
+											/*width: 200px;*/
+											overflow: hidden;
+											word-wrap:break-word;
+										}
+									}
+									.operate {
+										cursor: pointer;
+										color:@main-color;
+									}
+									a {
+										color:@main-color-text;
+										text-decoration: none;
+									}
+									.goods-sku {
+										border-bottom:1px solid @main-color-border;
+										padding:10px;
+										min-height:80px;
+										vertical-align: middle;
+									}
+									.goods-sku:last-child {
+										border-bottom:none;
+									}
+								}
+								.goods-box {
+								}
+							}
+							.goods-box {
+								text-align: center;
+							}
+						}
+					}
+				}
+				.pager-box {
+					text-align:center;
+				}
+			}
+        }
+    }
+}

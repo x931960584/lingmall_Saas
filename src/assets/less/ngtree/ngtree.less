@@ -1,0 +1,42 @@
+@import "../common/colors.less";
+.tree-view {
+    list-style: none;
+    padding: 15px;
+    padding-top:0;
+    line-height: 26px;
+    ul {
+        list-style: none;
+        padding-left: 16px;
+        li {
+            line-height: 26px;
+            i{
+                cursor: pointer;
+            }
+        }
+    }
+    .text-field {
+        padding:5px;
+        margin-left: 3px;
+        cursor: pointer;
+    }
+    .current {
+        border:1px solid #cfdadd;
+        border-radius:3px;
+        color:#009acb;
+        font-weight:700;
+    }
+    .disabled {
+        cursor: no-drop;
+        color: @main-color-text-light;
+    }
+    .text-current {
+        padding: 3px 5px;
+        margin-left: 3px;
+    }
+    .check-box {
+        margin: 0 3px;
+    }
+    .mar-left {
+        margin-left:8px;
+    }
+}

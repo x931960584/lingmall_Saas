@@ -1,0 +1,119 @@
+<div class="warehouse">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-sm-12 col-md-12 col-lg-12">仓库管理</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 content">
+                <div class="warehouse-content">
+                    <div class="warehouse-top row-padding-2">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-padding-0">
+                            <div class="title-list">
+                                <div class="search-input pull-left">
+                                	<span class="keyword">关键字&nbsp;:&nbsp;</span>
+                                	<div class="keyword-input">
+	                                    <input type="text" class="form-control" placeholder="仓库编号、名称" ng-model="keyword">
+                                	</div>
+                                </div>
+                                <div class="pull-left col-margin-2">
+                                    <div class="btn-group" uib-dropdown>
+                                        <button id="btn-append-to-single-button" type="button" class="btn btn-default" data-toggle="dropdown" uib-dropdown-toggle>
+                                            {{status_name}}
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                            <li ng-repeat="status in warehouseStatus" ng-click="selectStatus(status.warehouse_status,status.status_name)">
+                                                <a href>{{status.status_name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pull-left">
+                                	<div class="input-group range-box">
+                                        <div class="range-input" ng-model="range">{{range.length==0?'仓库配送范围':range+''}}</div>
+                                		<div class="fa-icon icon-box fa fa-caret-down" ng-click="showRangeListBox($event)"></div>
+	                                	<div class="range-list" ng-show="showRangeList" ng-click="stop($event)">
+	                                		<tree-view tree-data="cityTree" tree-Options="cityTreeOptions" selected-item="cityTreeItem"></tree-view>
+                                            <div class="confirm-range" ng-click="confirmRange()">确认</div>
+                                            <div class="clear-range" ng-click="clearRange()">清空</div>
+	                                	</div>
+                                	</div>
+                                </div>
+                                <div class="pull-left col-margin-2">
+                                	<div class="area-box">
+	                                	<span class="area-text">所在地区&nbsp;:&nbsp;</span>
+	                                	<div class="area-detail">
+	                                		<div class="area">
+		                                		<span class="province">{{area_province}}</span>&nbsp;省&nbsp;
+	                                		</div>
+	                                		<div class="area">
+		                                		<span class="city">{{area_city}}</span>&nbsp;市&nbsp;
+	                                		</div>
+	                                		<i class="fa-icon icon-box fa fa-caret-down" ng-click="showAreaListBox($event)"></i>
+	                                	</div>
+	                                	<div class="area-list" ng-show="showAreaList" ng-click="stop($event)">
+	                                		<tree-view tree-data="areaTree" tree-Options="areaTreeOptions" selected-item="areaTreeItem" dis-Area="'warehouseArea'"></tree-view>
+                                            <div class="clear-area" ng-click="clearArea()">清空</div>
+	                                	</div>
+                                	</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-padding-0 col-sm-2 col-md-2 col-lg-2">
+                            <div class="btn btn-primary pull-right" ng-click="addWarehouse()" ng-show="$root.accessControl.WarehouseManagement.add==1">
+                                <i class="iconfont add-icon">&#xe61e;</i>新增仓库
+                            </div>
+                            <div class="pull-right margin-right-1">
+                            	<div class="btn btn-default search-btn" ng-click="getWarehouseList()">检索</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="warehouse-list col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                    	<table class="warehouse-table table-hover">
+                    		<tr class="thead">
+                    			<!-- <td>
+                                    <input type="checkbox">
+                                </td> -->
+                    			<td>仓库编号</td>
+                    			<td>仓库名称</td>
+                    			<td>所在省份</td>
+                    			<td>所在市</td>
+                    			<td>详细地址</td>
+                    			<td>状态</td>
+                    			<td>负责人</td>
+                    			<td>操作</td>
+                    		</tr>
+                    		<tr ng-repeat="warehouse in warehouseList">
+                    			<!-- <td>
+                                    <input type="checkbox">
+                                </td> -->
+                    			<td>{{warehouse.warehouse_number}}</td>
+                    			<td>{{warehouse.name}}
+									<span class="default" ng-show="warehouse.is_default==1">默认</span>
+                    			</td>
+                    			<td>{{warehouse.address.province}}</td>
+                    			<td>{{warehouse.address.city}}</td>
+                    			<td class="detail" title="{{warehouse.address.detail}}">{{warehouse.address.detail.slice(0,12)}}
+                                    <span ng-show="warehouse.address.detail.length>12">...</span>
+                                </td>
+                    			<td>
+                                    <span ng-show="warehouse.status==1">启用</span>
+                                    <span ng-show="warehouse.status==2">禁用</span>
+                                </td>
+                    			<td>{{warehouse.user.name||warehouse.user.mobile||'空'}}</td>
+                    			<td>
+                    				<span class="operation" ng-click="views(warehouse.warehouse_id)" ng-show="$root.accessControl.WarehouseManagement.view==1">查看</span>
+                    				<span class="operation" ng-click="edit(warehouse.warehouse_id)" ng-show="$root.accessControl.WarehouseManagement.edit==1">编辑</span>
+                    				<span class="operation" ng-click="disable(warehouse.warehouse_id,2)" ng-show="warehouse.status==1&&$root.accessControl.WarehouseManagement.Forbidden==1">禁用</span>
+                    				<span class="operation" ng-click="enable(warehouse.warehouse_id,1)" ng-show="warehouse.status==2&&$root.accessControl.WarehouseManagement.Activation==1">启用</span>
+                    				<span class="operation" ng-click="delete(warehouse.warehouse_id)" ng-show="$root.accessControl.WarehouseManagement.delete==1">删除</span>
+                    			</td>
+                    		</tr>
+                    	</table>
+                    </div>
+                    <div class="pager-box" ng-show="warehouseCount>pageSize">
+                        <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" first-text="首页" previous-text="上一页" next-text="下一页" last-text="最后页" items-per-page="pageSize" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="setPage()"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

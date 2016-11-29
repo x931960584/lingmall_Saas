@@ -1,0 +1,187 @@
+@import "../common/colors.less";
+.warehouse {
+    font-family: "微软雅黑";
+    height: 100%;
+    .content-bg {
+        height: 100%;
+        padding-bottom: 15px;
+        .bg-color {
+            background-color: #fff;
+            height: 100%;
+            .page-title {
+                font-size: 1.6em;
+                padding: 20px 15px;
+                background-color: @main-color-background;
+            }
+            .content {
+                display: inline-block;
+                background-color: #fff;
+                font-size: 1.4em;
+                .warehouse-content {
+                    background-color: #fff;
+                    .warehouse-top {
+                    	width: 100%;
+                        display: inline-block;
+                        border-bottom: 1px solid @main-color-border;
+                        .add-icon {
+                            font-size: 14px;
+                        }
+                        .title-list {
+                            width: 100%;
+                            display: inline-block;
+                            .fa-icon {
+                        		width: 34px;
+                        		height: 34px;
+                        		line-height: 34px;
+                        		text-align: center;
+                        		cursor: pointer;
+                        		z-index: 2;
+                        	}
+                            .search-input {
+                                .keyword {
+                                	line-height: 34px;
+                                }
+                                .keyword-input {
+                                	width: 175px;
+                                }
+                                .keyword,.keyword-input {
+                                	float: left;
+                                	display: inline-block;
+                                }
+                            }
+                            .range-box {
+                            	position: relative;
+                            	input {
+                            		background-color: #fff;
+                                    padding-right: 34px;
+                                    text-overflow:ellipsis;
+                            	}
+                                .range-input {
+                                    width: 175px;
+                                    height: 34px;
+                                    line-height: 34px;
+                                    padding-right: 34px;
+                                    padding-left: 10px;
+                                    border:1px solid @main-color-border;
+                                    cursor: no-drop;
+                                    text-overflow:ellipsis;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+                                    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+                                    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+                                    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+                                }
+                            	.icon-box {
+                            		position: absolute;
+                            		top: 0;
+                            		right: 0;
+                            		border-left: 1px solid @main-color-border;
+                            	}
+	                            .icon-box:hover {
+	                            	background-color: #edf1f2;
+	                            }
+                            }
+                            .area-box {
+                            	position: relative;
+                        		line-height: 34px;
+                        		position: relative;
+                        		display: inline-block;
+	                        	.area-text {
+	                        		float: left;
+	                        	}
+	                            .area-detail {
+	                            	float: left;
+	                            	position: relative;
+	                            	.area {
+	                            		float: left;
+	                            		span {
+		                            		padding: 0 10px;
+		                            		min-width: 60px;
+		                            		height: 30px;
+		                            		line-height: 34px;
+		                            		text-align: center;
+		                            		border-bottom: 1px solid #333;
+	                            			display: inline-block;
+	                            		}
+	                            	}
+	                            }
+                            }
+                            .range-list, .area-list{
+                            	position: absolute;
+                            	top:36px;
+                            	left:0;
+                            	z-index: 3;
+                            	width: 100%;
+								min-width: 160px;
+								max-height: 500px;
+								overflow: auto;
+								background-color: #fff;
+								border: 1px solid @main-color-border;
+								padding-top:5px;
+								-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    							box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+                                .confirm-range,.clear-area,.clear-range {
+                                    position: absolute;
+                                    top: 10px;
+                                    right: 5px;
+                                    cursor: pointer;
+                                    color: @main-color;
+                                }
+                                .clear-range {
+                                    top: 30px;
+                                }
+                            }
+                        }
+                        .disabled {
+                            cursor: no-drop;
+                        }
+                    }
+                    .warehouse-list {
+                        margin-top: 10px;
+                        .warehouse-table {
+                            width: 100%;
+                            border: 1px solid @main-color-border;
+                            .thead {
+                                background-color: @main-color-background-table-title;
+                                td {
+                                    line-height: 50px;
+                                    padding: 0 10px;
+                                }
+                            }
+                            tr {
+                                td {
+                                    line-height: 34px;
+                                    text-align: center;
+                                    padding: 0 10px;
+                                    input {
+                                        margin: 0 10px;
+                                    }
+                                    .default {
+                                        padding: 0 10px;
+                                        color: #fff;
+                                        background-color: @main-color;
+                                    }
+                                    .operation {
+                                        color: @main-color;
+                                        cursor: pointer;
+                                    }
+                                }
+                                .detail {
+                                    word-wrap:break-word;
+                                    max-width: 140px;
+                                    line-height: 20px;
+                                }
+                            }
+                        }
+                    }
+                    .pager-box {
+                        display: inline-block;
+                        width: 100%;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+    }
+}

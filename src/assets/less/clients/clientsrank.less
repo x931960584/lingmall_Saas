@@ -1,0 +1,56 @@
+@import '../common/colors.less';
+.clients_rank{
+	width: 100%;
+	height: 100%;
+	.bg_cent{
+        padding: 0px 15px 15px 15px;
+        height: 100%;
+    }
+    .container-fluid{
+    	height: 100%;
+    }
+    .all_color{
+            background-color: #fff;
+            height: 100%;
+            width: 100%;
+        }
+    .title{
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .rank_cent{
+		.rank_addbtn{
+			border-bottom: 1px solid @main-color-border;
+		}
+		.rank_list{
+			font-size: 1.4em;
+			line-height: 40px;
+			border-bottom: 1px solid @main-color-border;
+			.rank_list_left{
+				padding-left: 50px;
+				.icon_font{
+					font-size: 1.6em;
+					padding-right: 8px;
+					color: #ccc;
+				}
+				.pretermit{
+					font-size: 0.8em;
+					padding:0px 4px;
+					background-color: @main-color;
+					margin-left: 6px;
+					color: #fff; 
+				}
+			}
+			.rank_list_right{
+				padding-right: 50px;
+				a{
+					padding: 0px 6px;
+				}
+			}
+			.add_input{
+				padding-top: 3px;
+			}
+		}
+    }
+}

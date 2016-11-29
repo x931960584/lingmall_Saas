@@ -1,0 +1,59 @@
+<div class="useraccountmodal">
+    <div class="right-box user-list col-xs-12 col-md-12 col-lg-12">
+        <div class="info-list">
+            <span class="name">手机号码*:</span>
+            <input type="text" placeholder="请输入手机号作为登录账号" ng-model="data.addMobile" class="org-name-input" ng-blur="data.validateMobile(data.addMobile)" ng-click="data.mobileRegErr=false">
+            <div class="warm-info" ng-show="data.mobileRegErr">
+                <span></span>
+                <div class="notice">请输入正确的手机号码</div>
+            </div>
+        </div>
+        <div class="info-list small-text-box">
+            <span class="name">密码*:</span>
+            <input type="password" placeholder="******" maxlength="20" ng-model="data.addPassword" ng-blur="data.validatePwd(data.addPassword)" ng-click="data.pwdRegErr=false">
+            <a class="init-pwd-btn" ng-click="data.initPwd=!data.initPwd">
+                <i class="iconfont">&#xe627;</i>
+                <span>关于初始密码</span><br/>
+                <span class="small-text" ng-show="data.initPwd">初始密码:lm123456</span>
+            </a>
+            <div class="warm-info" ng-show="data.pwdRegErr">
+                <span></span>
+                <div class="notice">请输入6-20位密码,必须包含字母与数字</div>
+            </div>
+        </div>
+        <div class="info-list">
+            <span class="name">用户姓名:</span>
+            <input type="text" placeholder="请输入用户姓名,1-16位字符" maxlength="16" ng-model="data.addName">
+        </div>
+        <div class="info-list" ng-show="data.currentUserGroup.status!=2">
+            <span class="name">所属组织*:</span>
+            <div class="org-name-input">{{data.user_group_name}}
+                <i class="caret-down" ng-show="data.pageName=='editUserAccount'" ng-class="data.showUserAccountBox?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="data.showUserAccountBox=!data.showUserAccountBox"></i>
+                <div class="account-usergroup-list" ng-show="data.showUserAccountBox">
+                    <tree-view tree-data="data.selectUserAccountTree" tree-Options="data.selectUserAccountTreeOptions" selected-item="data.selectedUserAccountTreeItem"></tree-view>
+                </div>
+            </div>
+        </div>
+        <div class="info-list"  ng-show="data.currentUserGroup.status!=2&&data.currentUserGroup.role_name!='main'">
+            <span class="name">所属角色:</span>
+            <div class="choose-role">
+                <div class="org-name-input choose-input" ng-model="data.addRoleName">{{data.addRoleName||'请选择所属角色'}}
+                    <i class="caret-down" ng-class="data.showRolelist?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="data.showRolelist=!data.showRolelist"></i>
+                </div>
+                <ul class="role-list" ng-show="data.showRolelist">
+                    <li ng-click="data.setAddRoleId('无',null)">无</li>
+                    <li ng-click="data.setAddRoleId(role.name,role.role_id)" ng-repeat="role in data.rolesList| filter:{status:1}">{{role.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="info-list">
+            <span class="name">启用状态*:</span>
+            <div class="status-btn">
+                <input type="radio" name="status3" ng-click="data.addAccountStatus=1" ng-model="data.addAccountStatus" ng-checked="data.addAccountStatus==1">启用
+            </div>
+            <div class="status-btn">
+                <input type="radio" name="status3" ng-click="data.addAccountStatus=2" ng-checked="data.addAccountStatus==2" ng-model="data.addAccountStatus">禁用
+            </div>
+        </div>
+    </div>
+</div>

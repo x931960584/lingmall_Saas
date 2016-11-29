@@ -1,0 +1,112 @@
+@import "../common/colors.less";
+.activity_list {
+    width: 100%;
+    height: 100%;
+    .bg_cent {
+        padding: 0px 15px 15px 15px;
+        height: 100%;
+    }
+    .container-fluid {
+        height: 100%;
+    }
+    .all_color {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+    }
+    .title {
+        width: 100%;
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .activity_cent {
+        width: 100%;
+        background-color: #fff;
+        display: inline-block;
+        margin-bottom:15px; 
+        .activity_cent_input {
+            width: 100%;
+            display: inline-block;
+            border-bottom: 1px solid @main-color-border;
+            .denuded {
+                    position: absolute;
+                    top: 10px;
+                    right: 8px;
+                    font-size: 1.6em;
+                    font-style: normal;
+                    color: #ccc;
+                    cursor: pointer;
+                }
+        }
+        .grount_statue{
+            display: inline-block;
+            padding: 0px 12px 0px 15px;
+        }
+        .online_statue{
+            display: inline-block;
+        }
+        .search_grount_btn{
+            display: inline-block;
+            padding: 0px 15px 0px 12px;
+        }
+    }
+    .btn-marg {
+        margin-left: 12px;
+    }
+    .activity_table {
+        margin-top: 15px;
+        .table_list {
+            border: 1px solid @main-color-border;
+            thead {
+                background-color: @main-color-background-table-title;
+                border: 1px solid @main-color-border;
+            }
+            th {
+                text-align: center;
+                vertical-align: middle;
+                padding: 12px 0px;
+                height: 50px;
+                border-bottom: none;
+                font-weight: normal;
+                font-size: 1.4em;
+            }
+            td {
+                text-align: center;
+                vertical-align: middle;
+                padding: 12px 0px;
+                table-layout: fixed;
+                a {
+                    padding: 0px 6px;
+                }
+                .cour{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.transparen {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 20;
+}
+
+.c_modal {
+    width: 30%;
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    background-color: #fff;
+    z-index: 22;
+}
+
+.pager-box {
+    text-align: center;
+}

@@ -1,0 +1,122 @@
+<div class="goodsview">
+    <div class="container-fluid">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="page-title">查看</div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 content">
+            <div class="goodsview-content">
+                <div class="goodsview-top">基础信息</div>
+                <div class="goodsview-info">
+                    <div class="col-sm-6 col-md-6 col-lg-6 info-list">
+                        <ul>
+                            <li class="input-box">
+                                <span class="name"><i>*</i>商品名称&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="info-input">{{good.spu_name}}</div>
+                                </div>
+                            </li>
+                            <li class="input-box">
+                                <span class="name">商品分类&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="info-input">{{good.supplier_category.supplier_category_name||''}}</div>
+                                </div>
+                            </li>
+                            <li class="input-box">
+                                <span class="name">商品品牌&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="info-input">{{good.brand.brand_name}}</div>
+                                </div>
+                            </li>
+                            <li class="input-box">
+                                <span class="name">关键字&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="info-input">{{good.keyword}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 info-list">
+                        <ul>
+                            <li class="input-box">
+                                <span class="name"><i>*</i>商品编码&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="info-input">{{good.spu_code}}</div>
+                                </div>
+                            </li>
+                            <li class="input-box">
+                                <span class="name">计量单位&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="info-input">{{good.unit}}</div>
+                                </div>
+                            </li>
+                            <li class="input-box">
+                                <span class="name">排序值&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="info-input">{{good.sort}}</div>
+                                </div>
+                            </li>
+                            <li class="input-box">
+                                <span class="name">是否上架&nbsp;:&nbsp;</span>
+                                <div class="info">
+                                    <div class="status">
+                                        <span ng-show="good.status==1">上架</span>
+                                    </div>
+                                    <div class="status">
+                                        <span ng-show="good.status==2">下架</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="goodsview-speci">
+                        <div class="title">该商品具有多种规格</div>
+                    </div>
+                    <!-- <div specs-Directive item-Group="itemGroup" sku-Group="skuGroup" options="options" template-Url="views/common/ngsku/ngsku.html">
+                    </div>-->
+                    <table class="goodsview-table">
+                        <tr>
+                            <td>序号</td>
+                            <td>图片</td>
+                            <td ng-repeat="item in itemGroup">{{item.key}}</td>
+                            <td>商品副标题</td>
+                            <td>商品编码</td>
+                            <td>条形码</td>
+                            <td>物流重量(KG)</td>
+                            <td>市场价</td>
+                            <td>订货价</td>
+                            <td>成本价</td>
+                        </tr>
+                        <tr ng-repeat="(index,sku) in skuGroup">
+                            <td>{{$index+1}}</td>
+                            <td>
+                                <div class="img-box" ng-repeat="url in imgUrlList" ng-show="sku.img_sku_id==url.bundle_number">
+                                    <img ng-src="{{url.img_url}}" alt="">
+                                </div>
+                            </td>
+                            <td ng-repeat="spec in sku.specification">{{spec.value}}</td>
+                            <td>{{sku.sku_name}}</td>
+                            <td>{{sku.sku_code}}</td>
+                            <td>{{sku.barcode}}</td>
+                            <td>{{sku.weight}}</td>
+                            <td>{{sku.market_price}}</td>
+                            <td>{{sku.groupon_price}}</td>
+                            <td>{{sku.cost_price}}</td>
+                        </tr>
+                    </table>
+                    <div class="goodsview-intro">
+                        <div class="title">商品简介</div>
+                        <div class="desc-text" ng-bind-html="desc"></div>
+                    </div>
+                    <div class="goodsview-attr">
+                        <div class="title">商品属性</div>
+                        <div class="desc-text">
+                            <span ng-repeat="desc in good.extend.others">{{desc.key+':'+desc.value}},</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

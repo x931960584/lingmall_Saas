@@ -1,0 +1,72 @@
+<div class="mygoods">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-sm-12 col-md-12 col-lg-12">我的商品</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 content">
+                <div class="mygoods-content">
+                    <div class="mygoods-top row-padding-2">
+                        <div class="col-padding-0 col-sm-9 col-md-9 col-lg-10">
+                            <div class="col-padding-0 pull-left">
+                                <div class="input-group search-box">
+                                    <span class="keyword">关键字&nbsp;:&nbsp;</span>
+                                    <div class="keyword-input">
+                                        <input type="text" class="form-control" placeholder="条码、名称、关键字" ng-model="key">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pull-left col-margin-2">
+                                <div class="btn-group brand-dropdown" uib-dropdown>
+                                    <button id="btn-append-to-single-button" type="button" class="btn btn-default btn-padding-2" data-toggle="dropdown" uib-dropdown-toggle>
+                                        {{brand}}<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu brand-box" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                        <li ng-click="selectBrand('全部品牌',null)">
+                                            <a href="">全部品牌</a>
+                                        </li>
+                                        <li ng-repeat="brand in brandsList" ng-click="selectBrand(brand.brand_name,brand.brand_id)">
+                                            <a href>{{brand.brand_name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="pull-left category-box">
+                                <div class="input-group form-control category-box-bg" ng-click="showCategoryBox($event)">
+                                    <div class="category-box">{{category?category:'全部分类'}}
+                                        <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                                <div ng-show="showCategoryList" class="category-list" ng-click="stop()">
+                                    <tree-view tree-data="categoryTree" tree-Options="categoryTreeOptions" selected-item="categoryTreeItem" select-all-show="true" select-all-text="'全部分类'"></tree-view>
+                                </div>
+                            </div>
+                            <div class="pull-left col-margin-2">
+                                <div class="btn-group status-dropdown" uib-dropdown>
+                                    <button id="btn-append-to-single-button" type="button" class="btn btn-default" uib-dropdown-toggle>
+                                        {{status}}<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                        <li ng-repeat="status in statusList" ng-click="selectStatus(status.name,status.status_id)">
+                                            <a href>{{status.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-padding-0 col-sm-3 col-md-3 col-lg-2">
+                            <div class="btn btn-primary pull-right" ui-sref="main.addgoods" ng-show="accessControl.mygoods.add==1">
+                                <i class="iconfont add-icon">&#xe61e;</i>添加商品
+                            </div>
+                            <button type="button" class="btn btn-default pull-right margin-right-1" ng-click="getMyGoodsList()">检索</button>
+                        </div>
+                    </div>
+                    <div class="mygoods-list">
+                        <goods-table ng-show="mygoodsList.length" options="tableOptions" mygoods-List="mygoodsList" status-List="statusList" img-Url-List="imgUrlList" access-Control="accessControl"></goods-table>
+                    </div>
+                </div>
+                <div ng-show="bigTotalItems/pageSize>1" class="pager-box">
+                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" first-text="首页" previous-text="上一页" next-text="下一页" last-text="最后页" items-per-page="{{pageSize}}" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="setPage()"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

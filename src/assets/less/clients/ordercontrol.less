@@ -1,0 +1,172 @@
+@import "../common/colors.less";
+.order_control {
+    width: 100%;
+    height: 100%;
+    .bg_cent {
+        padding: 0px 15px 15px 15px;
+        height: 100%;
+    }
+    .container-fluid {
+        height: 100%;
+    }
+    .all_color {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+    }
+    .title {
+        width: 100%;
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .order_control_cent {
+        background-color: #fff;
+        display: inline-block;
+        .ordercon_tab {
+            border-bottom: 1px solid @main-color-border;
+            .tow_tab {
+                border: 1px solid @main-color-border;
+                border-bottom: none;
+            }
+            .bg_color {
+                background: @main-color-border;
+            }
+            .tag_font {
+                font-size: 1.4em;
+                text-align: center;
+                cursor: pointer;
+            }
+        }
+        .ordercon_pro {
+            .pro_title_sear {
+                font-size: 1.5em;
+            }
+            .span_btn {
+                cursor: pointer;
+            }
+            .search_pro_position{
+                position: absolute;
+                top: 44px;
+                left: 0px;
+                width: 100%;
+                border: 1px solid @main-color-border;
+                background-color: #fff;
+                z-index: 10;
+                max-height: 450px;
+                overflow: auto;
+                li{
+                    line-height: 16px;
+                }
+                .pro_repeat{
+                    border-bottom: 1px solid @main-color-border;
+                    cursor: pointer;
+                }
+                .pro_repeat:hover{
+                    background-color: @main-color-background;
+                }
+                .pro_repeat:last-child{
+                    border-bottom:none;
+                }
+                .all_list_ul{
+                    li{
+                        line-height: 22px;
+                        cursor: pointer;
+                        font-size: 1.3em;
+                        padding: 0px 15px;
+                    }
+                    li:hover{
+                        background-color: @main-color-background;
+                    }
+                }
+            }
+            .bg_pro {
+                background-color: @main-color-border;
+            }
+            .pro_img {
+                float: left;
+                height: 90px;
+                line-height: 90px;
+                padding: 0px 15px;
+                img {
+                    width: 80px;
+                    max-height: 80px;
+                    vertical-align: middle;
+                }
+            }
+            .pro_li {
+                line-height: 16px;
+                text-align: left;
+                padding: 12px;
+                margin: 0px;
+                padding-left: 10px;
+            }
+            .del_ico {
+                position: absolute;
+                top: 15px;
+                right: 5px;
+                span {
+                    font-size: 1.6em;
+                    color: #999;
+                    padding: 6px;
+                    cursor: pointer;
+                }
+            }
+            .title_proname{
+                font-size: 1.4em;
+                padding-top: 20px;
+            }
+            .pro_keyword{
+                font-weight: bold;
+                padding:0px 6px;
+            }
+            .add_client_btn{
+                text-align: right;
+            }
+            .add_check{
+                border-bottom: 1px solid @main-color-border;
+            }
+            .table_list {
+                border: 1px solid @main-color-border;
+                thead {
+                    background-color: @main-color-background-table-title;
+                    border: 1px solid @main-color-border;
+                }
+                 th {
+                    text-align: center;
+                    vertical-align: middle;
+                    padding: 12px 0px;
+                    height: 50px;
+                    border-bottom: none;
+                    font-weight: normal;
+                    font-size: 1.4em;
+                    .btn-group.open .dropdown-toggle{
+                            box-shadow:none;
+                    }
+                    .form-group{
+                        position: relative;
+                        margin-bottom: 0px;
+                    }
+                    .search_position{
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        color: #ccc;
+                    }
+                }
+                 td {
+                     text-align: center;
+                     vertical-align: middle;
+                     padding: 12px 0px;
+                     table-layout: fixed;
+                     a {
+                         padding: 0px 3px;
+                     }
+                     .cour {
+                         cursor: pointer;
+                     }
+                 }  
+            }
+        }
+    }
+}

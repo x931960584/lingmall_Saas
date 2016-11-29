@@ -1,0 +1,43 @@
+<div class="viewmodal" ng-show="data.pageModal=='viewuseraccountmodal'">
+    <ul>
+        <li>
+            <span class="name">用户ID :</span>{{data.singleUserData.id}}
+        </li>
+        <li>
+            <span class="name">启用状态 :</span> <span class="active">{{data.singleUserData.status==1?'启用':'禁用'}}</span>
+        </li>
+        <li>
+            <span class="name">手机号码 :</span>{{data.singleUserData.mobile}}
+        </li>
+        <li>
+            <span class="name">密码 :</span>********
+        </li>
+        <li>
+            <span class="name">用户姓名 :</span>{{data.singleUserData.name==''?'未填写':data.singleUserData.name}}
+        </li>
+        <li>
+            <span class="name">所属部门 :</span>{{data.singleUserData.user_group_name}}
+        </li>
+        <li>
+            <span class="name">所属角色 :</span>{{data.singleUserData.role_name}}
+        </li>
+        <li>
+            <span class="name">创建时间 :</span> {{data.singleUserData.created_at}}
+        </li>
+    </ul>
+</div>
+<div class="viewmodal" ng-show="data.pageModal=='viewusergroupmodal'">
+    <ul>
+        <li>
+            <span class="name">组织架构名称 :</span>{{data.currentUserGroup.user_group_name}}</li>
+        <li>
+            <span class="name">所属组织 :</span> {{data.parentUserGroup.user_group_name||data.currentUserGroup.user_group_name}}</li>
+        <li>
+            <span class="name">启用状态 :</span>
+            <span class="active" ng-show="data.currentUserGroup.user_group_status==1" ng-click="data.currentUserGroup.user_group_status=1">启用</span>
+            <span class="active" ng-show="data.currentUserGroup.user_group_status==2" ng-click="data.currentUserGroup.user_group_status=2">禁用</span>
+        </li>
+        <li>
+            <span class="name">创建时间 :</span> {{data.currentUserGroup.created_at}}</li>
+    </ul>
+</div>

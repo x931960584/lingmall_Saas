@@ -1,0 +1,20 @@
+<div class="sale_modal">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+            <span class="lab_span"><i>*</i>区域名称:</span>
+            <div class="col-sm-8 col-md-8 col-lg-8 name_span">
+                <span>{{data.name}}</span>
+            </div>
+        </label>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+        	<span class="lab_span">区域范围:</span>
+        	<div class="col-sm-8 col-md-8 col-lg-8">
+        		<div class="regional_rang col-sm-12 col-md-12 col-lg-12">
+        			<div ng-repeat="x in data.cityList" class="line_span">
+                        <span class="wei_span">{{x.p}}&nbsp;:</span><span ng-repeat="t in x.c" class="col-padding-1">{{t}}</span>
+                    </div>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>

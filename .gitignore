@@ -1,0 +1,12 @@
+bower_components/
+node_modules/
+release/
+src/scripts/vendor
+src/assets/css/main.css
+src/assets/css/lingmall/lingmall.css
+*.DS_Store
+.svn/
+.svn
+.metadata/
+lingmall/.project
+src/.project

@@ -1,0 +1,91 @@
+<div class="my_clients">
+        <div class="all_color">
+            <div class="clients_cent col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                <div class="clients_seacrh no_border col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                        <div class="col-sm-11 col-md-11 col-lg-11 col-padding-0">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-padding-0">
+                                <input type="text" class="form-control" placeholder="客户名称/客户编号" ng-model="keyWord">
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-padding-1 ">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input_bg" placeholder="客户类型" readonly="true" ng-model="data.cataName">
+                                    <div class="input-group-btn" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" uib-dropdown-menu>
+                                            <li ng-click="data.cataAll()"><a>全部客户类型</a></li>
+                                            <li ng-repeat="cata in data.cataLists" ng-click="data.cataLi(cata.name,cata.catagory_id)"><a>{{cata.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-padding-0 ">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input_bg" placeholder="客户等级" readonly="true" ng-model="data.rankName">
+                                    <div class="input-group-btn" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2" uib-dropdown-menu>
+                                            <li ng-click="data.rankAll()"><a>全部客户等级</a></li>
+                                            <li ng-repeat="rank in data.rankLists" ng-click="data.rankLi(rank.name,rank.grade_id)"><a>{{rank.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-padding-1 ">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input_bg" placeholder="所属销售区域" readonly="true" ng-model="data.regName">
+                                    <div class="input-group-btn" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu3" uib-dropdown-menu>
+                                            <li ng-click="data.regAll()"><a>全部销售区域</a></li>
+                                            <li ng-repeat="reg in data.regionLists" ng-click="data.regLi(reg.name,reg.region_id)"><a>{{reg.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-md-1 col-lg-1 col-padding-0 text_right">
+                            <button class="btn btn-primary padding_btn" ng-click="data.searchClient()">检索</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clients_tab col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">
+                    <table class="table table-hover table_list">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox">
+                                </th>
+                                <th>客户编号</th>
+                                <th>客户名称</th>
+                                <th>所在地区</th>
+                                <th>客户类型</th>
+                                <th>客户等级</th>
+                                <th>所属销售区域</th>
+                                <th>结算方式</th>
+                                <th>平台供应关系</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="cli in data.clientsList">
+                                <td>
+                                    <input type="checkbox" ng-click="data.checkCli($event,cli.customer_id)" ng-checked="cli.ischecked" ng-disabled="cli.ischecked">
+                                </td>
+                                <td>{{cli.no}}</td>
+                                <td>{{cli.name}}</td>
+                                <td>{{cli.address.province}}&nbsp;&nbsp;{{cli.address.city}}&nbsp;&nbsp;{{cli.address.district}}</td>
+                                <td>{{cli.catagory.name}}</td>
+                                <td>{{cli.grade.name}}</td>
+                                <td>{{cli.region.name}}</td>
+                                <td>{{cli.business.settlement.name}}</td>
+                                <td>{{data.verifyFlag[cli.verify_flag].name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pager-box">
+                    <ul uib-pagination total-items="data.bigTotalItems" ng-model="data.bigCurrentPage" max-size="6" first-text="首页" previous-text="上一页" next-text="下一页" last-text="末页" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" items-per-page="10" ng-change="data.setPage()"></ul>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,304 @@
+<div class="add_outstoct">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>{{addTitle}}</span>
+            </div>
+            <div class="addoutstoct_cent col-sm-12 col-md-12 col-lg-12 row-padding-1">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span"><i>*</i>入库单编号:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" ng-model="warehouse_in_bill_number" maxlength="20" placeholder="请输入数字和英文">
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span"><i>*</i>入库类型:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" ng-model="in_type_name" readonly="readonly">
+                                    <div class="input-group-btn" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu brandDrop" aria-labelledby="dropdownBrand1" uib-dropdown-menu>
+                                            <li><a ng-click="typeLi()">{{in_type_name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span"><i>*</i>入库仓库:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" ng-model="warehouse_name" placeholder="请选择仓库" readonly="readonly">
+                                    <div class="input-group-btn" uib-dropdown auto-close="{{autoClose}}">
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu brandDrop" aria-labelledby="dropdownBrand2" uib-dropdown-menu>
+                                            <li ng-repeat="ch in warehouseList"><a ng-click="ch.status==1 ? getWareName(ch.warehouse_id,ch.name,ch.is_default) : getDisabled()" ng-class="ch.status==1 ? 'activity_ware' : 'disabled_ware' ">{{ch.name}}<span class="pretermit" ng-show="ch.is_default==1">默认</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span"><i>*</i>入库时间:</span>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <datepicker date-Format="dateFormat" min-View="0" bootcss-Ver="3" minute-Step="5" time-Type="in_time" dis-Abled="disAbled" time-Type-Placeholder="startTimePlaceholder"></datepicker>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">入库状态:</span>
+                            <div class="right_span">
+                                <span>未入库</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0" ng-show="isAdd!=''&&isAdd!=null">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">审核状态:</span>
+                            <div class="right_span">
+                                <span>{{outAudit[review_stat].outAuditName}}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">制单人:</span>
+                            <div class="right_span">
+                                <span>{{originator}}</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0" ng-show="isAdd!=''&&isAdd!=null">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">审核时间:</span>
+                            <div class="right_span">
+                                <span>{{auditTime}}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1" ng-show="isAdd!=''&&isAdd!=null">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                       
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <span class="bef_span">审核人:</span>
+                            <div class="right_span">
+                                <span>{{auditName}}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 row-padding-2">
+                    <button class="btn btn-primary btn-marg" ng-click="selectGoods()">选择商品</button>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 row-padding-1 col-padding-0">
+                    <table class="table table-hover stock_table">
+                        <thead>
+                            <tr>
+                                <th class="index_Num">序号</th>
+                                <th>商品</th>
+                                <th class="index_Num">单位</th>
+                                <th>金额</th>
+                                <th><i>*</i>入库数量</th>
+                                <th>备注</th>
+                                <th class="index_Num">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="t in dataSku">
+                                <td>
+                                    {{$index+1}}
+                                </td>
+                                <td>
+                                    <div class="td_pro">
+                                        <div class="pro_img" ng-repeat="img in imgUrlList" ng-show="t.list.img_sku_id==img.bundle_number"><img ng-src="{{img.type?img.domain+ '/'+img.key+'-thumbnail100':img.domain+ '/'+img.key}}" /></div>
+                                        <div class="pro_li">
+                                            <ul>
+                                                <li><span>商品编码:</span>{{t.list.sku_code}}</li>
+                                                <li><span>商品条码:</span>{{t.list.barcode}}</li>
+                                                <li>{{t.list.spu_name}}&nbsp;&nbsp;{{t.list.sku_name}}【<span ng-repeat="spe in t.list.specification">{{spe.key+':'+spe.value}},</span>】</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-w">
+                                        {{t.unit}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-w">
+                                        <input type="text" class="form-control" ng-model="t.price" ng-blur="groPrice(t.sku_id,t.price)" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-w">
+                                        <input type="text" class="form-control" ng-model="t.count" ng-keypress="IsNum($event)" ng-blur="stockCount(t.sku_id,t.count)" maxlength="6" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-w">
+                                        <input type="text" class="form-control" ng-model="t.memo" ng-blur="groMemo(t.sku_id,t.memo)" maxlength="200"/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-w"><a ng-click="arrdel(t.sku_id)">删除</a></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 row-padding-1">
+                    <button class="btn btn-primary btn_can" ng-click="sbmint()">保存</button>
+                    <button class="btn btn-default" ui-sref="main.outstock">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mongolia" ng-show="monShow"></div>
+<div class="bomb_box" ng-show="boxShow">
+    <div class="modal-header">
+        <h3 class="modal-title">选择商品</h3>
+    </div>
+    <div class="modal-body">
+        <div class="body_scroll">
+            <div class="mod_cen">
+                <div class="list_search">
+                    <div class="key_input">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="条码、名称、关键字" ng-model="keyword">
+                        </div>
+                    </div>
+                    <div class="key_input">
+                        <div class="btn-group" uib-dropdown>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="dropdownBrand" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle ng-model="brandId">
+                                {{brandName}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu brandDrop" aria-labelledby="dropdownBrand" uib-dropdown-menu>
+                                <li><a ng-click="searchBrand('','全部品牌')">全部品牌</a></li>
+                                <li ng-repeat="b in bList"><a ng-click="searchBrand(b.brand_id,b.brand_name)">{{b.brand_name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="key_input">
+                        <div class="input-group" ng-model="categoryId">
+                            <input type="text" class="form-control" aria-label="..." placeholder="请选择分类" ng-model="categoryName">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default mar-left dropdown-toggle" ng-click="catedrop($event)"><span class="caret"></span></button>
+                            </div>
+                            <div class="category-dropdown" ng-show="cateDropDown" ng-click="stopPro($event)">
+                                <tree-view tree-data="tree" tree-Options="treeOptions" selected-item="selectedItem" select-all-show="selectAllShow" select-all-text="selectAllText"></tree-view>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="key_input">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" ng-click="searchPro()">检索</button>
+                              </span>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="pro_list">
+                    <table>
+                        <thead>
+                            <tr class="title">
+                                <th>
+                                    <input type="checkbox" ng-click="allCheckpro($event,bigCurrentPage)" ng-checked="urlcheck(bigCurrentPage)">
+                                </th>
+                                <th>商品名称</th>
+                                <th>品牌</th>
+                                <th>分类</th>
+                                <!-- <th>库存数量</th> -->
+                                <th>单位</th>
+                                <th>市场价</th>
+                                <th>订货价</th>
+                                <th>成本价</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="goods in mygoodsList">
+                            <tr ng-repeat="sku in goods.skus| limitTo:1">
+                                <td class="middle">
+                                    <input type="checkbox" ng-click="skuCheck(sku,goods.keyword,$event)" ng-checked="checkbox(sku.sku_id,bigCurrentPage)" ng-disabled="disabled(sku.sku_id)">
+                                </td>
+                                <td class="goods-box">
+                                    <div class="goods-sku">
+                                        <div class="img-box" ng-repeat="url in imgList track by $index" ng-show="sku.img_sku_id==url.bundle_number">
+                                            <img ng-src="{{url.type?url.domain+'/'+url.key+'-thumbnail100':url.domain+'/'+url.key}}" alt="">
+                                        </div>
+                                        <ul class="goods-detail">
+                                            <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                                            <li><span>商品条码:</span>{{sku.barcode}}</li>
+                                            <li class="params">{{goods.spu_name}}&nbsp;&nbsp;{{sku.sku_name}}【
+                                                <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}},</span> 】
+                                            </li>
+                                        </ul>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                </td>
+                                <td rowspan="{{goods.skus.length}}">{{goods.brand.brand_name||'无'}}</td>
+                                <td rowspan="{{goods.skus.length}}">{{goods.supplier_category.supplier_category_name}}</td>
+                                <td rowspan="{{goods.skus.length}}">{{goods.unit}}</td>
+                                <td>{{sku.market_price}}</td>
+                                <td>{{sku.groupon_price}}</td>
+                                <td>{{sku.cost_price}}</td>
+                                <td rowspan="{{goods.skus.length}}">{{sheLves[goods.status-1].shelvesname}}</td>
+                            </tr>
+                            <tr ng-repeat="sku in goods.skus| limitTo:1-goods.skus.length">
+                                <td class="middle">
+                                    <input type="checkbox" ng-click="skuCheck(sku,goods.keyword,$event)" ng-checked="checkbox(sku.sku_id,bigCurrentPage)" ng-disabled="disabled(sku.sku_id)">
+                                </td>
+                                <td class="goods-box">
+                                    <div class="goods-sku">
+                                        <div class="img-box" ng-repeat="url in imgList track by $index" ng-show="sku.img_sku_id==url.bundle_number">
+                                            <img ng-src="{{url.type?url.domain+'/'+url.key+'-thumbnail100':url.domain+'/'+url.key}}" alt="">
+                                        </div>
+                                        <ul class="goods-detail">
+                                            <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                                            <li><span>商品条码:</span>{{sku.barcode}}</li>
+                                            <li class="params">{{goods.spu_name}}&nbsp;&nbsp;{{sku.sku_name}}【
+                                                <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}},</span> 】
+                                            </li>
+                                        </ul>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                </td>
+                                <td>{{sku.market_price}}</td>
+                                <td>{{sku.groupon_price}}</td>
+                                <td>{{sku.cost_price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pager-box">
+                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="6" first-text="首页" previous-text="上一页" next-text="下一页" last-text="末页" items-per-page="6" class="pagination-md pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="setPage()"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">提交</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+    </div>
+</div>

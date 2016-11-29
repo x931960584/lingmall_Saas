@@ -1,0 +1,33 @@
+<div class="login">
+    <div class="title">欢迎登录</div>
+    <div class="user-box">
+        <div class="admin base">
+            <input type="radio" name="account" class="account-radio" ng-checked="true">主账户登录
+        </div>
+        <div class="common base">
+            <input type="radio" name="account" class="account-radio">员工账户登录
+        </div>
+    </div>
+    <div class="message" ng-show="showLoginMessage">{{loginMessage}}</div>
+    <div class="tel-box input">
+        <i class="iconfont">&#xe615;</i>
+        <input type="text" placeholder="请输入手机号" class="base" ng-model="username" ng-keydown="usernameEnter($event)">
+    </div>
+    <div class="pwd-box input">
+        <i class="iconfont">&#xe614;</i>
+        <input type="password" placeholder="密码" class="base pwdInput" ng-model="pwd" ng-keydown="pwdEnter($event)">
+    </div>
+    <div class="vali-box">
+        <input type="text" placeholder="输入验证码" ng-keydown="keydown($event)" class="vali-text base" ng-blur="validateCaptha()" ng-model="captcha" ng-click="valiCaptcha=false">
+        <div class="vali-img base" ng-model="code">{{code}}</div>
+        <div class="vali-prompt" ng-show="valiCaptcha==true">{{valiPrompt}}</div>
+    </div>
+    <div class="login-btn base" ng-click="login()">登录</div>
+    <div class="footer-box">
+        <div class="save-user">
+            <input type="checkbox" ng-model="remember_me"> 记住用户名
+        </div>
+        <div class="forgetpwd-text" ui-sref="users.forgetpwd">忘记密码</div>
+        <div class="regist-text" ui-sref="users">还没有账号？去注册</div>
+    </div>
+</div>

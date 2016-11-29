@@ -1,0 +1,67 @@
+<div class="addwarehouse-content">
+    <div class="add-left">
+        <div class="info">
+            <span class="name">
+				<span class="star">*</span>仓库编号
+            </span>
+            <input type="text" class="form-control" maxlength="20" placeholder="请输入仓库编号,做多20个英文或数字组成" ng-model="data.warehouse_number" ng-disabled="data.pageName=='view'">
+        </div>
+        <div class="info">
+            <span class="name">
+				<span class="star">*</span>仓库名称
+            </span>
+            <input type="text" class="form-control" maxlength="30" placeholder="请输入仓库名称,最多30个字" ng-model="data.warehouse_name" ng-disabled="data.pageName=='view'" required>
+        </div>
+        <div class="info">
+            <span class="name area-name"><span class="star">*</span>所在地区</span>
+            <div class="area-detail input">
+                <div class="area">
+                    <span class="province">{{data.address_data.province}}</span>&nbsp;省&nbsp;
+                </div>
+                <div class="area">
+                    <span class="city">{{data.address_data.city}}</span>&nbsp;市&nbsp;
+                </div>
+                <i class="fa-icon icon-box fa fa-caret-down" ng-show="data.pageName!= 'view'"  ng-class="data.showAddWarehouseAreaBox?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="data.setShowBox($event)"></i>
+                <i class="fa-icon icon-box fa fa-caret-down" ng-show="data.pageName=='view'" ng-click="data.setShowBox($event)" ng-class="{'disabled':data.pageName=='view'}"></i>
+                <div class="area-list" ng-show="data.showAddWarehouseAreaBox" ng-click="data.stop($event)">
+                   <tree-view tree-data="data.addWarehouseAreaTree" tree-Options="data.addWarehouseAreaTreeOptions" selected-item="data.addWarehouseAreaTreeItem" dis-Area="'warehouseArea'"></tree-view>
+                   <div class="clear-area" ng-click="data.clearArea()">清空</div>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <span class="name"><span class="star">*</span>详细地址</span>
+            <input type="text" class="form-control" maxlength="50" ng-model="data.address_data.detail" ng-disabled="data.pageName=='view'" title="{{data.address_data.detail}}" required>
+        </div>
+        <div class="info">
+            <span class="name">
+				<span class="star">*</span>负责人
+            </span>
+            <div class="head-input-box">
+                <input type="text" class="form-control header-input" placeholder="请输入负责人姓名" ng-model="data.warehouse_header" ng-change="data.inputHeader(data.warehouse_header)" ng-disabled="data.pageName=='view'" required>
+                <div class="user-list" ng-show="data.showUserListBox">
+                    <ul>
+                        <li ng-repeat="user in data.userList" ng-click="data.setHeader(user.uuid,user.name,user.mobile)">
+                            <span>{{user.name || user.mobile}}</span>
+                            <span>[{{user.user_group_name}}]</span>
+                        </li>
+                        <li ng-show="data.userList.length == 0">未查询到该用户账号,请重试!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <span class="name">联系电话</span>
+            <input type="text" class="form-control" maxlength="20" placeholder="最多20位数字组成" ng-model="data.warehouse_phone" ng-disabled="data.pageName=='view'">
+        </div>
+        <div class="default">
+            <input type="checkbox" ng-model="data.is_default" ng-disabled="data.pageName=='view'">设为默认仓库
+        </div>
+    </div>
+    <div class="add-right">
+        <div class="range-title">配送范围</div>
+        <div class="range-box">
+            <tree-view tree-data="data.addWarehouseRangeTree" tree-Options="data.addWarehouseRangeTreeOptions" selected-item="data.addWarehouseRangeTreeItem" page-Name="data.pageName"></tree-view>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<div class="permission">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>角色权限</span>
+            </div>
+            <div class="per_mian col-sm-12 col-md-12 col-lg-12 row-padding-2">
+                <div class="per_box col-sm-3 col-md-3 col-lg-3">
+                    <div class="per_box_left">
+                        <div class="pre_headline">角色列表</div>
+                        <div class="pre_input col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-sm-9 col-md-9 col-lg-9 keyword">
+                                <input type="text" class="form-control" ng-model="roleSeach" maxlength="16" placeholder="请输入关键字">
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 seach_btn">
+                                <button class="btn btn-primary btn-block" ng-click="seachper()">搜索</button>
+                            </div>
+                        </div>
+                        <div class="pre_icon">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default iconfont" ng-click="add()" ng-disabled="addDisaBled" ng-model="addstat" ng-show="accessControl.permission.add==1">&#xe61e;</button>
+                                <button type="button" class="btn btn-default iconfont" ng-click="editor()" ng-disabled="editDisaBled" ng-model="editstat" ng-show="accessControl.permission.edit==1">&#xe620;</button>
+                                <button type="button" class="btn btn-default iconfont" ng-click="remov()" ng-disabled="delDisaBled" ng-model="delstat" ng-show="accessControl.permission.delete==1">&#xe61f;</button>
+                            </div>
+                        </div>
+                        <div class="manage_list" ng-model="permissionEdit">
+                            <ul class="mange_list_ul" ng-repeat="replist in role">
+                                <li class="mange_li" ng-switch={{replist.status}} ng-class="{'check_color':replist.role_id==juese}" ng-click="checkList(replist.role_id,replist.status,replist.name)">
+                                    <i class="line"></i><span class="place">{{replist.name}}</span>
+                                    <font class="state_can" ng-switch-when="2">禁用</font>
+                                    <font class="state_can" ng-switch-when="1">启用</font>
+                                </li>
+                            </ul>
+                            <input type="hidden" ng-model="myCtrl" />
+                        </div>
+                    </div>
+                </div>
+                <div class="per_box col-sm-3 col-md-3 col-lg-3" ng-show="modManage">
+                    <div class="per_box_right">
+                        <div class="pre_headline">模块管理列表</div>
+                        <div class="pre_input col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-sm-9 col-md-9 col-lg-9 keyword">
+                                <input type="text" class="form-control" ng-model="modSeach" maxlength="16" placeholder="请输入关键字">
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 seach_btn">
+                                <button class="btn btn-primary btn-block" ng-click="seachModal()">搜索</button>
+                            </div>
+                        </div>
+                        <div class="pre_icon">
+                            <span class="carry_out" ng-click="toggle()">{{toggleFont}}<i class="iconfont">{{pullFont}}</i></span>
+                        </div>
+                        <div class="modal_list">
+                            <ul class="f_meau" ng-repeat="md in mdList" ng-model="chRoleId">
+                                 <li class="f_meau_li">
+                                     <div class="f_meau_li_div" ng-click="unique(md.module_id,md.status,chRoleId,md.children,trueOne)" ng-class="{'bg_check':md.module_id==moduleGid}">
+                                         <i class="iconfont">+</i>
+                                         <font class="font_size">{{md.name}}</font>
+                                         <input type="checkbox" class="checked_list" ng-checked="md.status==IsCheckSec" ng-click="checkF(md.status,chRoleId,md.module_id,$event)" ng-model="selectAll" ng-true-value="1" ng-false-value="0" ng-disabled="accessControl.permission.permissionEdit==0"/>
+                                     </div>
+                                     <div ng-show="isAll(md.module_id)" class="dis_none">
+                                         <ul class="s_meau" ng-repeat="item in md.children track by $index">
+                                             <li class="s_meau_li" ng-click="chidList(item.module_id,item.status,chRoleId)" ng-class="{'gb_chid':item.module_id==subID}">
+                                                 <i class="line"></i>
+                                                 <font class="font_size">{{item.name}}</font>
+                                                 <input type="checkbox" class="checked_list" ng-checked="item.status==IsCheckSec" ng-model="selectAll" ng-true-value="1" ng-false-value="0" ng-click="checkSc(item.status,chRoleId,item.module_id,$event)" ng-disabled="accessControl.permission.permissionEdit==0"/>
+                                             </li>
+                                         </ul>
+                                     </div>
+                                 </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="select_box col-sm-3 col-md-3 col-lg-3" ng-show="selectPer">
+                    <div class="col-sm-12 col-md-12 col-lg-12 select_header">
+                        <span>权限列表</span>
+                    </div>
+                    <div ng-repeat="x in actLIst">
+                        <div class="col-sm-12 col-md-12 col-lg-12 select_cen">
+                            <div><span>{{x.name}}</span>
+                                <input type="checkbox" class="pull-right" ng-checked="x.status==1" ng-click="actionfn(chRoleId,x.module_id,x.action_id,$event)" ng-disabled="fistDis(x.action_id)">
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="actShow" class="bordAct col-sm-12 col-md-12 col-lg-12">
+                        <div ng-repeat="x in actLIstSec">
+                            <div class="select_cen">
+                                <div><span>{{x.name}}</span>
+                                    <input type="checkbox" class="pull-right" ng-checked="x.status==1" ng-click="actionSecfn(chRoleId,x.module_id,x.action_id,$event)" ng-disabled="secDis(x.action_id)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="cover" ng-show="indication"></div>
+<div class="modal_box" ng-show="indication">
+    <div class="modal_header">
+        <span>添加/编辑角色</span>
+        <i class="iconfont" ng-click="wrong()">&#xe624;</i>
+    </div>
+    <div class="modal_cen">
+        <div class="per_name">角色名称*</div>
+        <input type="text" class="form-control" ng-disabled="expre" maxlength="16" placeholder="请输入角色名称，1-16位字符" ng-model="roleName" />
+        <div class="err_color" ng-show="nameShow">{{nameError}}</div>
+        <div class="statue_is">启用状态*</div>
+        <div>
+            <input type="radio" name="is_check" value="1" class="star_using" ng-model="person" />启用
+            <input type="radio" value="0" name="is_check" class="disable_using" ng-model="person" />禁用</div>
+    </div>
+    <div class="modal_footer">
+        <div class="btn_cen">
+            <button class="cancel" ng-click="cancel()">取消</button>
+            <button class="submit" ng-click="sub()">提交</button>
+        </div>
+    </div>
+</div>
+<div class="cover" ng-show="indel"></div>
+<div class="del_modal" ng-show="indel">
+    <div class="del_modal_header">
+        <span>提示信息</span>
+    </div>
+    <div class="del_modal_cen">
+        <span>是否确定删除！</span>
+    </div>
+    <div class="del_modal_footer">
+        <div class="btn_cen">
+            <button class="cancel" ng-click="remcancel()">取消</button>
+            <button class="submit" ng-click="confirm()">确认</button>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,90 @@
+<div class="company_cent" ng-model="data.item">
+    <div class="form_group row-padding-2">
+        <label class="control_label"><i>*</i>公司名称:</label>
+        <div class="control_input">
+            <input type="text" class="form-control" placeholder="请输入公司名称" maxlength="50" ng-model="data.item.company_name" ng-disabled="data.IsMain">
+        </div>
+    </div>
+    <div class="form_group">
+        <label class="control_label"><i>*</i>主营类目:</label>
+        <div class="control_input" uib-dropdown>
+            <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-disabled="data.IsMain">
+                <span class="sect_font" ng-hide="data.isMaincore">{{data.mainCore}}</span>
+                <span class="sect_font font_color" ng-show="data.isMaincore">请选择主营类项目</span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" uib-dropdown-menu>
+                <li ng-repeat="maincore in data.mainCoreList" ng-click="data.ClickmainCore(maincore.main_category_name,maincore.main_category_id)">
+                    <a>{{maincore.main_category_name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="form_group row-padding-2">
+        <label class="control_label"><i>*</i>所在地区:</label>
+        <div class="control_input">
+            <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                <div class="btn-group col-sm-4 col-md-4 col-lg-4 col-padding-0" uib-dropdown>
+                    <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-disabled="data.IsMain">
+                        <span class="sect_font" ng-hide="data.isProvice">{{data.item.address_data.province}}</span>
+                        <span class="sect_font font_color" ng-show="data.isProvice">选择省</span>
+                        <span class="caret creat_dao"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" uib-dropdown-menu>
+                        <li ng-repeat="prov in data.provinces" ng-click="data.Clickprovince(prov.city_name)">
+                            <a>{{prov.city_name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group col-sm-4 col-md-4 col-lg-4 col-padding-0" uib-dropdown>
+                    <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-disabled="data.isOpenCity">
+                        <span class="sect_font" ng-hide="data.isCity">{{data.item.address_data.city}}</span>
+                        <span class="sect_font font_color" ng-show="data.isCity">选择市</span>
+                        <span class="caret creat_dao"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" uib-dropdown-menu>
+                        <li ng-repeat="cit in data.citys" ng-click="data.Clickcity(cit.p_name,cit.city_name)">
+                            <a>{{cit.city_name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group col-sm-4 col-md-4 col-lg-4 col-padding-0" uib-dropdown>
+                    <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-disabled="data.isOpenDistrict">
+                        <span class="sect_font" ng-hide="data.isDistrict">{{data.item.address_data.district}}</span>
+                        <span class="sect_font font_color" ng-show="data.isDistrict">选择区</span>
+                        <span class="caret creat_dao"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" uib-dropdown-menu>
+                        <li ng-repeat="dist in data.districts" ng-click="data.Clickdistrict(dist.city_name)">
+                            <a>{{dist.city_name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form_group">
+        <label class="control_label"><i>*</i>详细地址:</label>
+        <div class="control_input">
+            <input type="text" class="form-control" placeholder="请输入详细地址" maxlength="50" ng-model="data.item.address_data.detail" ng-disabled="data.IsMain">
+        </div>
+    </div>
+    <div class="form_group row-padding-2">
+        <label class="control_label"><i>*</i>联系人:</label>
+        <div class="control_input">
+            <input type="text" class="form-control" placeholder="请输入联系人" maxlength="16" ng-model="data.item.linkman" ng-disabled="data.IsMain">
+        </div>
+    </div>
+    <div class="form_group">
+        <label class="control_label"><i>*</i>手机号码:</label>
+        <div class="control_input">
+            <input type="text" class="form-control" placeholder="请输入手机号码" ng-model="data.item.phone_number" ng-blur="data.mobilePhone(data.item.phone_number)" ng-class="{'error_input':data.isMobile}" maxlength="16" ng-disabled="data.IsMain">
+        </div>
+    </div>
+    <div class="form_group row-padding-2">
+        <label class="control_label">邮件地址:</label>
+        <div class="control_input">
+            <input type="text" class="form-control" placeholder="请输入邮件地址" ng-model="data.item.email_address" ng-blur="data.emailDress(data.item.email_address)" ng-class="{'error_input':data.isEmail}" maxlength="60" ng-disabled="data.IsMain">
+        </div>
+    </div>
+</div>

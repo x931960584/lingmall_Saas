@@ -1,0 +1,221 @@
+<div class="add_clients">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>{{titleName}}</span>
+            </div>
+            <div class="addclients_cent col-sm-12 col-md-12 col-lg-12">
+                <div class="based_information col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                    <div class="based_title col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">基础信息</div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>客户编号:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入客户编号" maxlength="30" ng-model="clientsNo" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>客户名称:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入客户公司名称" maxlength="50" ng-model="custName" />
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 yellow_font" ng-show="statues==1">
+                                <span>平台供应关系--已建立</span>
+                            </div>
+                        </label>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>所在地区:</span>
+                            <div class="btn-group col-sm-5 col-md-5 col-lg-5">
+                                <div class="btn-group col-sm-4 col-md-4 col-lg-4 col-padding-0" uib-dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle col-sm-12 col-md-12 col-lg-12 col-padding-0" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                        <span class="sect_font" ng-hide="isProvice">{{province}}</span>
+                                        <span class="sect_font font_color" ng-show="isProvice">选择省
+                                        </span>
+                                        <span class="caret creat_dao"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" uib-dropdown-menu>
+                                        <li ng-repeat="prov in provinces" ng-click="Clickprovince(prov.city_name)">
+                                            <a>{{prov.city_name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group col-sm-4 col-md-4 col-lg-4 col-padding-0" uib-dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle col-sm-12 col-md-12 col-lg-12 col-padding-0" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-disabled="isClickCity">
+                                        <span class="sect_font" ng-hide="isCity">{{city}}</span>
+                                        <span class="sect_font font_color" ng-show="isCity">选择市</span>
+                                        <span class="caret creat_dao"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" uib-dropdown-menu>
+                                        <li ng-repeat="city in citys" ng-click="Clickcity(city.city_name)">
+                                            <a>{{city.city_name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group col-sm-4 col-md-4 col-lg-4 col-padding-0" uib-dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle col-sm-12 col-md-12 col-lg-12 col-padding-0" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-disabled="isClickDistrict">
+                                        <span class="sect_font" ng-hide="isDistrict">{{district}}</span>
+                                        <span class="sect_font font_color" ng-show="isDistrict">选择区</span>
+                                        <span class="caret creat_dao"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" uib-dropdown-menu>
+                                        <li ng-repeat="dest in districts" ng-click="Clickdistrict(dest.city_name)">
+                                            <a>{{dest.city_name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>详细地址:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请填写详细地址" maxlength="50" ng-model="detAddres" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>联系人:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入联系人姓名" maxlength="30" ng-model="linkMan" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>联系电话:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入联系电话" maxlength="30" ng-model="cuntNumber" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">备注:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <textarea class="form-control" rows="4" placeholder="请输入备注信息" maxlength="300" ng-model="remark"></textarea>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="customer_property">
+                    <div class="property_title col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">客户属性</div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>客户分类:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-padding-0" uib-dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle col-sm-12 col-md-12 col-lg-12 col-padding-0" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                        <span class="sect_font">{{cataName}}</span>
+                                        <span class="caret creat_dao"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4" uib-dropdown-menu>
+                                        <li ng-repeat="cata in cataLists" ng-click="ClickCatagory(cata.name,cata.catagory_id)">
+                                            <a>{{cata.name}}<span ng-show="cata.priority==0" class="defult_title">默认</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>客户等级:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-padding-0" uib-dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle col-sm-12 col-md-12 col-lg-12 col-padding-0" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                        <span class="sect_font">{{rankName}}</span>
+                                        <span class="caret creat_dao"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu5" uib-dropdown-menu>
+                                        <li ng-repeat="rank in rankLists" ng-click="ClickRank(rank.name,rank.grade_id)">
+                                            <a>{{rank.name}}<span ng-show="rank.priority==0" class="defult_title">默认</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">销售区域:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <div class="btn-group col-sm-12 col-md-12 col-lg-12 col-padding-0" uib-dropdown>
+                                    <button type="button" class="btn btn-default dropdown-toggle col-sm-12 col-md-12 col-lg-12 col-padding-0" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                        <span class="sect_font font_color" ng-show="intRegion">请选择所属销售区域</span>
+                                        <span class="sect_font" ng-hide="intRegion">{{regionName}}</span>
+                                        <span class="caret creat_dao"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu5" uib-dropdown-menu>
+                                        <li ng-click="ClickRegionAll()"><a>全部销售区域</a></li>
+                                        <li ng-repeat="reg in regionLists" ng-click="ClickRegion(reg.name,reg.region_id)">
+                                            <a>{{reg.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="business_information">
+                    <div class="business_title col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">业务信息</div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">所属业务员:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入所属业务员" maxlength="20" ng-model="countMan" ng-keydown="keyDown($event,countMan)" />
+                                <div class="count_down" ng-show="manShow">
+                                    <div class="count_down_bor">
+                                        <ul>
+                                            <li ng-repeat="bus in business" ng-click="businessMan(bus.name,bus.uuid)">{{bus.name}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span"><i>*</i>结算方式:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5 check_box" ng-model="setMode">
+                                <label ng-repeat="set in lementLists" ng-show="set.mode==1">
+                                    <input type="checkbox" ng-checked="setCkecked" ng-click="busBox($event,set.mode)">
+                                    <span>{{set.name}}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bank_information">
+                    <div class="bank_title col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">银行账号信息</div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">开户行名称:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入银行名称" maxlength="50" ng-model="bankName" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">开户行户名:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入户名" maxlength="50" ng-model="accountName" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">开户行账号:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入银行账号" maxlength="30" ng-model="accBank" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">纳税人识别号:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入纳税人识别号" maxlength="30" ng-model="taxpayerNumber" />
+                            </div>
+                        </label>
+                        <label class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="lab_span">发票抬头:</span>
+                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" class="form-control" placeholder="请输入发票抬头" maxlength="50" ng-model="invoiceTitle" />
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-3">
+                    <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <button class="btn btn-primary btn_right" ng-click="keep()">保存</button>
+                        <button class="btn btn-default" ui-sref="main.clients">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

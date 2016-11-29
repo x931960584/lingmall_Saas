@@ -1,0 +1,32 @@
+<div class="goods_brand">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>品牌</span>
+            </div>
+                <div class="brand-cen col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                    <div class="bao_brand">
+                        <div class="brand-list" ng-repeat="x in brandList">
+                        <div class="brand-list1">
+                            <!-- <div class="col-sm-6 col-md-6 col-lg-6"></div> -->
+                            <div class="brand-top col-sm-12 col-md-12 col-lg-12">
+                                <a class="brand-editor" ng-click="editor(x.brand_name,x.brand_id,x.logo_url)" ng-show="accessControl.brand.edit==1">编辑</a><a ng-click="dele(x.brand_id)" ng-show="accessControl.brand.delete==1">删除</a>
+                            </div>
+                        </div>
+                        <div class="brand-list2">
+                            <div class="img_cent"><img ng-show="x.logo_url!=null&&ox.logo_url!=''" ng-src="{{x.logo_url?x.logo_url+'-hq500':x.logo_url}}" /><img ng-hide="x.logo_url!=null&&x.logo_url!=''" src="assets/images/none.png" /></div>
+                        </div>
+                        <div class="brand-list3">
+                            <span>{{x.brand_name}}</span>
+                        </div>
+                    </div>
+                    <div class="brand-add brand-list" ng-click="addMo()" ng-show="accessControl.brand.add==1" >
+                        <span class="iconfont">&#xe61e;</span>
+                    </div>
+                    <div class="clear_both"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

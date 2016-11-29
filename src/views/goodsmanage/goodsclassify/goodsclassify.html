@@ -1,0 +1,135 @@
+<div class="goods_classify">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>商品分类</span>
+            </div>
+            <div class="classify_cen col-sm-12 col-md-12 col-lg-12 col-padding-0" treeview>
+                <div class="bao_classify col-sm-12 col-md-12 col-lg-12">
+                    <div class="classify_cen_top col-sm-12 col-md-12 col-lg-12">
+                        <div class="btn_right" ng-show="accessControl.category.add">
+                            <button class="btn btn-primary btn-lg par_add" ng-disabled="parBtn"><i class="iconfont">&#xe61e;</i>新增分类</button>
+                        </div>
+                    </div>
+                    <div class="classify_list par_list col-sm-12 col-md-12 col-lg-12">
+                        <!-- <div class="" ng-repeat="x in par" ng-switch="x.type">
+                            <div class="list_fist_{{x.level}} col-sm-12 col-md-12 col-lg-12" ng-switch-when="1">
+                                <div class="list_left col-sm-8 col-md-8 col-lg-8">
+                                    <div class="input-w">
+                                        <input type="text" maxlength="16" ng-blur="edCount($event,x.p_id,x.supplier_category_id,x.supplier_category_name)" class="form-control" ng-class="{'input_fouc':Sci==x.supplier_category_id}" ng-model="x.supplier_category_name" ng-show="inputShow(x.supplier_category_id)" ng-keydown="edCount($event,x.p_id,x.supplier_category_id,x.supplier_category_name)" />
+                                        <span ng-hide="inputShow(x.supplier_category_id)">{{x.supplier_category_name}}</span>
+                                    </div>
+                                </div>
+                                <div class="list_right col-sm-4 col-md-4 col-lg-4">
+                                    <a ng-click="chilEditor(x.supplier_category_id)" ng-show="accessControl.category.edit==1">修改</a>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div>
+                            <div class="classify_list col-sm-12 category_{{x.supplier_category_id}} col-md-12 col-lg-12" ng-repeat="x in par">
+                                <ul>
+                                    <div class="list_fist_{{x.level}} col-sm-12 col-md-12 col-lg-12">
+                                        <div class="list_left col-sm-8 col-md-8 col-lg-8">
+                                            <span class="contracts" ng-show="x.last==false&&lv1==false||x.last==false&&lv1==null" ng-click="lv1=!lv1">+</span>
+                                            <span class="contracts" ng-show="x.last==false&&lv1==true" ng-click="lv1=!lv1">-</span>
+                                            <span class="contracts" ng-show="x.last==true">-</span>
+                                            <div class="input-w">
+                                                <input type="text" maxlength="16" ng-blur="edCount($event,x.p_id,x.supplier_category_id,x.supplier_category_name)" class="form-control" ng-class="{'input_fouc':Sci==x.supplier_category_id}" ng-model="x.supplier_category_name" ng-show="inputShow(x.supplier_category_id)" ng-keydown="edCount($event,x.p_id,x.supplier_category_id,x.supplier_category_name)" />
+                                                <span ng-hide="inputShow(x.supplier_category_id)">{{x.supplier_category_name}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="list_right col-sm-4 col-md-4 col-lg-4">
+                                            <a class="chil_add" ng-click="add(x.supplier_category_id,x.level)" ng-show="accessControl.category.add==1&&x.type==2"><i class="iconfont">&#xe61e;</i>新增子级类</a>
+                                            <a ng-click="chilEditor(x.supplier_category_id,x.supplier_category_name)" ng-show="accessControl.category.edit==1">修改</a>
+                                            <a ng-click="chilDel(x.supplier_category_id)" ng-show="x.last==true&&accessControl.category.delete==1&&x.type==2">删除</a>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <div class="classify_list col-sm-12 category_{{v.supplier_category_id}} col-md-12 col-lg-12" ng-repeat="v in x.childs" ng-show="lv1">
+                                    <ul>
+                                        <div class="list_fist_{{v.level}} col-sm-12 col-md-12 col-lg-12">
+                                            <div class="list_left col-sm-8 col-md-8 col-lg-8">
+                                                <span class="contracts" ng-show="v.last==false&&lv2==false||v.last==false&&lv2==null" ng-click="lv2=!lv2">+</span>
+                                                <span class="contracts" ng-show="v.last==false&&lv2==true" ng-click="lv2=!lv2">-</span>
+                                                <span class="contracts" ng-show="v.last==true">-</span>
+                                                <div class="input-w">
+                                                    <input type="text" maxlength="16" class="form-control" ng-class="{'input_fouc':Sci==v.supplier_category_id}" ng-blur="edCount($event,v.p_id,v.supplier_category_id,v.supplier_category_name)" ng-model="v.supplier_category_name" ng-show="inputShow(v.supplier_category_id)" ng-keydown="edCount($event,v.p_id,v.supplier_category_id,v.supplier_category_name)" />
+                                                    <span ng-hide="inputShow(v.supplier_category_id)">{{v.supplier_category_name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="list_right col-sm-4 col-md-4 col-lg-4">
+                                                <a class="chil_add" ng-click="add(v.supplier_category_id,v.level)" ng-show="accessControl.category.add==1"><i class="iconfont">&#xe61e;</i>新增子级类</a>
+                                                <a ng-click="chilEditor(v.supplier_category_id,v.supplier_category_name)" ng-show="accessControl.category.edit==1">修改</a>
+                                                <a ng-click="chilDel(v.supplier_category_id)" ng-show="v.last==true&&accessControl.category.delete==1">删除</a>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                    <div class="classify_list col-sm-12 category_{{n.supplier_category_id}} col-md-12 col-lg-12" ng-repeat="n in v.childs" ng-show="lv2">
+                                        <ul>
+                                            <div class="list_fist_{{n.level}} col-sm-12 col-md-12 col-lg-12">
+                                                <div class="list_left col-sm-8 col-md-8 col-lg-8">
+                                                    <span class="contracts" ng-show="n.last==false&&lv3==false||n.last==false&&lv3==null" ng-click="lv3=!lv3">+</span>
+                                                    <span class="contracts" ng-show="n.last==false&&lv3==true" ng-click="lv3=!lv3">-</span>
+                                                    <span class="contracts" ng-show="n.last==true">-</span>
+                                                    <div class="input-w">
+                                                        <input type="text" maxlength="16" class="form-control" ng-class="{'input_fouc':Sci==n.supplier_category_id}" ng-blur="edCount($event,n.p_id,n.supplier_category_id,n.supplier_category_name)" ng-model="n.supplier_category_name" ng-show="inputShow(n.supplier_category_id)" ng-keydown="edCount($event,n.p_id,n.supplier_category_id,n.supplier_category_name)" />
+                                                        <span ng-hide="inputShow(n.supplier_category_id)">{{n.supplier_category_name}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="list_right col-sm-4 col-md-4 col-lg-4">
+                                                    <a class="chil_add" ng-click="add(n.supplier_category_id,n.level)" ng-show="accessControl.category.add==1"><i class="iconfont">&#xe61e;</i>新增子级类</a>
+                                                    <a ng-click="chilEditor(n.supplier_category_id,n.supplier_category_name)" ng-show="accessControl.category.edit==1">修改</a>
+                                                    <a ng-click="chilDel(n.supplier_category_id)" ng-show="n.last==true&&accessControl.category.delete==1">删除</a>
+                                                </div>
+                                            </div>
+                                        </ul>
+                                        <div class="classify_list col-sm-12 category_{{z.supplier_category_id}} col-md-12 col-lg-12" ng-repeat="z in n.childs" ng-show="lv3">
+                                            <ul>
+                                                <div class="list_fist_{{z.level}} col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="list_left col-sm-8 col-md-8 col-lg-8">
+                                                        <span class="contracts" ng-show="z.last==false&&lv4==false||z.last==false&&lv4==null" ng-click="lv4=!lv4">+</span>
+                                                        <span class="contracts" ng-show="z.last==false&&lv4==true" ng-click="lv4=!lv4">-</span>
+                                                        <span class="contracts" ng-show="z.last==true">-</span>
+                                                        <div class="input-w">
+                                                            <input type="text" maxlength="16" class="form-control" ng-class="{'input_fouc':Sci==z.supplier_category_id}" ng-blur="edCount($event,z.p_id,z.supplier_category_id,z.supplier_category_name)" ng-model="z.supplier_category_name" ng-show="inputShow(z.supplier_category_id)" ng-keydown="edCount($event,z.p_id,z.supplier_category_id,z.supplier_category_name)" />
+                                                            <span ng-hide="inputShow(z.supplier_category_id)">{{z.supplier_category_name}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="list_right col-sm-4 col-md-4 col-lg-4">
+                                                        <a class="chil_add" ng-click="add(z.supplier_category_id,z.level)" ng-show="accessControl.category.add==1"><i class="iconfont">&#xe61e;</i>新增子级类</a>
+                                                        <a ng-click="chilEditor(z.supplier_category_id,z.supplier_category_name)" ng-show="accessControl.category.edit==1">修改</a>
+                                                        <a ng-click="chilDel(z.supplier_category_id)" ng-show="z.last==true&&accessControl.category.delete==1">删除</a>
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                            <div class="classify_list col-sm-12 category_{{k.supplier_category_id}} col-md-12 col-lg-12" ng-repeat="k in z.childs" ng-show="lv4">
+                                                <ul>
+                                                    <div class="list_fist_{{k.level}} col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="list_left col-sm-8 col-md-8 col-lg-8">
+                                                            <span class="contracts" ng-show="k.last==false" ng-click="">+</span>
+                                                            <span class="contracts" ng-show="k.last==true">-</span>
+                                                            <div class="input-w">
+                                                                <input type="text" maxlength="16" class="form-control" ng-class="{'input_fouc':Sci==k.supplier_category_id}" ng-blur="edCount($event,k.p_id,k.supplier_category_id,k.supplier_category_name)" ng-model="k.supplier_category_name" ng-show="inputShow(k.supplier_category_id)" ng-keydown="edCount($event,k.p_id,k.supplier_category_id,k.supplier_category_name)" />
+                                                                <span ng-hide="inputShow(k.supplier_category_id)">{{k.supplier_category_name}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="list_right col-sm-4 col-md-4 col-lg-4">
+                                                            <a class="chil_add" ng-click="add(k.supplier_category_id,k.level)" ng-hide="k.level==5" ng-show="accessControl.category.add==1"><i class="iconfont">&#xe61e;</i>新增子级类</a>
+                                                            <a ng-click="chilEditor(k.supplier_category_id,k.supplier_category_name)" ng-show="accessControl.category.edit==1">修改</a>
+                                                            <a ng-show="k.last==true" ng-click="chilDel(k.supplier_category_id)&&accessControl.category.delete==1">删除</a>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

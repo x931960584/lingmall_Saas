@@ -1,0 +1,44 @@
+<div class="viewwarehousemodal">
+    <div class="add-left">
+        <div class="info">
+            <span class="name">
+				<span class="star">*</span>仓库编号&nbsp;:&nbsp;
+            </span>
+            <div class="name-value">{{data.warehouse_number}}</div>
+        </div>
+        <div class="info">
+            <span class="name">
+				<span class="star">*</span>仓库名称&nbsp;:&nbsp;
+            </span>
+            <div class="name-value">{{data.warehouse_name}}
+                <span class="default" ng-show="data.is_default">默认仓库</span>
+            </div>
+        </div>
+        <div class="info">
+            <span class="name"><span class="star">*</span>所在地区&nbsp;:&nbsp;</span>
+            <div class="name-value" ng-show="data.address_data.province">{{data.address_data.province}}省&nbsp;{{data.address_data.city}}市&nbsp;</div>
+            <div class="name-value" ng-show="!data.address_data.province"></div>
+        </div>
+        <div class="info">
+            <span class="name"><span class="star">*</span>详细地址&nbsp;:&nbsp;</span>
+            <div class="name-value">{{data.address_data.detail}}</div>
+        </div>
+        <div class="info">
+            <span class="name">
+				<span class="star">*</span>负责人&nbsp;:&nbsp;
+            </span>
+            <div class="name-value">{{data.warehouse_header}}</div>
+        </div>
+        <div class="info">
+            <span class="name">联系电话&nbsp;:&nbsp;</span>
+            <div class="name-value">{{data.warehouse_phone}}</div>
+        </div>
+    </div>
+    <div class="add-right">
+        <div class="range-title">配送范围</div>
+        <div class="range-box">
+            <div class="ranges" ng-repeat="range in data.range_data track by $index">{{range}}</div>
+            <!-- <tree-view tree-data="data.addWarehouseRangeTree" tree-Options="data.addWarehouseRangeTreeOptions" selected-item="data.addWarehouseRangeTreeItem" page-Name="data.pageName"></tree-view> -->
+        </div>
+    </div>
+</div>

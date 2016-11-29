@@ -1,0 +1,63 @@
+<div class="main">
+    <div class="container-fluid main-content">
+        <div class="lm-navbar">
+            <div class="navbar-header">
+                <a class="navbar-brand logo-img" href="javascript:">
+                    <img alt="零猫" src="assets/images/logo-yellow.png">
+                </a>
+            </div>
+            <div class="navbar-center" ui-sref="main.console" ui-sref-opts="{reload:true}">我的零猫</div>
+            <div class="navbar-right">
+                <div class="bar-btn-top">
+                    <i class="fa fa-question-circle"></i>
+                </div>
+                <div class="bar-btn-top">
+                    <i class="fa fa-envelope-o"></i>
+                </div>
+                <div class="dropdown" ng-click="showDropdown=!showDropdown" ng-mousemove="showDropdown=true" ng-mouseleave="showDropdown=false">
+                    <div class="userinfo"><i class="fa fa-user"></i> {{userName}}
+                        <i ng-class="showDropdown?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'"></i>
+                    </div>
+                    <ul class="dropdown-list" ng-show="showDropdown" ng-mouseleave="showDropdown=false">
+                        <li ui-sref="users.forgetpwd"><i class="fa fa-key"></i> 修改密码</li>
+                        <li ng-click="comPany()"><i class="fa fa-home"></i> 公司信息</li>
+                        <li ng-click="logout()"><i class="fa fa-sign-out"></i> 退出</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row-content">
+            <div class="menuContainer">
+                <div class="menulist">
+                    <div class="menu-box">
+                        <div class="menu" ng-repeat="role in roleList" ng-show="role.status==1">
+                            <div ng-repeat="menu in menuList" ng-show="menu.title==role.name&&role.status!=0" class="menu-title">
+                                <div ng-click="showChildrenList=!showChildrenList" ng-class="currentState_params.module_id==role.module_id?(menu.subMenus.length?'parent focus':'parent current'):'parent'">
+                                    <span ng-click="linkTo(menu.url,$index,role.module_id)">
+                                        <i ng-class="menu.subMenus.length?(showChildrenList?'fa fa-caret-right rotate90 trans-delay-024s':'fa fa-caret-right trans-delay-024s'):menu.icon"></i>
+                                        {{role.name}}
+                                    </span>
+                                </div>
+                                <div class="sub-menu" ng-show="showChildrenList">
+                                    <ul>
+                                        <li ng-repeat="child in role.children" ng-show="child.status==1">
+                                            <div class="child-text" ng-repeat="subMenu in menu.subMenus" ng-show="subMenu.title==child.name&&child.status==1" ng-click="linkToSub(subMenu.url,$index,child.module_id)" ng-class="{'current':currentState_params.module_id==child.module_id}">
+                                                <i class="iconfont">{{subMenu.icon}}</i> {{child.name}}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <i class="fa fa-sitemap"></i>&nbsp;&nbsp;零猫号&nbsp;:&nbsp;&nbsp;
+                        <b>{{company_number}}</b>
+                    </div>
+                </div>
+                <!-- <div class="bottom">组织ID&nbsp;:&nbsp;{{company_number}}</div> -->
+            </div>
+            <div ui-view class="right-content"></div>
+        </div>
+    </div>
+</div>

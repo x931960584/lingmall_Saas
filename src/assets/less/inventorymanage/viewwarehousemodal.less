@@ -1,0 +1,55 @@
+@import "../common/colors.less";
+.viewwarehousemodal {
+	.add-left {
+        width: 60%;
+        display: inline-block;
+        .info {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 100%;
+            .name {
+            	float: left;
+                width: 20%;
+                max-width: 83px;
+                line-height: 26px;
+                display: inline-block;
+                text-align: right;
+                padding-right: 10px;
+                .star {
+                    color: red;
+                }
+            }
+            .name-value {
+            	width: 70%;
+            	line-height: 26px;
+            	display: inline-block;
+            }
+            .default {
+            	display: inline-block;
+            	padding: 0 5px;
+            	line-height: 20px;
+            	background-color:@main-color;
+            	color:#fff;
+            }
+        }
+    }
+    .add-right {
+        float: right;
+        width: 40%;
+        display: inline-block;
+        .range-title {
+            line-height: 30px;
+        }
+        .range-box {
+        	padding: 6px 15px;
+            border: 1px solid @main-color-border;
+            min-height: 170px;
+            max-height: 190px;
+            overflow: auto;
+            .ranges {
+            	line-height: 22px;
+            	letter-spacing:1px;
+            }
+        }
+    }
+}

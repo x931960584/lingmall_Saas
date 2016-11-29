@@ -1,0 +1,105 @@
+<div class="payrecord">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-sm-12 col-md-12 col-lg-12">支付记录</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 content">
+                <div class="payrecord-content">
+                    <div class="payrecord-top col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <div class="title-list">
+                                <!-- <div class="search-input col-padding-0 pull-left">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="输入支付单号/订单号" ng-model="order_code">
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="getPayList()">检索</button>
+                                        </span>
+                                    </div>
+                                </div> -->
+                                <div class="search-input pull-left">
+                                    <span class="keyword">关键字&nbsp;:&nbsp;</span>
+                                    <div class="keyword-input">
+                                        <input type="text" class="form-control" placeholder="输入支付单号/订单号" ng-model="order_code">
+                                    </div>
+                                </div>
+                                <div class="pull-left col-margin-2">
+                                    <div class="btn-group" uib-dropdown>
+                                        <button id="btn-append-to-single-button" type="button" class="btn btn-default" data-toggle="dropdown" uib-dropdown-toggle>
+                                            {{type}}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                            <li ng-repeat="type in payType" ng-click="selectType(type.pay_type,type.type_name)">
+                                                <a href>{{type.type_name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pull-left margin-right-2">
+                                    <div class="btn-group" uib-dropdown>
+                                        <button id="btn-append-to-single-button" type="button" class="btn btn-default" data-toggle="dropdown" uib-dropdown-toggle>
+                                            {{status}}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                            <li ng-repeat="status in payStatus" ng-click="selectStatus(status.pay_status,status.status_name)">
+                                                <a href>{{status.status_name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pull-left">
+                                    <div class="col-ms-12 col-md-12 col-lg-12 col-padding-0">
+                                        <div class="start-time col-ms-6 col-md-6 col-lg-6 col-padding-0">
+                                            <datepicker date-Format="dateFormat" time-Type="startTime" min-View="2" time-Type-Placeholder="startTimePlaceholder"></datepicker>
+                                        </div>
+                                        <div class="end-time col-ms-6 col-md-6 col-lg-6 col-padding-0">
+                                            <datepicker date-Format="dateFormat" time-Type="endTime" min-View="2" time-Type-Placeholder="endTimePlaceholder"></datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-default" ng-click="getPayList()">检索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-list col-sm-12 col-md-12 col-lg-12">
+                        <table class="order-table table-hover">
+                            <tr class="thead">
+                                <!--  <td>
+                                   <input type="checkbox">
+                               </td> -->
+                                <td>支付单号</td>
+                                <td class="shoukuan">收款方</td>
+                                <td>支付方</td>
+                                <td class="code">订单号</td>
+                                <td class="money">支付金额(元)</td>
+                                <td class="type">支付方式</td>
+                                <td class="time">支付时间</td>
+                                <td class="status">支付状态</td>
+                            </tr>
+                            <tr ng-repeat="pay in payList">
+                                <!-- <td>
+                                    <input type="checkbox">
+                                </td> -->
+                                <td>{{pay.trade_no}}</td>
+                                <td>上海零猫信息技术有限公司</td>
+                                <td>{{pay.company.company_name}}</td>
+                                <td>{{pay.order_code}}</td>
+                                <td>{{pay.price}}元</td>
+                                <td>{{pay.type=='alipay'?'支付宝':'微信支付'}}</td>
+                                <td class="time">{{pay.pay_time}}</td>
+                                <td>
+                                    <span ng-show="pay.pay_status=='WAIT_BUYER_PAY'">等待付款</span>
+                                    <span ng-show="pay.pay_status=='TRADE_SUCCESS'">成功</span>
+                                    <span class="fail" ng-show="pay.pay_status=='TRADE_FAIL'">失败</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="pager-box"  ng-show="bigTotalItems/pageSize>1">
+                        <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" first-text="首页" previous-text="上一页" next-text="下一页" last-text="最后页" items-per-page="pageSize" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="setPage()"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

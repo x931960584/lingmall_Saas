@@ -1,0 +1,18 @@
+<div class="brand_mo" ng-model="data.brand_id">
+    <div class="brand-line1">
+        <span class="col-sm-3 col-md-3 col-lg-3"><i>*</i>品牌名称:</span>
+        <input type="text" maxlength="12" class="col-sm-9 col-md-9 col-lg-9" placeholder="请输入品牌名称" ng-model="data.item.brand_name">
+
+    </div>
+    <div class="brand-line2">
+        <span class="col-sm-3 col-md-3 col-lg-3">品牌LOGO:</span>
+        <div class="col-sm-9 col-md-9 col-lg-9 paddNo col-padding-0">
+            <div id="container" upload logo_url="data.item.logo_url" img_url_logo="data.item.imgUrlLogo" show_tit="data.showTit" img_show="data.imgShow">
+                <input type="file" id="pickfiles" style="display:none">
+                <img ng-src="{{data.item.imgUrlLogo}}" class="mod_img" ng-show="data.imgShow" ng-model="data.item.imgUrlLogo"/>
+                <span class="text" ng-show="data.showTit">请将图片拖放至此区域内，最大不允许超过20M</span>
+            </div>
+            <div class="tiShi">（品牌Logo图片最大不允许超过20M，支持JPEG，JPG，PNG）</div>
+        </div>
+    </div>
+</div>

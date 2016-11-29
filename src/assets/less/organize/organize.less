@@ -1,0 +1,514 @@
+/* @import "../common/colors.less";
+.organize {
+    font-family: "微软雅黑";
+    height: 100%;
+    .content-bg {
+        height: 100%;
+        padding-bottom: 15px;
+        .bg-color {
+            background-color: #fff;
+            height: 100%;
+            .page-title {
+                font-size: 1.6em;
+                padding: 20px 15px;
+                background-color: @main-color-background;
+            }
+            .organize-list {
+                border: 1px solid @main-color-border;
+                background-color: #fff;
+                .box-title {
+                    font-size: 1.6em;
+                    margin: 20px 0;
+                }
+                .search-box {
+                    .search-input {
+                        float: left;
+                        position: relative;
+                        width: 100%;
+                        i {
+                            position: absolute;
+                            right: 52px;
+                            top: 8px;
+                            cursor: pointer;
+                            color: #eaeaea;
+                            z-index: 2;
+                        }
+                    }
+                    input {
+                        float: left;
+                    }
+                    .search-btn {
+                        float: left;
+                        width: 50px;
+                        height: 34px;
+                        line-height: 34px;
+                        text-align: center;
+                        color: #fff;
+                        background-color: @main-color-blue;
+                        cursor: pointer;
+                        padding: 0;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        z-index: 2;
+                    }
+                }
+                .edit-box {
+                    display: inline-block;
+                    border: 1px solid #9f9f9f;
+                    border-right: none;
+                    margin-top: 13px;
+                    min-width: 121px;
+                    li {
+                        float: left;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        text-align: center;
+                        border-right: 1px solid #9f9f9f;
+                        i {
+                            font-size: 2em;
+                            color: @main-color-text;
+                            cursor: pointer;
+                        }
+                        .gray {
+                            color: @main-color-border;
+                            cursor: no-drop;
+                        }
+                    }
+                }
+                .company-list {
+                    width: 100%;
+                    margin-top: 10px;
+                    display: inline-block;
+                    max-height: 400px;
+                    overflow-y: auto;
+                }
+            }
+            .user-list {
+                border: 1px solid @main-color-border;
+                background-color: #fff;
+                .user-title {
+                    font-size: 1.6em;
+                    margin: 20px 15px;
+                }
+                .user-edit {
+                    .add {
+                        width: 30px;
+                        height: 30px;
+                        line-height: 26px;
+                        text-align: center;
+                        border: 1px solid @main-color-border;
+                        display: inline-block;
+                        margin-left: 15px;
+                        cursor: pointer;
+                        i {
+                            font-size: 2em;
+                            color: #000;
+                        }
+                    }
+                    .search-box {
+                        float: right;
+                        display: inline-block;
+                        margin-right: 20px;
+                        .search-input {
+                            float: left;
+                            position: relative;
+                            display: inline-block;
+                            i {
+                                position: absolute;
+                                right: 62px;
+                                top: 8px;
+                                cursor: pointer;
+                                color: #eaeaea;
+                                z-index: 2;
+                            }
+                        }
+                        input {
+                            float: left;
+                            width: 230px;
+                        }
+                        .search-btn {
+                            float: left;
+                            width: 60px;
+                            height: 34px;
+                            line-height: 34px;
+                            text-align: center;
+                            color: #fff;
+                            background-color: @main-color-blue;
+                            cursor: pointer;
+                            padding: 0;
+                        }
+                    }
+                }
+                .user-info-table {
+                    padding: 15px;
+                }
+                .user-info {
+                    width: 100%;
+                    margin-top: 10px;
+                    border: 1px solid @main-color-border;
+                    tr {
+                        border-bottom: 1px solid @main-color-border;
+                        td,
+                        th {
+                            height: 34px;
+                            line-height: 34px;
+                            text-align: center;
+                            border-right: 1px solid @main-color-border;
+                        }
+                        th {
+                            background-color: @main-color-background-table-title;
+                            line-height: 50px;
+                        }
+                        td a {
+                            color: @main-color;
+                        }
+                    }
+                }
+            }
+            .pager-box {
+                width: 100%;
+                text-align: center;
+                display: inline-block;
+                padding-top: 20px;
+                .pager-list {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+}
+
+.popup-box {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1005;
+    .popup-content {
+        position: absolute;
+        top: 20%;
+        left: 25%;
+        .edit-org {
+            float: none;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #fff;
+            .title {
+                line-height: 30px;
+                border-bottom: 1px solid @main-color-border;
+                padding-left: 10px;
+                .close {
+                    float: right;
+                    font-size: 1.6em;
+                    color: @main-color-text;
+                    margin-top: 5px;
+                    margin-right: 10px;
+                    color: @main-color-text;
+                }
+            }
+            .bottom {
+                width: 100%;
+                padding: 10px;
+                display: inline-block;
+                .org-btn {
+                    float: right;
+                    padding: 10px 15px;
+                    margin-right: 20px;
+                    cursor: pointer;
+                }
+                .cancel {
+                    border: 1px solid @main-color-border;
+                }
+                .confirm {
+                    background-color: @main-color;
+                    color: #fff;
+                }
+            }
+            .left-box {
+                padding: 0;
+                .content {
+                    width: 100%;
+                    display: inline-block;
+                    border-bottom: 1px solid @main-color-border;
+                    .left-list {
+                        float: left;
+                        width: 100%;
+                        margin-top: 10px;
+                        padding: 0;
+                        padding-bottom: 50px;
+                        border: 1px solid @main-color-border;
+                        font-size: 1.4em;
+                        .open-company {
+                            line-height: 30px;
+                            text-align: right;
+                            padding-right: 10px;
+                            i {
+                                margin-left: 10px;
+                                cursor: pointer;
+                            }
+                        }
+                        .current {
+                            background-color: @main-color;
+                            color: #fff;
+                        }
+                        .company {
+                            line-height: 30px;
+                            padding-left: 30px;
+                            cursor: pointer;
+                            i {
+                                margin-right: 10px;
+                            }
+                        }
+                        .company-list {
+                            display: inline-block;
+                            width: 100%;
+                            li {
+                                line-height: 30px;
+                                padding-left: 20px;
+                                cursor: pointer;
+                                .line {
+                                    width: 10px;
+                                    height: 3px;
+                                    background-color: @main-color-text;
+                                    margin: 0 10px;
+                                    display: inline-block;
+                                    margin-bottom: 4px;
+                                }
+                                .a {
+                                    width: 10px;
+                                    height: 3px;
+                                    background-color: #000;
+                                    display: inline-block;
+                                    margin: 0 15px 3px 0;
+                                }
+                            }
+                            li:hover {
+                                background-color: @main-color;
+                                color: #fff;
+                            }
+                        }
+                    }
+                    .right-box {
+                        border-left: 1px solid @main-color-border;
+                        padding: 10px 20px 50px 20px;
+                        font-size: 1.4em;
+                        .init-pwd-btn {
+                            color: @main-color-text;
+                            text-decoration: none;
+                            font-size: 12px;
+                            i {
+                                margin-left: 5px;
+                                font-size: 12px;
+                            }
+                            .small-text {
+                                padding-left: 5px;
+                            }
+                        }
+                        .init-pwd {
+                            padding-left: 79%;
+                            font-size: 12px;
+                        }
+                        .org-info {}
+                        input[type=text],
+                        input[type=password],
+                        .org-name-input {
+                            width: 100%;
+                            height: 40px;
+                            line-height: 40px;
+                            border: 1px solid @main-color-border;
+                            background-color: #fff;
+                            padding-left: 10px;
+                            outline: none;
+                        }
+                        .readonly {
+                            cursor: no-drop;
+                        }
+                        .status {
+                            display: inline-block;
+                            input {
+                                float: left;
+                                margin: 4px 5px 0 0;
+                            }
+                            .status-btn {
+                                display: inline-block;
+                                line-height: 20px;
+                                margin-right: 20px;
+                            }
+                        }
+                        .current {
+                            color: @main-color;
+                        }
+                        .notice {
+                            color: red;
+                            padding-top: 10px;
+                            display: inline-block;
+                        }
+                        .warm-info {
+                            width: 60%;
+                            margin-left: 18%;
+                        }
+                    }
+                    .small-text-box {
+                        position: relative;
+                        cursor: pointer;
+                        .init-pwd-btn {
+                            position: absolute;
+                            top: 10px;
+                            line-height: 14px;
+                        }
+                    }
+                    .info-list {
+                        margin-bottom: 10px;
+                        .name {
+                            width: 15%;
+                            line-height: 26px;
+                            min-width: 70px;
+                            text-align: right;
+                            font-weight: bold;
+                            display: inline-block;
+                            margin-right: 3%;
+                        }
+                        .org-name-input {
+                            display: inline-block;
+                            vertical-align: middle;
+                            position: relative;
+                            .caret-down {
+                                position: absolute;
+                                right: 10px;
+                                top: 12px;
+                                cursor: pointer;
+                            }
+                        }
+                        input[type=text],
+                        input[type=password],
+                        .org-name-input {
+                            width: 60%;
+                        }
+                        input[type=radio] {
+                            margin: 0 5px 4px 0;
+                        }
+                        .status-btn {
+                            display: inline-block;
+                            margin-right: 10px;
+                        }
+                        .choose-org-name {}
+                        .choose-role,
+                        .choose-org-name {
+                            position: relative;
+                            display: inline-block;
+                            width: 60%;
+                            .choose-input {
+                                width: 100%;
+                            }
+                            .role-list,.account-usergroup-list {
+                                display: inline-block;
+                                width: 100%;
+                                max-height: 350px;
+                                overflow: auto;
+                                border: 1px solid @main-color-border;
+                                background-color: #fff;
+                                position: absolute;
+                                left: 0;
+                                top: 42px;
+                                z-index: 2;
+                            }
+                            .role-list {
+                                 li {
+                                    line-height: 26px;
+                                    padding-left: 15px;
+                                    cursor: pointer;
+                                }
+                                li:hover {
+                                    background-color: @main-color;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                    .usergroup-box {
+                        position: relative;
+                        .usergroup-list {
+                            display: inline-block;
+                            width: 100%;
+                            max-height: 450px;
+                            overflow: auto;
+                            position: absolute;
+                            left: 0;
+                            top: 42px;
+                            border: 1px solid @main-color-border;
+                            background-color: #fff;
+                            z-index: 2;
+                        }
+                    }
+                    .user-list {}
+                }
+            }
+        }
+        .company-detail {
+            width: 100%;
+            margin: 0 auto;
+            font-size: 1.4em;
+            .content {
+                ul {
+                    width: 100%;
+                    display: inline-block;
+                    li {
+                        width: 100%;
+                        text-align: left;
+                        padding-left: 15%;
+                        line-height: 50px;
+                        border-bottom: 1px dotted @main-color-border;
+                        .name {
+                            width: 35%;
+                            min-width: 115px;
+                            text-align: right;
+                            padding-right: 20px;
+                            display: inline-block;
+                        }
+                        .active {
+                            padding: 5px 10px;
+                            color: @main-color-yellow;
+                        }
+                    }
+                    li:last-child {
+                        border: none;
+                    }
+                }
+            }
+            .bottom {
+                width: 100%;
+                line-height: 50px;
+                text-align: center;
+                border-top: 2px solid @main-color-border;
+                .edit-btn {
+                    padding: 5px 10px;
+                    background-color: @main-color;
+                    color: #fff;
+                    display: inline;
+                    cursor: pointer;
+                }
+            }
+        }
+        .del-company {
+            width: 100%;
+            .del-text {
+                line-height: 50px;
+                text-align: center;
+            }
+            .del-btn {
+                text-align: center;
+                .del-btn {
+                    padding: 10px 15px;
+                    margin-right: 20px;
+                    cursor: pointer;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+} */

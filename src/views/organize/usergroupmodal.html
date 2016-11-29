@@ -1,0 +1,30 @@
+<div class="usergroupmodal">
+    <div class="right-box col-xs-12 col-md-12 col-lg-12">
+        <div class="info-list usergroup-box">
+            <span class="name">上级组织*</span>
+            <div class="org-name-input" ng-show="data.pageName=='addUserGroup'">{{data.parentUserGroup.user_group_name || data.currentUserGroup.user_group_name}}</div>
+            <div class="org-name-input" ng-show="data.pageName=='editUserGroup'">{{data.setUserGroupNameBefore || data.parentUserGroup.user_group_name || data.currentUserGroup.user_group_name}}
+                <i class="caret-down" ng-class="data.showParentUserGroupBox?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="data.showParentUserGroupBox=!data.showParentUserGroupBox"></i>
+                <div class="usergroup-list" ng-show="data.showParentUserGroupBox">
+                    <tree-view tree-data="data.selectUserGroupTree" tree-Options="data.selectUserGroupTreeOptions" selected-item="data.selectedUserGroupTreeItem"></tree-view>
+                </div>
+            </div>
+        </div>
+        <div class="info-list">
+            <span class="name">组织名称*</span>
+            <input type="text" placeholder="请输入组织架构名称,1-16位字符" maxlength="16" class="org-name-input" ng-model="data.addUserGroupName" ng-blur="data.validateUserGroupName(data.addUserGroupName)" ng-click="data.userGroupNameErr=false" ng-disabled="data.pageName=='view'" ng-class="{'disabled':data.pageName=='view'}">
+            <div class="warm-info" ng-show="data.userGroupNameErr">
+                <div class="notice">请输入组织架构名称,1-16位字符</div>
+            </div>
+        </div>
+        <div class="info-list">
+            <span class="name">启用状态*:</span>
+            <div class="status-btn">
+                <input type="radio" name="status1" ng-click="data.addUserGroupStatus=1" ng-checked="data.addUserGroupStatus==1" ng-disabled="data.pageName=='view'">启用
+            </div>
+            <div class="status-btn">
+                <input type="radio" name="status1" ng-click="data.addUserGroupStatus=2" ng-checked="data.addUserGroupStatus==2" ng-disabled="data.pageName=='view'">禁用
+            </div>
+        </div>
+    </div>
+</div>

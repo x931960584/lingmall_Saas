@@ -1,0 +1,52 @@
+<div class="platform_list">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>平台通知</span>
+            </div>
+            <div class="platform_cent col-sm-12 col-lg-12 col-md-12">
+                <div class="platform-input col-sm-12 col-lg-12 col-md-12 row-padding-2 col-padding-0">
+                    <div class="palt_search col-sm-4 col-lg-4 col-md-4 col-padding-0">
+                        <span class="col-sm-2 col-lg-1 col-md-2 col-padding-0">标题:</span>
+                        <div class="col-sm-10 col-lg-11 col-md-10 col-padding-0">
+                            <input type="text" placeholder="通知标题" class="form-control" ng-model="title" maxlength="60" ng-keyup="inputTitle()" />
+                            <i class="denuded" ng-show="denudedShow" ng-click="denuded()">&times;</i>
+                        </div>
+                    </div>
+                    <div class="margin_time col-sm-2 col-lg-2 col-md-2 col-padding-0" >
+                    	<datepicker date-Format="dateFormat" min-View="2" bootcss-Ver="3" minute-Step="5" time-Type="start_time" dis-Abled="disAbled" time-Type-Placeholder="startTimePlaceholder"></datepicker>
+                    </div>
+                    <div class="margin_time col-sm-2 col-lg-2 col-md-2 col-padding-0">
+                    	<datepicker date-Format="dateFormat" min-View="2" bootcss-Ver="3" minute-Step="5" time-Type="end_time" dis-Abled="disAbled" time-Type-Placeholder="endTimePlaceholder"></datepicker>
+                    </div>
+                    <div class="margin_time col-sm-2 col-lg-2 col-md-2 col-padding-0">
+                    	<button class="btn btn-primary" ng-click="search()">检索</button>
+                    </div>
+                </div>
+                <div class="platform_table col-sm-12 col-lg-12 col-md-12 row-padding-2 col-padding-0">
+                	<table class="table_list table table-hover">
+                		<thead>
+                			<tr>
+	                			<th>序号</th>
+	                			<th>通知标题</th>
+	                			<th>通知时间</th>
+	                			<th>操作</th>
+	                		</tr>
+                		</thead>
+                		<tbody>
+                			<tr ng-repeat="x in noteList">
+                				<td>{{$index+1}}</td>
+                				<td class="text_left">{{x.title.length>20 ? x.title.substr(0,20) + '......' : x.title}}</td>
+                				<td>{{x.created_at.slice(0,10)}}</td>
+                				<td><a ng-click="checkMore(x.notice_id)">查看</a></td>
+                			</tr>
+                		</tbody>
+                	</table>
+                </div>
+                <div class="pager-box">
+                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="6" first-text="首页" previous-text="上一页" next-text="下一页" last-text="末页" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" items-per-page="10" ng-change="setPage()"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

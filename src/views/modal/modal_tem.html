@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="submit.close()" ng-hide="data.pageCom=='company'">&times;</button>
+    <h2 class="modal-title" ng-bind="header"></h2>
+</div>
+<div class="modal-body">
+    <div ng-include="templateurl" ng-model="data">
+    </div>
+</div>
+<div class="modal-footer" ng-model="data.isSuccess">
+    <button class="btn btn-default" ng-show="data.btnShow" ng-click="submit.linkTo(data.path,data.order_id)">{{data.btnText}}</button>
+    <!-- 模态框 点击确认按钮直接关闭-->
+    <button class="btn btn-primary" type="button" ng-show="data.confirm" ng-click="submit.confirm()">确认</button>
+    <!-- 模态框 点击确认按钮不直接关闭-->
+    <button class="btn btn-primary" type="button" ng-hide="data.pageName=='view'||data.confirm" ng-click="submit.ok()">确认</button>
+
+    <button class="btn btn-warning" type="button" ng-hide="data.pageName=='view'" ng-click="submit.close()">取消</button>
+    <!-- 模态框为查看时 只显示"关闭"按钮 -->
+    <button class="btn btn-default" type="button" ng-show="data.pageView=='view'&&data.pageName=='view'" ng-click="submit.close()">关闭</button>
+    <!--活动页 单独使用的"确认.取消"按钮 -->
+    <button class="btn btn-primary" type="button" ng-show="data.activityPage=='isActivity'&&data.pageName=='view'" ng-click="submit.config()">确认</button>
+    <button class="btn btn-warning" type="button" ng-show="data.activityPage=='isActivity'&&data.pageName=='view'" ng-click="submit.close()">取消</button>
+    <button class="btn btn-primary" type="button" ng-show="data.pageCom=='company'" ng-click="submit.ok()">提交</button>
+</div>

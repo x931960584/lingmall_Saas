@@ -1,0 +1,90 @@
+@import "../common/colors.less";
+.forgetpwd {
+    .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .base {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        background-color: @main-color-gray;
+    }
+    .accounttype{
+        display:inline-block;
+        margin-bottom: 20px;
+        font-size: 1.6em;
+        width:100%;
+        .input{
+            margin:0 10px;
+            cursor: pointer;
+        }
+        .account{
+            float: left;
+        }
+        .span{
+            color: red;
+            float: right;
+        }
+    }
+    .message {
+        text-align: center;
+        color:red;
+        font-size:14px;
+        margin-bottom:10px;
+    }
+    .input {
+        position: relative;
+        margin-bottom:10px;
+        input {
+            width: 430px;
+            text-align: left;
+            padding-left: 40px;
+        }
+        i {
+            position: absolute;
+            top: 18px;
+            left: 10px;
+            font-size: 22px;
+            color: #999;
+        }
+    }
+    .notice {
+        margin-top: 10px;
+        display: inline-block;
+    }
+    .warn {
+        color: red;
+    }
+    .vali-box {
+        display: inline-block;
+        margin-bottom: 10px;
+        .vali-text,
+        .get-vali {
+            width: 205px;
+        }
+        .vali-text {
+            margin-right: 20px;
+            text-align: left;
+            padding-left: 20px;
+        }
+        .get-vali {
+            float: right;
+            background-color: #fe6f5e;
+            color: #fff;
+            font-size: 1.6em;
+            cursor: pointer;
+        }
+        .gray {
+            background-color: #f1f1f1!important;
+            cursor: default;
+        }
+    }
+    .submit-btn {
+        background-color: @main-color;
+        color: #fff;
+        cursor: pointer;
+        font-size: 2em;
+    }
+}

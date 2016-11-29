@@ -1,0 +1,125 @@
+@import "../common/colors.less";
+.addwarehouse-content {
+    .add-left {
+        width: 60%;
+        display: inline-block;
+        .info {
+            margin-bottom: 10px;
+            .name {
+                width: 20%;
+                max-width: 83px;
+                display: inline-block;
+                text-align: right;
+                padding-right: 10px;
+                .star {
+                    color: red;
+                }
+            }
+            .head-input-box {
+                display: inline-block;
+                width: 70%;
+                position: relative;
+                .header-input {
+                    width: 100%;
+                }
+                .user-list {
+                    position: absolute;
+                    left: 0;
+                    top: 36px;
+                    background-color: #fff;
+                    width: 100%;
+                    max-height: 140px;
+                    overflow: auto;
+                    border: 1px solid @main-color-border;
+                    ul {
+                        li {
+                            font-size: 14px;
+                            padding-left: 10%;
+                            width: 100%;
+                            line-height: 20px;
+                            cursor: pointer;
+                        }
+                        li:hover {
+                            background-color: @main-color;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+            .area-name {
+                float: left;
+                line-height: 30px;
+            }
+            input,
+            .input {
+                width: 70%;
+                display: inline-block;
+                background-color: #fff;
+            }
+            .area-detail {
+                height: 30px;
+                position: relative;
+                .area {
+                    display: inline-block;
+                    span {
+                        padding: 0 10px;
+                        min-width: 60px;
+                        height: 26px;
+                        line-height: 34px;
+                        text-align: center;
+                        border-bottom: 1px solid #333;
+                        display: inline-block;
+                    }
+                }
+                .icon-box {
+                    width: 34px;
+                    height: 34px;
+                    line-height: 34px;
+                    text-align: center;
+                    cursor: pointer;
+                }
+                .area-list {
+                    position: absolute;
+                    top: 30px;
+                    left: 0;
+                    background-color: #fff;
+                    z-index: 3;
+                    width: 100%;
+                    max-height: 200px;
+                    overflow: auto;
+                    border: 1px solid @main-color-border;
+                    .clear-area {
+                        position: absolute;
+                        top: 10px;
+                        right: 5px;
+                        cursor: pointer;
+                        color: @main-color;
+                    }
+                }
+            }
+        }
+        .default {
+            float: right;
+            margin-right: 16%;
+            input[type=checkbox] {
+                margin: 0 5px 0 0;
+            }
+        }
+    }
+    .add-right {
+        float: right;
+        width: 40%;
+        display: inline-block;
+        .range-title {
+            line-height: 30px;
+        }
+        .range-box {
+            border: 1px solid @main-color-border;
+            max-height: 223px;
+            overflow: auto;
+        }
+    }
+    .disabled {
+        cursor: no-drop!important;
+    }
+}

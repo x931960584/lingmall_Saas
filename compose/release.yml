@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: ..
+    image: registry.cn-hangzhou.aliyuncs.com/lingmall/web:release
+
+    restart: always
+
+    ports:
+      - 80
+
+    labels:
+      aliyun.rolling_updates: 'true'
+      aliyun.scale: '2'
+      aliyun.log_store: stdout
+      aliyun.routing.port_80: web;test.lingmall.com
+      aliyun.routing.session_sticky: 'true'

@@ -1,0 +1,109 @@
+<div class="activity_list">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>拼团活动</span>
+            </div>
+            <div class="activity_cent col-sm-12 col-md-12 col-lg-12">
+                <div class="activity_cent_input row-padding-2">
+                    <div class=" col-sm-8 col-md-8 col-lg-8 col-padding-0">
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                            <input type="text" class="form-control" placeholder="输入拼团名称" ng-model="title" ng-keyup="inputTitle()">
+                            <i class="denuded" ng-show="denudedShow" ng-click="denuded()">&times;</i>
+                            <!-- <div class="input-group">
+                                <input type="text" class="form-control" placeholder="输入拼团名称" ng-model="title">
+                                <span class="input-group-btn">
+                             <button class="btn btn-default" type="button" ng-click="search()">检索</button>
+                                                    </span>
+                            </div> -->
+                        </div>
+                        <div class="grount_statue">
+                            <div class="dropdown" uib-dropdown>
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-model="grouponstatus">
+                                    {{initName}}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" uib-dropdown-menu>
+                                    <li ng-repeat="v in grouponStatus" ng-click="drop(v.groupon_status,v.groupon_status_name)"><a>{{v.groupon_status_name}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="online_statue">
+                            <div class="dropdown" uib-dropdown>
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle ng-model="onlinestatus">
+                                    {{onlineInitName}}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu3" uib-dropdown-menu>
+                                    <li ng-repeat="act in activeStatus" ng-click="onlinedrop(act.active_status,act.active_status_name)"><a>{{act.active_status_name}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="search_grount_btn">
+                             <button class="btn btn-primary" type="button" ng-click="search()">检索</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-padding-0">
+                        <div class="pull-right">
+                            <button class="btn btn-primary btn-marg" ng-click="listBer()" ng-show="accessControl.groupPurchase.delete==1">批量删除</button>
+                            <button class="btn btn-primary btn-marg" ui-sref="main.activityadd" ng-show="accessControl.groupPurchase.add==1">新增拼团</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity_table col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                    <table class="table table-hover table_list">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" ng-click="listAll($event)" />
+                                </th>
+                                <th>拼团名称</th>
+                                <th>时间</th>
+                                <th>SKU/SPU数</th>
+                                <th>上下线状态</th>
+                                <th>已售商品数</th>
+                                <th>销售金额(元)</th>
+                                <th>拼团状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in list">
+                                <td>
+                                    <input type="checkbox" ng-checked="checkOne" ng-click="listOne($event,x.groupon_id)" />
+                                </td>
+                                <td>{{x.title}}</td>
+                                <td>
+                                    <div>{{x.start_time}}</div>
+                                    <div>{{x.end_time}}</div>
+                                </td>
+                                <td>{{x.sku_count}}/{{x.spu_count}}</td>
+                                <td>{{activeStatus[(x.online_status)].active_status_name}}</td>
+                                <td>{{x.total_sold_count}}</td>
+                                <td>{{x.total_sold_price}}</td>
+                                <td>{{x.groupon_status_name}}</td>
+                                <td><a class="cour" ui-sref="main.activitycheck({id:x.groupon_id})">详情</a><a class="cour" ng-show="edt(x.groupon_status,x.online_status,accessControl.groupPurchase.edit)" ui-sref="main.activityadd({id:x.groupon_id})">编辑</a><a class="cour" ng-show="del(x.groupon_status,x.online_status,accessControl.groupPurchase.delete)" ng-click="delground(x.groupon_id)">删除</a><a class="cour" ng-show="down(x.groupon_status,x.online_status,accessControl.groupPurchase.cancelActivity)" ng-click="dowunLine(x.groupon_id)">下线</a><a class="cour" ng-show="upload(x.groupon_status,x.online_status,accessControl.groupPurchase.startActivity)" ng-click="upLine(x.groupon_id)">上线</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pager-box">
+                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="6" first-text="首页" previous-text="上一页" next-text="下一页" last-text="末页" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" items-per-page="10" ng-change="setPage()"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="transparen" ng-show="modalShow"></div>
+<div class="c_modal" ng-show="modalShow">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">{{topName}}</h3>
+    </div>
+    <div class="modal-body" id="modal-body" ng-model="groId">
+        <div class="tis_font" ng-model="isDel">{{cenName}}</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+    </div>
+</div> -->

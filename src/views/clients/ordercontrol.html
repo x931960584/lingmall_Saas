@@ -1,0 +1,226 @@
+<div class="order_control">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>订货管控</span>
+            </div>
+            <div class="order_control_cent col-sm-12 col-md-12 col-lg-12 row-padding-2">
+                <div class="ordercon_tab col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                    <div class="tow_tab col-sm-6 col-md-6 col-lg-6 col-padding-0">
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0 tag_font row-padding-2" ng-click="proCust()" ng-class="{'bg_color':isProCust}">
+                            <span>商品限购客户</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-padding-0 row-padding-2 tag_font" ng-click="cliCust()" ng-class="{'bg_color':isCliCust}">
+                            <span>客户限购商品</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 商品限购客户 -->
+                <div class="ordercon_pro col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2" ng-show="tabToggerShow">
+                    <div class="col-sm-5 col-md-5 col-lg-5 col-padding-0">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="pro_title_sear">请选择商品:</span>
+                        </div>
+                        <div class="input-group col-sm-8 col-md-8 col-lg-8 col-padding-0 row-padding-1">
+                            <input type="text" class="form-control" placeholder="商品名称/商品条码/SKU编码/SPU编码/关键字" maxlength="60" ng-model="keyWordAll">
+                            <span class="span_btn input-group-addon" ng-click="searchPro()">搜索</span>
+                            <div class="search_pro_position row-padding-1" ng-show="proListShow">
+                                <div class="pro_repeat col-padding-2 col-sm-12 col-md-12 col-lg-12 col-padding-0" ng-repeat="pro in proList" ng-click="selectPro(pro)">
+                                    <div class="pro_img" ng-repeat="img in drowImgList track by $index" ng-show="pro.img_sku_id==img.bundle_number"><img ng-src="{{img.type?img.domain+ '/'+img.key+'-thumbnail100':img.domain+ '/'+img.key}}" /></div>
+                                    <div class="pro_li">
+                                        <ul>
+                                            <li><span>商品编码:</span>{{pro.sku_code}}</li>
+                                            <li><span>商品条码:</span>{{pro.barcode}}</li>
+                                            <li>{{pro.sku_name}}【<span ng-repeat="spe in pro.specification">{{spe.key+':'+spe.value}},</span>】</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-padding-0">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="pro_title_sear">已选商品:</span>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1" ng-show="sectProShow">
+                            <div class="col-sm-12 col-md-12 col-lg-12 bg_pro row-padding-1">
+                                <div class="pro_img"><img ng-src="{{locaImgUrl}}" /></div>
+                                <div class="pro_li">
+                                    <ul>
+                                        <li><span>商品编码:</span>{{skuCode}}</li>
+                                        <li><span>商品条码:</span>{{barCode}}</li>
+                                        <li>{{skuName}}【<span ng-repeat="spe in specifiCation">{{spe.key+':'+spe.value}},</span>】</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="del_ico" ng-click="locaDel()">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add_check col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1" ng-show="sectProShow">
+                        <div class="title_proname col-sm-8 col-md-8 col-lg-8 col-padding-0">
+                            <span>以下客户已限制订购</span><span class="pro_keyword">{{skuName}}【<span ng-repeat="spe in specifiCation">{{spe.key+':'+spe.value}},</span>】</span>
+                        </div>
+                        <div class="add_client_btn col-sm-4 col-md-4 col-lg-4 col-padding-0">
+                            <button class="btn btn-primary" ng-click="addCliCust()">新增限购客户</button>
+                        </div>
+                    </div>
+                    <div class=" col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2" ng-show="sectProShow">
+                        <table class="table table-hover table_list">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox">
+                                    </th>
+                                    <th>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="客户名称/客户编号">
+                                            <span class="search_position glyphicon glyphicon-search"></span>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group" uib-dropdown>
+                                            <span id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                                销售区域&nbsp;&nbsp;<span class="caret"></span>
+                                            </span>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" uib-dropdown-menu>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group" uib-dropdown>
+                                            <span id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                                客户分类&nbsp;&nbsp;<span class="caret"></span>
+                                            </span>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" uib-dropdown-menu>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group" uib-dropdown>
+                                            <span id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                                客户等级&nbsp;&nbsp;<span class="caret"></span>
+                                            </span>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" uib-dropdown-menu>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="m in sectCliList">
+                                    <td>
+                                        <input type="checkbox">
+                                    </td>
+                                    <td>{{m.customer.name}}</td>
+                                    <td>{{m.customer.region.name}}</td>
+                                    <td>{{m.customer.catagory.name}}</td>
+                                    <td>{{m.customer.grade.name}}</td>
+                                    <td><a ng-click="detailClie(sectCliList)">查看客户信息</a><a ng-click="DelProAll(m.strategy_id)">取消限制</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--客户限购商品-->
+                <div class="ordercon_pro ordercon_cli col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2" ng-hide="tabToggerShow">
+                    <div class="col-sm-5 col-md-5 col-lg-5 col-padding-0">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="pro_title_sear">请选择客户:</span>
+                        </div>
+                        <div class="input-group col-sm-8 col-md-8 col-lg-8 col-padding-0 row-padding-1">
+                            <input type="text" class="form-control" placeholder="客户名称/客户编号" maxlength="60" ng-model="keyWord">
+                            <span class="span_btn input-group-addon" ng-click="searchCli()">搜索</span>
+                            <div class="search_pro_position row-padding-1" ng-show="searchCliShow">
+                                <ul class="all_list_ul">
+                                    <li ng-repeat="c in seaCusList" ng-click="clickCus(c.customer_id,c.name)">{{c.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-padding-0">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1">
+                            <span class="pro_title_sear">已选客户:</span>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1" ng-show="sectCustShow">
+                            <div class="col-sm-12 col-md-12 col-lg-12 bg_pro row-padding-2">
+                                <span>{{yiCustName}}</span>
+                            </div>
+                            <div class="del_ico">
+                                <span class="glyphicon glyphicon-remove" ng-click="custDelAll()"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add_check col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-1" ng-show="sectCustShow">
+                        <div class="title_proname col-sm-8 col-md-8 col-lg-8 col-padding-0">
+                            <span>以下商品已限制</span><span class="pro_keyword">{{yiCustName}}</span><span>订购</span>
+                        </div>
+                        <div class="add_client_btn col-sm-4 col-md-4 col-lg-4 col-padding-0">
+                            <button class="btn btn-primary" ng-click="addProCust()">新增限购商品</button>
+                        </div>
+                    </div>
+                    <div class=" col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2" ng-show="sectCustShow">
+                        <table class="table table-hover table_list">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox">
+                                    </th>
+                                    <th>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="商品名称/商品条/SKU编码/SPU编码/关键字">
+                                            <span class="search_position glyphicon glyphicon-search"></span>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group" uib-dropdown>
+                                            <span id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                                品牌&nbsp;&nbsp;<span class="caret"></span>
+                                            </span>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" uib-dropdown-menu>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group" uib-dropdown>
+                                            <span id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle>
+                                                分类&nbsp;&nbsp;<span class="caret"></span>
+                                            </span>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" uib-dropdown-menu>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="t in skuProList">
+                                    <td>
+                                        <input type="checkbox">
+                                    </td>
+                                    <td>
+                                        <div class="td_pro">
+                                            <div class="pro_img" ng-repeat="img in imgListUrl" ng-show="t.goods.img_sku_id==img.bundle_number"><img ng-src="{{img.type?img.domain+ '/'+img.key+'-thumbnail100':img.domain+ '/'+img.key}}" /></div>
+                                            <div class="pro_li">
+                                                <ul>
+                                                    <li><span>商品编码:</span>{{t.goods.sku_code}}</li>
+                                                    <li><span>商品条码:</span>{{t.goods.barcode}}</li>
+                                                    <li>{{t.goods.spu_name}}&nbsp;&nbsp;{{t.goods.sku_name}}【<span ng-repeat="spe in t.goods.specification">{{spe.key+':'+spe.value}},</span>】</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{t.goods.brand.brand_name ? t.goods.brand.brand_name : '无'}}</td>
+                                    <td>{{t.goods.supplier_category.supplier_category_name}}</td>
+                                    <td><a ng-click="DelCust(t.strategy_id)">取消限制</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

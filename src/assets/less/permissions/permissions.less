@@ -1,0 +1,415 @@
+@import "../common/colors.less";
+.permission {
+    font-family: "微软雅黑";
+    width: 100%;
+    height: 100%;
+    .bg_cent {
+        padding: 0px 15px 15px 15px;
+        height: 100%;
+    }
+    .container-fluid {
+        height: 100%;
+    }
+    .all_color {
+        background-color: #fff;
+        height: 100%;
+        width: 100%;
+    }
+    .title {
+        width: 100%;
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .per_mian {
+        height: 92%;
+        display: inline-block;
+        .per_box {
+            padding: 0px;
+            height: 100%;
+            .per_box_left {
+                border: 1px solid @main-color-border;
+                padding: 15px 0px 20px 0px;
+                height: 100%;
+                background-color: #fff;
+            }
+            .pre_headline {
+                padding-left: 10px;
+                font-size: 1.6em;
+                font-weight: normal;
+            }
+            .pre_input {
+                display: inline-block;
+                width: 100%;
+                padding: 10px;
+                padding-bottom: 0px;
+                .keyword {
+                    padding: 0px;
+                    font-size: 1.5em;
+                    display: inline-block;
+                }
+                .seach_btn {
+                    display: inline-block;
+                    padding: 0px;
+                }
+            }
+            .pre_icon {
+                display: inline-block;
+                width: 100%;
+                padding: 10px;
+                .icon_font {
+                    display: inline-block;
+                    border: 1px solid @main-color-border;
+                    border-right: none;
+                }
+            }
+            .manage_list {
+                display: inline-block;
+                width: 100%;
+                max-height: 82%;
+                overflow-y: auto;
+                .mange_list_ul {
+                    .mange_li {
+                        height: 40px;
+                        border-collapse: collapse;
+                        border-bottom: 1px solid @main-color-border;
+                        line-height: 40px;
+                        cursor: pointer;
+                        padding: 0px 10px;
+                        .line {
+                            display: inline-block;
+                            height: 3px;
+                            width: 10px;
+                            background-color: #000;
+                            vertical-align: middle;
+                        }
+                        .place {
+                            margin-left: 5px;
+                            font-size: 1.2em;
+                        }
+                        .state_can {
+                            float: right;
+                            margin-right: 5px;
+                        }
+                    }
+                    .check_color {
+                        background-color: @main-color;
+                        color: #fff;
+                        .line {
+                            display: inline-block;
+                            height: 3px;
+                            width: 10px;
+                            background-color: #fff;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+        }
+        .per_box_right {
+            margin-left: 20px;
+            border: 1px solid @main-color-border;
+            padding: 15px 0px 20px 0px;
+            height: 100%;
+            background-color: #fff;
+            .carry_out {
+                display: inline-block;
+                height: 30px;
+                line-height: 30px;
+                cursor: pointer;
+                float: right;
+                padding-right: 5px;
+                font-size: 1.2em;
+                i {
+                    padding-left: 3px;
+                    font-size: 1.6em;
+                    font-weight: bold;
+                    color: #999;
+                }
+            }
+            .modal_list {
+                display: inline-block;
+                width: 100%;
+                max-height: 82%;
+                overflow-y: auto;
+                .f_meau {
+                    .all_width {
+                        width: 100%;
+                        display: inline-block;
+                    }
+                    .f_meau_li {
+                        display: inline-block;
+                        width: 100%;
+                        line-height: 30px;
+                        .f_meau_li_div {
+                            height: 40px;
+                            line-height: 40px;
+                            border-bottom: 1px solid @main-color-border;
+                            padding: 0px 10px;
+                            font-size: 1.2em;
+                            cursor: pointer;
+                            .iconfont {
+                                padding-right: 5px;
+                                font-size: 1.4em;
+                                font-weight: bold;
+                                color: #999;
+                            }
+                            .checked_list {
+                                margin-top: 13px;
+                                float: right;
+                            }
+                        }
+                        .s_meau {
+                            display: inline-block;
+                            width: 100%;
+                        }
+                        .s_meau_li {
+                            cursor: pointer;
+                            display: inline-block;
+                            width: 100%;
+                            padding-left: 25px;
+                            padding-right: 10px;
+                            height: 40px;
+                            line-height: 40px;
+                            border-bottom: 1px solid @main-color-border;
+                            .line {
+                                display: inline-block;
+                                height: 3px;
+                                width: 10px;
+                                background-color: #000;
+                                vertical-align: middle;
+                                margin-right: 5px;
+                            }
+                            .checked_list {
+                                margin-top: 13px;
+                                float: right;
+                            }
+                        }
+                        .bg_check {
+                            background-color: @main-color;
+                            .iconfont {
+                                color: #fff;
+                                display: inline-block;
+                            }
+                            .font_size {
+                                color: #fff;
+                            }
+                        }
+                        .gb_chid {
+                            background-color: @main-color;
+                            .line {
+                                width: 10px;
+                                height: 3px;
+                                display: inline-block;
+                                background-color: #fff;
+                                vertical-align: middle;
+                            }
+                            .font_size {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .select_box {
+            margin-left: 20px;
+            padding: 0px;
+            border: 1px solid @main-color-border;
+            background-color: #fff;
+            .select_header {
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid @main-color-border;
+                padding-left: 15px;
+                span {
+                    font-size: 1.6em;
+                }
+            }
+            .bordAct {
+                border-top: 1px solid @main-color-border;
+                padding: 0px;
+                display: inline-block;
+            }
+            .select_cen {
+                padding: 15px;
+            }
+        }
+    }
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1031;
+}
+
+.modal_box {
+    width: 20%;
+    background-color: #fff;
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    z-index: 1032;
+    .modal_header {
+        height: 30px;
+        line-height: 30px;
+        padding: 0px 15px;
+        border-bottom: 1px solid @main-color-border;
+        span {
+            font-size: 1.4em;
+        }
+        i {
+            float: right;
+            font-size: 1.6em;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    }
+    /* .modal_cen {
+        padding: 20px 40px;
+        border-bottom: 1px solid @main-color-border;
+        .name_input {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding: 0 10px;
+        }
+        .err_color {
+            color: red;
+            padding-top: 10px;
+        }
+        .per_name {
+            font-size: 1.4em;
+            line-height: 30px;
+        }
+        .star_using {
+            margin-right: 10px;
+        }
+        .disable_using {
+            margin-left: 15px;
+            margin-right: 10px;
+        }
+        .statue_is {
+            margin-bottom: 15px;
+            margin-top: 15px;
+            font-size: 1.4em;
+        }
+    } */
+    /* .modal_footer {
+        padding: 10px 0px;
+        .btn_cen {
+            width: 50%;
+            margin: 0 auto;
+            .cancel {
+                border: 1px solid @main-color-border;
+                background: #fff;
+                padding: 6px 15px;
+                font-size: 1.4em;
+            }
+            .submit {
+                background-color: @main-color;
+                padding: 6px 15px;
+                border: 1px solid @main-color;
+                color: #fff;
+                font-size: 1.4em;
+                float: right;
+            }
+        }
+    } */
+}
+
+.del_modal {
+    width: 22%;
+    background: #fff;
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    z-index: 1035;
+    .del_modal_header {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 15px;
+        border-bottom: 1px solid @main-color-border;
+        span {
+            font-size: 1.4em;
+        }
+    }
+    .del_modal_cen {
+        text-align: center;
+        padding: 25px 0;
+        border-bottom: 1px solid @main-color-border;
+        span {
+            font-size: 1.6em;
+        }
+    }
+    .del_modal_footer {
+        padding: 10px 0;
+        .btn_cen {
+            width: 50%;
+            margin: 0 auto;
+            .submit {
+                background-color: @main-color;
+                padding: 6px 15px;
+                border: 1px solid @main-color;
+                color: #fff;
+                font-size: 1.4em;
+                float: right;
+            }
+            .cancel {
+                border: 1px solid @main-color-border;
+                background: #fff;
+                padding: 6px 15px;
+                font-size: 1.4em;
+            }
+        }
+    }
+}
+
+.name_input {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 0 10px;
+}
+
+.err_color {
+    color: red;
+    padding-top: 10px;
+}
+
+.per_name {
+    font-size: 1.4em;
+    line-height: 30px;
+    i{
+        display: inline-block;
+        color: red;
+    }
+}
+.input_radion{
+    input{
+        margin: 0px;
+    }
+}
+.star_using{
+    padding: 0px 12px;
+}
+.statue_is {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 1.4em;
+    i{
+        display: inline-block;
+        color: red;
+    }
+}

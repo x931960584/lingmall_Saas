@@ -1,0 +1,3 @@
+define(['./states','./statesconfig'],function(){
+
+});

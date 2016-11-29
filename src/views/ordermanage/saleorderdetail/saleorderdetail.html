@@ -1,0 +1,115 @@
+<div class="saleorderdetail">
+	<div class="container-fluid">
+		<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+	        <div class="page-title">订单详情</div>
+	    </div>
+	    <div class="col-sm-12 col-md-12 col-lg-12 content col-padding-0">
+	    	<div class="saleorderdetail-content">
+	        	<div class="order-info info-box">
+	        		<ul>
+	        			<li>订单号:&nbsp;{{orderDetail.order_info.order_code}}</li>
+	        			<li>送货地区:&nbsp;{{orderDetail.address_info.province}}</li>
+	        			<li>支付方式:&nbsp;
+	        				<span ng-show="orderDetail.order_info.pay_type=='alipay'">支付宝</span>
+	        				<span ng-show="orderDetail.order_info.pay_type=='wxpay'">微信支付</span>
+	        			</li>
+	        		</ul>
+	        		<ul>
+	        			<li>下单时间:&nbsp;{{orderDetail.order_info.created_at}}</li>
+	        			<li></li>
+	        			<li>支付时间:&nbsp;{{orderDetail.order_info.pay_time}}</li>
+	        		</ul>
+	        		<ul>
+	        			<li>订单状态:&nbsp;{{orderStatusList[orderDetail.order_info.status].status_name}}</li>
+	        		</ul>
+	        	</div>
+	        	<div class="distri-info info-box">
+	        		<div class="title">配送信息</div>
+	        		<ul>
+		        		<li>收货人:&nbsp; {{orderDetail.address_info.name}}</li>
+		        		<li>联系方式:&nbsp;{{orderDetail.address_info.phone}}</li>
+		        		<li>收货地址:&nbsp;{{orderDetail.address_info.detail}}</li>
+	        		</ul>
+	        	</div>
+	        	<div class="goods-info info-box">
+	        		<div class="title">
+	        			<span class="title-text">商品信息</span>
+	        			<div class="cancel-btn" ng-click="cancelOrder()()" ng-show="orderStatus==1">取消订单</div>
+	        		</div>
+	        		<div class="goods-content">
+	        			<table class="goods-table">
+	        				<tr class="thead">
+	        					<td></td>
+	        					<td>商品名称</td>
+	        					<td>拼团名称</td>
+	        					<td>订货价</td>
+	        					<td>数量</td>
+	        					<td>合计</td>
+	        				</tr>
+	        				<tr ng-repeat="good in orderDetail.goods_info">
+	        					<td>{{$index+1}}</td>
+	        					<td class="goods-box">
+	        						<div class="img-box" ng-repeat="url in imgUrlList" ng-show="url.bundle_number==good.sku.img_sku_id">
+		                				<img src="" alt="" ng-src="{{url.img_url}}">
+	        						</div>
+	                				<ul class="goods-detail">
+	                					<li><span>商品编码:&nbsp;</span>{{good.sku.sku_code}}</li>
+	                					<li ng-show="good.sku.barcode"><span>商品条码:&nbsp;</span>{{good.sku.barcode}}</li>
+	                					<li class="params">{{good.sku.spu_name}}&nbsp;{{good.sku.sku_name}}
+	                						<span ng-show="good.sku.specification.length">
+	                							【
+		                						<span ng-repeat="spec in good.sku.specification">{{spec.key+':'+spec.value}}</span>
+		                						】
+	                						</span>
+	                					</li>
+	                				</ul>
+	        						<div class="clear"></div>
+	        					</td>
+	        					<td>{{good.groupon_sku_name}}</td>
+	        					<td>{{good.groupon_price}}</td>
+	        					<td>{{good.count}}</td>
+	        					<td>{{good.total_price}}</td>
+	        				</tr>
+	        			</table>
+	        		</div>
+	        		<div class="total-box">
+	        			<ul class="total-list">
+		        			<li>
+		        				<span>商品总计:&nbsp;</span>{{orderDetail.order_info.goods_total_pric}} 元
+		        			</li>
+		        			<li>
+		        				<span>运费总计:&nbsp;</span>{{total_freight_price}} 元
+		        			</li>
+		        			<li class="memo-box">
+		        				<span class="memo-title">备注:&nbsp;</span>
+		        				<span class="memo-content">{{orderDetail.order_info.memo}}</span>
+		        			</li>
+		        			<li ng-show="orderDetail.memo!==''">
+		        				<span>订单金额:&nbsp;</span><span class="money">{{orderDetail.order_info.total_price}} 元</span>
+		        			</li>
+	        			</ul>
+	        		</div>
+	        		<div class="clear"></div>
+	        	</div>
+	    	</div>
+	    </div>
+	</div>
+</div>
+<!--取消订单 -->
+<!-- <div class="popup-box order-popupbox" ng-show="orderCancelBox">
+    <div class="col-xs-4 col-md-4 col-lg-4 order-popup-content">
+        <div class="order-box col-xs-12 col-md-12 col-lg-12">
+            <div class="title">
+                取消订单提示
+                <i class="iconfont close" ng-click="cancel()">&#xe624;</i>
+            </div>
+            <div class="content">
+                <div class="order-status">是否取消订单?</div>
+            </div>
+            <div class="bottom">
+                <div class="status-btn confirm" ng-click="cancelOrder()">提交</div>
+                <div class="status-btn cancel" ng-click="cancel()">取消</div>
+            </div>
+        </div>
+    </div>
+</div> -->

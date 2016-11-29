@@ -1,0 +1,98 @@
+@import '../common/colors.less';
+.regional_sales {
+    width: 100%;
+    height: 100%;
+    .bg_cent {
+        padding: 0px 15px 15px 15px;
+        height: 100%;
+    }
+    .container-fluid {
+        height: 100%;
+    }
+    .all_color {
+        background-color: #fff;
+        height: 100%;
+        width: 100%;
+    }
+    .title {
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .sales_cent {
+        .sales_search {
+            border-bottom: 1px solid @main-color-border;
+            .span_btn {
+                background-color: #428bca;
+                cursor: pointer;
+                color: #fff;
+                border-color: #357ebd
+            }
+        }
+        .sales_tab {
+            .table_list {
+                border: 1px solid @main-color-border;
+                thead {
+                    background-color: @main-color-background-table-title;
+                    border: 1px solid @main-color-border;
+                }
+                th {
+                    text-align: center;
+                    vertical-align: middle;
+                    padding: 12px 0px;
+                    height: 50px;
+                    border-bottom: none;
+                    font-weight: normal;
+                    font-size: 1.4em;
+                }
+                td {
+                    text-align: center;
+                    vertical-align: middle;
+                    padding: 12px 0px;
+                    table-layout: fixed;
+                    a {
+                        padding: 0px 6px;
+                    }
+                    .cour {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+.sale_modal{
+	display: inline-block;
+	width: 100%;
+    font-size: 1.3em;
+	label{
+		font-weight: normal;
+	}
+	.lab_span{
+		width: 80px;
+		text-align: right;
+		display: block;
+		float: left;
+		line-height: 34px;
+		i{
+			color: red;
+			padding-right: 4px;
+		}
+	}
+	.regional_rang{
+		border: 1px solid @main-color-border;
+		height: 280px;
+		overflow: auto;
+
+	}
+    .line_span{
+        display: block;
+        line-height: 24px;
+    }
+    .name_span{
+        line-height: 34px;
+    }
+    .wei_span{
+        font-weight: bold;
+    }
+}

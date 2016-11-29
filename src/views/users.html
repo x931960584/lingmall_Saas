@@ -1,0 +1,49 @@
+<div class="users">
+    <div class="container">
+        <div class="wrap">
+            <div class="topbar">
+            </div>
+            <div class="page-box">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="零猫">
+                </div>
+                <div ui-view>
+                    <div class="register">
+                        <div class="title">欢迎注册</div>
+                        <div class="user-box input">
+                            <i class="iconfont">&#xe615;</i>
+                            <input type="text" placeholder="请输入手机号码" maxlength="13" ng-blur="validateMobile(mobile)" ng-click="resetValidate('mobile')" ng-model="mobile" class="base">
+                            <span class="notice warn" ng-show="successMobile">{{mobileMessage}}</span>
+                            <span class="notice warn" ng-show="mobileValidateErr">请输入正确的手机号码!</span>
+                        </div>
+                        <div class="pwd-box input">
+                            <i class="iconfont">&#xe614;</i>
+                            <input type="password" placeholder="请设置密码" maxlength="20" ng-blur="validatePwd(pwd)" ng-click="resetValidate('pwd')" ng-model="pwd" class="base">
+                            <span class="notice warn" ng-show="pwdValidateErr">密码必须由6-20字母与数字组成!</span>
+                        </div>
+                        <div class="repwd-box input">
+                            <i class="iconfont">&#xe614;</i>
+                            <input type="password" placeholder="再次输入密码" maxlength="20" ng-blur="validateRepwd(repwd,pwd)" ng-click="resetValidate('repwd')" ng-model="repwd" class="base">
+                            <span class="notice warn" ng-show="repwdValidateErr">两次输入密码不一致</span>
+                        </div>
+                        <div class="vali-box">
+                            <input type="text" placeholder="输入验证码" ng-model="captcha" class="vali-text base">
+                            <div class="get-vali base" ng-class="{'gray':second!=0}" ng-click="getCaptcha(mobile)">{{captchabtntext}}</div>
+                            <span class="notice warn" ng-show="captchaErr">请输入正确的验证码</span>
+                        </div>
+                        <div class="user-agreement">
+                            <input type="checkbox" ng-model="isChecked" ng-click="checkbox()">
+                            <span class="service">已阅读并同意<a href="http://resource.lingmall.com/doc/law.html" target="_blank">《零猫用户服务协议》</a></span>
+                            <span ng-show="showService" class="notice warn">您必须阅读并同意《零猫用户服务协议》后才可以完成注册</span>
+                        </div>
+                        <div class="submit-btn base" ng-click="mainReg(mobile,pwd,repwd,captcha)">提交</div>
+                        <div class="btn btn-link btn-sm" ui-sref="users.login">已有账号去登录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="copy">Copyright©&nbsp;2016&nbsp;零猫&nbsp;&nbsp;|&nbsp;&nbsp;浙ICP备15045566号</div>
+        </div>
+    </div>
+</div>

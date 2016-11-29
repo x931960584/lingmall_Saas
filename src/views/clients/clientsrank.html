@@ -1,0 +1,41 @@
+<div class="clients_rank">
+	<div class="container-fluid bg_cent">
+		<div class="all_color">
+			<div class="title col-sm-12 col-md-12 col-lg-12">
+				<span>客户等级</span>
+			</div>
+			<div class="rank_cent col-sm-12 col-md-12 col-lg-12">
+				<div class="rank_addbtn col-sm-12 col-md-12 col-lg-12 row-padding-2">
+					<div class="pull-right"><button class="btn btn-primary" ng-click="addRank()"><i class="iconfont">&#xe61e;</i>新增等级</button></div>
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0" ng-repeat="rank in rankLists">
+					<div class="rank_list col-sm-12 col-md-12 col-lg-12 col-padding-0">
+						<div class="rank_list_left col-sm-8 col-md-8 col-lg-8 col-padding-0">
+							<div ng-show="defaultShow(rank.grade_id)">
+								<span class="icon_font">-</span>{{rank.name}}<span class="pretermit" ng-show="rank.priority==0">默认</span>
+							</div>
+							<div class="add_input col-sm-5 col-md-4 col-lg-3 col-padding-0" ng-hide="defaultShow(rank.grade_id)">
+								<input type="text" maxlength="30" class="form-control" placeholder="请输入客户等级" ng-model="editName" ng-blur="blurName($event,editName,rank.grade_id)" ng-keypress=blurName($event,editName,rank.grade_id) />
+							</div>
+						</div>
+						<div class="rank_list_right col-sm-4 col-md-4 col-lg-4 col-padding-0">
+							<div class="pull-right"><a ng-click="rankEdit(rank.name,rank.grade_id)">修改</a><a ng-click="rankDel(rank.grade_id)" ng-show="rank.priority!=0">删除</a><a ng-click="rankDefult(rank.grade_id)" ng-show="rank.priority!=0">设为默认</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-12 col-padding-0" ng-show="addShow">
+					<div class="rank_list col-sm-12 col-md-12 col-lg-12 col-padding-0">
+						<div class="rank_list_left col-sm-8 col-md-8 col-lg-8 col-padding-0">
+							<div class="add_input col-sm-5 col-md-4 col-lg-3 col-padding-0">
+								<input type="text" maxlength="30" class="form-control" placeholder="请输入客户等级" ng-model="rankName" ng-blur="blurRank($event,rankName)" ng-keypress="blurRank($event,rankName)" ng-show="addShowInput"/>
+							</div>
+						</div>
+						<div class="rank_list_right col-sm-4 col-md-4 col-lg-4 col-padding-0">
+							<div class="pull-right"><a>修改</a><a ng-click="delShow()">删除</a><a>设为默认</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

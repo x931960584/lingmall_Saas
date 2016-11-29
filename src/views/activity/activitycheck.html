@@ -1,0 +1,133 @@
+<div class="activity_check">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>拼团详情</span>
+            </div>
+            <div class="activity_check_cent col-sm-12 col-md-12 col-lg-12 row-padding-2">
+                <div class="check_top col-lg-12 col-sm-12 colmd-12 col-padding-0">
+                    <div class="check_span col-lg-12 col-sm-12 colmd-12 col-padding-0">
+                        <span>拼团名称:</span>{{data.title}}
+                    </div>
+                    <div class="check_span col-lg-12 col-sm-12 colmd-12 col-padding-0">
+                        <span>拼团时间:</span>{{data.start_time}}&nbsp;&nbsp;&nbsp;&nbsp;{{data.end_time}}
+                    </div>
+                    <div class="check_span col-lg-12 col-sm-12 colmd-12 col-padding-0">
+                        <span>添加时间:</span>{{data.created_at}}
+                    </div>
+                    <div class="check_span col-lg-12 col-sm-12 colmd-12 col-padding-0">
+                        <span>活动状态:</span>{{activeStatus[(data.online_status-1)].active_status_name}}
+                    </div>
+                </div>
+                <div class="check_list">
+                    <div class="col-lg- col-sm-6 colmd-6 col-padding-0">
+                        <span class="list_font">商品列表</span>
+                    </div>
+                    <div class="col-lg- col-sm-6 colmd-6 col-padding-0">
+                        <div class="pull-right">
+                            <span>已选SKU数:</span>{{data.sku_count}}（SPU{{data.spu_count}}）
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div class="list_table col-lg-12 col-sm-12 colmd-12 col-padding-0">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>成团量</th>
+                                    <th>拼团价</th>
+                                    <th>拼团分类</th>
+                                    <th>起订量</th>
+                                    <th>推荐到首页</th>
+                                    <th>运费</th>
+                                    <th>已售数量</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="i in data.groupon_skus">
+                                    <td class="dontCent">
+                                        <div class="pro_name">
+                                            <div class="pro_img" ng-repeat="img in imgUrlList" ng-show="img.bundle_number==i.sku.img_sku_id"><img ng-src="{{img.type?img.domain+ '/'+img.key+'-thumbnail100':img.domain+ '/'+img.key}}" ></div>
+                                            <div class="pro_name_de">
+                                                <ul>
+                                                    <li><span>商品编码:</span>{{i.sku.sku_code}}</li>
+                                                    <li><span>商品条码:</span>{{i.sku.barcode}}</li>
+                                                    <li>{{i.sku.spu_name}}&nbsp;&nbsp;{{i.sku.sku_name}}【<span ng-repeat="spec in i.sku.specification">{{spec.key+':'+spec.value}},</span>】</li>
+                                                </ul>
+                                            </div>
+                                            <div style="clear:both"></div>
+                                        </div>
+                                    </td>
+                                    <td>{{i.groupon_count}}</td>
+                                    <td>{{i.groupon_price}}</td>
+                                    <td>{{i.operation_category.operation_category_name}}</td>
+                                    <td>{{i.min_order_count}}</td>
+                                    <td>{{recommendStatus[i.recommend].recommendname}}</td>
+                                    <td>
+                                        <a ng-click="emigration(i.groupon_sku_fares)">查看</a>
+                                        <!-- <div class="position_yun" ng-show="faresShow(i.groupon_sku_id)">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>订货量</th>
+                                                        <th>运费(元)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="f in i.groupon_sku_fares">
+                                                        <td><span>&ge;</span>{{f.start_count}}</td>
+                                                        <td>{{f.price}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> -->
+                                    </td>
+                                    <td>{{i.sold_count}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="mongolia" ng-show="luggageShow"></div>
+<div class="luggage" ng-show="luggageShow">
+    <div class="modal-header">
+        <h3 class="modal-title">运费详情<span class="iconfont lug_canal" ng-click="luggagecancel()">&#xe624;</span></h3>
+        
+    </div>
+    <div class="modal-body">
+        <div class="lug_table lug_detail">
+            <table>
+                <thead>
+                    <tr>
+                        <th>订货量</th>
+                        <th>运费(元)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="l in luggList">
+                        <td>
+                            <div class="input-w">
+                               <span>大于等于</span>
+                            </div>
+                            
+                            <div class="input-w">
+                                <input type="text" class="form-control" ng-model="l.start_count" ng-disabled="true" >
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-w">
+                                <input type="text" class="form-control" ng-model="l.price" ng-disabled="true" >
+                            </div>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->

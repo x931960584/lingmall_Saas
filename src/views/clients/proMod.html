@@ -1,0 +1,114 @@
+<div class="body_scroll">
+            <div class="mod_cen">
+                <div class="list_search">
+                    <div class="key_input">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="条码、名称、关键字" ng-model="data.keyword">
+                            <!-- <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="searchPro()">检索</button>
+                              </span> -->
+                        </div>
+                    </div>
+                    <div class="key_input">
+                        <div class="btn-group" uib-dropdown>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="dropdownBrand" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle ng-model="brandId">
+                                {{data.brandName}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu brandDrop" aria-labelledby="dropdownBrand" uib-dropdown-menu>
+                                <li><a ng-click="data.searchBrand('','全部品牌')">全部品牌</a></li>
+                                <li ng-repeat="b in data.bList"><a ng-click="data.searchBrand(b.brand_id,b.brand_name)">{{b.brand_name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="key_input">
+                        <div class="input-group" ng-model="categoryId">
+                            <input type="text" class="form-control" aria-label="..." placeholder="请选择分类" ng-model="data.categoryName" readonly="readonly">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default mar-left dropdown-toggle" ng-click="data.catedrop($event)"><span class="caret"></span></button>
+                            </div>
+                            <div class="category-dropdown" ng-show="data.cateDropDown" ng-click="data.stopPro($event)">
+                                <tree-view tree-data="data.proTree" tree-Options="data.proTreeOptions" selected-item="data.selectedItem" select-all-show="data.selectAllShow" select-all-text="data.selectAllText" ></tree-view>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="key_input">
+                        <button class="btn btn-primary" type="button" ng-click="data.searchPro()">检索</button>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="pro_list">
+                    <table>
+                        <thead>
+                            <tr class="title">
+                                <th>
+                                    <input type="checkbox">
+                                </th>
+                                <th>商品名称</th>
+                                <th>品牌</th>
+                                <th>分类</th>
+                                <th>单位</th>
+                                <th>市场价</th>
+                                <th>订货价</th>
+                                <th>成本价</th>
+                                <th>销售状态</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="goods in data.mygoodsList">
+                            <tr ng-repeat="sku in goods.skus| limitTo:1">
+                                <td class="middle">
+                                    <input type="checkbox" ng-click="data.skuCheck(sku,$event)" ng-checked="sku.ischecked" ng-disabled="sku.ischecked">
+                                </td>
+                                <td class="goods-box">
+                                    <div class="goods-sku">
+                                        <div class="img-box" ng-repeat="url in data.imgList track by $index" ng-show="sku.img_sku_id==url.bundle_number">
+                                            <img ng-src="{{url.type?url.domain+'/'+url.key+'-thumbnail100':url.domain+'/'+url.key}}" alt="">
+                                        </div>
+                                        <ul class="goods-detail">
+                                            <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                                            <li><span>商品条码:</span>{{sku.barcode}}</li>
+                                            <li class="params">{{goods.spu_name}}&nbsp;&nbsp;{{sku.sku_name}}【
+                                                <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}},</span> 】
+                                            </li>
+                                        </ul>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                </td>
+                                <td rowspan="{{goods.skus.length}}">{{goods.brand.brand_name||'无'}}</td>
+                                <td rowspan="{{goods.skus.length}}">{{goods.supplier_category.supplier_category_name}}</td>
+                                <td rowspan="{{goods.skus.length}}">{{goods.unit}}</td>
+                                <td>{{sku.market_price}}</td>
+                                <td>{{sku.groupon_price}}</td>
+                                <td>{{sku.cost_price}}</td>
+                                <td rowspan="{{goods.skus.length}}">{{sheLves[goods.status-1].shelvesname}}</td>
+                            </tr>
+                            <tr ng-repeat="sku in goods.skus| limitTo:1-goods.skus.length">
+                                <td class="middle">
+                                    <input type="checkbox" ng-click="data.skuCheck(sku,$event)" ng-checked="sku.ischecked" ng-disabled="sku.ischecked">
+                                </td>
+                                <td class="goods-box">
+                                    <div class="goods-sku">
+                                        <div class="img-box" ng-repeat="url in data.imgList track by $index" ng-show="sku.img_sku_id==url.bundle_number">
+                                            <img ng-src="{{url.type?url.domain+'/'+url.key+'-thumbnail100':url.domain+'/'+url.key}}" alt="">
+                                        </div>
+                                        <ul class="goods-detail">
+                                            <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                                            <li><span>商品条码:</span>{{sku.barcode}}</li>
+                                            <li class="params">{{goods.spu_name}}&nbsp;&nbsp;{{sku.sku_name}}【
+                                                <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}},</span> 】
+                                            </li>
+                                        </ul>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                </td>
+                                <td>{{sku.market_price}}</td>
+                                <td>{{sku.groupon_price}}</td>
+                                <td>{{sku.cost_price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pager-box">
+                    <ul uib-pagination total-items="data.bigTotalItems" ng-model="data.bigCurrentPage" max-size="6" first-text="首页" previous-text="上一页" next-text="下一页" last-text="末页" items-per-page="6" class="pagination-md pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="data.setPage()"></ul>
+                </div>
+            </div>
+        </div>

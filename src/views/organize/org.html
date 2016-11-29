@@ -1,0 +1,96 @@
+<div class="org">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-sm-12 col-md-12 col-lg-12">组织架构</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 row-padding-2">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-padding-0">
+                    <div class="organize-list">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="box-title">组织架构列表</div>
+                            <div class="input-group">
+                            	<input type="text" class="form-control" placeholder="请输入关键字" maxlength="16" ng-model="key">
+                            	<span class="input-group-btn search-btn">
+                            		<i class="iconfont" ng-click="key=null">&#xe624;</i>
+                            		<button type="button" class="btn btn-primary" ng-click="getUserGroup()">搜索</button>
+                            	</span>
+                            </div>
+                            <div class="operation-box">
+                            	<ul>
+                            		<li ng-click="addUserGroup()">
+                            			<i class="iconfont" ng-class="{'gray':$root.accessControl.org.add==0||currentUserGroup==''||currentUserGroup.user_group_status==2}">&#xe61e;</i>
+                            		</li>
+                            		<li ng-click="editUserGroup()">
+                            			<i class="iconfont" ng-class="{'gray':$root.accessControl.org.edit==0||currentUserGroup==''||currentUserGroup.level==0}">&#xe620;</i>
+                            		</li>
+                            		<li ng-click="viewUserGroup()">
+                            			<i class="iconfont" ng-class="{'gray':$root.accessControl.org.view==0||currentUserGroup==''}">&#xe61c;</i>
+                            		</li>
+                            		<li ng-click="deleteUserGroup()">
+                            			<i class="iconfont" ng-class="{'gray':$root.accessControl.org.delete==0||currentUserGroup==''||currentUserGroup.level==0}">&#xe61f;</i>
+                            		</li>
+                            	</ul>
+                            </div>
+                        </div>
+                        <div class="company-list">
+                            <tree-view tree-data="tree" tree-Options="treeOptions" selected-item="selectedItem"></tree-view>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                	<div class="user-box">
+                		<div class="user-title">用户列表</div>
+                		<div class="user-operation">
+                			<div class="add" ng-click="addUserAccount()">
+	                			<i class="iconfont" ng-class="{'gray':accessControl.org.useradd==0||currentUserGroup==''||currentUserGroup.user_group_status==2}">&#xe61e;</i>
+                			</div>
+                			<div class="search-box pull-right">
+	                			<div class="input-group">
+	                            	<input type="text" class="form-control" placeholder="请输入手机号码或用户姓名" maxlength="16" ng-model="keyword">
+	                            	<span class="input-group-btn search-btn">
+	                            		<i class="iconfont" ng-click="keyword=null">&#xe624;</i>
+	                            		<button type="button" class="btn btn-primary" ng-click="getUserList()">搜索</button>
+	                            	</span>
+	                            </div>
+                			</div>
+                		</div>
+                		<div class="user-info-box">
+                			<table class="user-info-table">
+                				<tr>
+                                    <th>序号</th>
+                                    <th>用户账号</th>
+                                    <th>用户姓名</th>
+                                    <th>所属部门</th>
+                                    <th>所属角色</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr ng-repeat="(index,user) in userList">
+                                    <td>{{index+1}}</td>
+                                    <td>{{user.mobile}}</td>
+                                    <td>{{user.name==''?'未填写':user.name}}</td>
+                                    <td>{{user.user_group_name}}</td>
+                                    <td>
+                                        <span ng-show="user.role_name!='main'&&user.role_name!='child'">{{user.role_name==''?'未填写':user.role_name ||currAccountInfo.role_name}}</span>
+                                        <span ng-show="user.role_name=='main'">主账号</span>
+                                        <span ng-show="user.role_name=='child'">无</span>
+                                    </td>
+                                    <td>{{user.status==1?'启用':'禁用'}}</td>
+                                    <td>
+                                        <a href="" ng-show="$root.accessControl.org.userview==1" ng-click="viewUserAccount(user.uuid,index)">查看</a>
+                                        <a href="" ng-show="$root.accessControl.org.useredit==1&&(is_main==1||user.role_name!='main')" ng-click="editUserAccount(user.uuid)">编辑</a>
+                                        <a href="" ng-show="$root.accessControl.org.userdelete==1" ng-click="deleteUserAccount(user.uuid)" ng-hide="user.role_name=='main'">删除</a>
+                                        <a href="" ng-show="$root.accessControl.org.useredit==1&&user.role_name!='main'&&user.status==2" ng-click="enableUserAccount(user.uuid)">启用</a>
+                                        <a href="" ng-show="$root.accessControl.org.useredit==1&&user.role_name!='main'&&user.status==1" ng-click="disableUserAccount(user.uuid)">禁用</a>
+                                        <a href="" ng-show="$root.accessControl.org.ismain==1&&'{{user.role_name}}'!='main'" ng-click="setMainAccount(user.uuid)">设为主账号</a>
+                                    </td>
+                			</table>
+                			<div class="pager-box" ng-show="bigTotalItems/pageSize>1">
+                                <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" first-text="首页" previous-text="上一页" next-text="下一页" last-text="最后页" items-per-page="{{pageSize}}" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="setPage()"></ul>
+                            </div>
+                		</div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

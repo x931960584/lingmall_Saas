@@ -1,0 +1,89 @@
+<div class="saleorder">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-sm-12 col-md-12 col-lg-12">销售订单</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 content">
+                <div class="saleorder-content">
+                    <div class="saleorder-top col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                            <div class="title-list">
+                                <div class="search-input pull-left">
+                                    <span class="keyword">关键字&nbsp;:&nbsp;</span>
+                                    <div class="keyword-input">
+                                        <input type="text" class="form-control" placeholder="输入订单号" ng-model="order_code">
+                                    </div>
+                                </div>
+                                <div class="pull-left col-margin-2">
+                                    <div class="btn-group" uib-dropdown>
+                                        <button id="btn-append-to-single-button" type="button" class="btn btn-default" data-toggle="dropdown" uib-dropdown-toggle>
+                                            {{status}}
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                            <li ng-repeat="status in orderStatus" ng-click="selectStatus(status.order_status,status.status_name)">
+                                                <a href>{{status.status_name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pull-left">
+                                    <div class="col-ms-12 col-md-12 col-lg-12 col-padding-0">
+                                        <div class="start-time col-ms-12 col-md-12 col-lg-12 col-padding-0">
+                                            <datepicker date-Format="dateFormat" time-Type="startTime" min-View="2" time-Type-Placeholder="startTimePlaceholder"></datepicker>
+                                        </div>
+                                        <div class="end-time col-ms-6 col-md-6 col-lg-6 col-padding-0">
+                                            <datepicker date-Format="dateFormat" time-Type="endTime" min-view="2" time-Type-Placeholder="endTimePlaceholder"></datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-default" ng-click="getOrderList()">检索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-list col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                        <table class="order-table table-hover">
+                            <tr class="thead">
+                                <!-- <td>
+                                    <input type="checkbox">
+                                </td> -->
+                                <td>订单编号</td>
+                                <td>收件人</td>
+                                <td class="shouhuo">收货地区</td>
+                                <td class="money">订单金额(元)</td>
+                                <td class="status">订单状态</td>
+                                <td class="time">下单时间</td>
+                                <td class="operation">操作</td>
+                            </tr>
+                            <tr ng-repeat="order in orderList">
+                                <!-- <td>
+                                    <input type="checkbox">
+                                </td> -->
+                                <td>{{order.order_code}}</td>
+                                <td>{{order.receiver}}</td>
+                                <td>{{order.receive_city}}</td>
+                                <td>{{order.total_price}}元</td>
+                                <td>{{orderStatus[order.status+1].status_name}}</td>
+                                <td class="time">{{order.created_at}}</td>
+                                <td>
+                                    <span ui-sref="main.saleorderdetail({order_id:order.order_id})" ng-show="accessControl.salesOrder.view==1">详情</span>
+                                    <span ng-show="order.status==1&&accessControl.salesOrder.cancelOrder==1" ng-click="cancelOrder(order.order_id)">取消订单</span>
+                                    <span ng-show="order.status==1&&accessControl.salesOrder.editFreight==1" ng-click="updateFee(order.order_id,order.freight)">改运费</span>
+                                    <span ng-show="order.status==2&&accessControl.salesOrder.affirmShipments==1" ng-click="orderSend(order.order_id)">确认发货</span>
+                                    <span ng-show="order.status==3&&accessControl.salesOrder.affirmDelivery==1" ng-click="confirmDelivery(order.order_id)">确认收货</span>
+                                    <span ng-show="order.status==4&&accessControl.salesOrder.accountStatement==1" ng-click="orderClose(order.order_id)">结单</span>
+                                    <span class="paying" ng-show="order.status==6">支付处理中</span>
+                                    <!-- <span ng-show="order.status==5" class="gray">已结单</span> -->
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="pager-box" ng-show="bigTotalItems/pageSize>1">
+                        <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" first-text="首页" previous-text="上一页" next-text="下一页" last-text="最后页" items-per-page="pageSize" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="setPage()"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

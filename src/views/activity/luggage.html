@@ -1,0 +1,32 @@
+<div class="lug_add">
+    <button ng-click="data.lugAdd()" ng-model="initNum"><span class="iconfont">&#xe61e;</span></button>
+</div>
+<div class="lug_table">
+    <table>
+        <thead>
+            <tr>
+                <th>订货量</th>
+                <th>运费(元)</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="l in data.luggList">
+                <td>
+                    <div class="input-w">
+                        <span>大于等于</span>
+                    </div>
+                    <div class="input-w">
+                        <input type="text" class="form-control" ng-model="l.start_count" ng-keypress="data.IsNum($event)" ng-blur="data.luCount(l.start_count)" ng-disabled="$index<data.num||$index==0" ng-class="{true:'selected'}[l.start_count==data.kCount]">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-w">
+                        <input type="text" class="form-control" ng-model="l.price" ng-disabled="$index<data.num" ng-blur="data.luPrice(l.price)" ng-class="{true:'selected'}[l.price==data.kPrice]">
+                    </div>
+                </td>
+                <td><span class="iconfont" ng-show="$index==data.num" ng-click="data.delLugg()">&#xe624;</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

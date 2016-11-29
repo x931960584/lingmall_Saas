@@ -1,0 +1,109 @@
+@import "../common/colors.less";
+.login {
+    .title {
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .base {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        background-color: @main-color-gray;
+        font-size: 1.6em;
+    }
+    .user-box {
+        display: inline-block;
+        margin-bottom: 20px;
+        .account-radio {
+            margin: 0 10px;
+        }
+        .admin {
+            float: left;
+            width: 205px;
+            margin-right: 20px;
+        }
+        .common {
+            float: right;
+            width: 205px;
+        }
+    }
+    .message {
+        font-size:14px;
+        color:red;
+        margin-bottom:10px;
+        text-align: center;
+    }
+    .tel-box {}
+    .input {
+        position: relative;
+        input {
+            width: 430px;
+            text-align: left;
+            margin-bottom: 20px;
+            padding-left: 40px;
+        }
+        i {
+            position: absolute;
+            top: 18px;
+            left: 10px;
+            font-size: 22px;
+            color: #999;
+        }
+    }
+    .vali-box {
+        display: inline-block;
+        margin-bottom: 20px;
+        .vali-text,
+        .vali-img {
+            width: 205px;
+        }
+        .vali-text {
+            margin-right: 20px;
+            text-align: left;
+            padding-left: 20px;
+        }
+        .vali-img {
+            float: right;
+            letter-spacing:8px;
+        }
+        .vali-prompt {
+            color:red;
+            margin-top:10px;
+        }
+    }
+    .login-btn {
+        background-color: @main-color;
+        color: #fff;
+        cursor: pointer;
+        font-size: 2em;
+    }
+    .footer-box {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        display:inline-block;
+        margin-top: 5px;
+        .save-user {
+            display:inline-block;
+            input {
+                margin: 8px 5px 10px 5px;
+            }
+        }
+        .forgetpwd-text {
+            margin:0 10px;
+            display:inline-block;
+            color: @main-color;
+            cursor: pointer;
+        }
+        .regist-text {
+            float:right;
+            width:auto;
+            margin:0;
+            display:inline-block;
+            color: @main-color;
+            cursor: pointer;
+        }
+    }
+}
+

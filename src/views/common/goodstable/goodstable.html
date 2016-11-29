@@ -1,0 +1,92 @@
+<table>
+    <thead>
+        <tr class="title">
+            <td>
+                <input type="checkbox" ng-click="options.checkAll($event)" ng-checked="options.isCheckedAll">
+            </td>
+            <td>商品名称</td>
+            <td>品牌</td>
+            <td>分类</td>
+            <!-- <td>库存数量</td> -->
+            <td>单位</td>
+            <td>市场价</td>
+            <td>订货价</td>
+            <td>成本价</td>
+            <td>状态</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody ng-repeat="goods in mygoodsList">
+        <tr ng-repeat="sku in goods.skus| limitTo:1">
+            <td rowspan="{{goods.skus.length}}" class="middle">
+                <input type="checkbox" ng-checked="options.isChecked" ng-click="options.checkOne($event,sku.spu_id)">
+            </td>
+            <td class="goods-box">
+                <div class="goods-sku">
+                    <div class="img-box" ng-repeat="url in imgUrlList track by $index" ng-if="sku.img_sku_id==url.bundle_number">
+                        <img ng-src="{{url.img_url}}" alt="">
+                    </div>
+                    <ul class="goods-detail">
+                        <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                        <li ng-show="sku.barcode"><span>商品条码:</span>{{sku.barcode}}</li>
+                        <li class="params">{{goods.spu_name}}&nbsp;{{sku.sku_name}}
+                        </li>
+                        <li><span ng-show="sku.specification.length">【
+                            <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}} </span> 】
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td rowspan="{{goods.skus.length}}" ng-bind="goods.brand.brand_name?goods.brand.brand_name:'无'"></td>
+            <td rowspan="{{goods.skus.length}}">{{goods.supplier_category.supplier_category_name}}</td>
+            <td rowspan="{{goods.skus.length}}">{{goods.unit}}</td>
+            <td>{{sku.market_price}}</td>
+            <td>{{sku.groupon_price}}</td>
+            <td>{{sku.cost_price}}</td>
+            <td rowspan="{{goods.skus.length}}">{{statusList[goods.status].name}}</td>
+            <td rowspan="{{goods.skus.length}}" class="middle">
+                <span class="operate" ng-show="accessControl.mygoods.view==1">
+                    <a href="" class="operate" ui-sref="main.addgoods({spu_id:goods.spu_id,status:'view'})" >查看</a>
+                </span>
+                <!--
+                    verify_status 0:未参与活动,可下架可删除
+                                  1:参与活动,上线,未结束,不能下架不能删除
+                                  2:参与活动且活动下线或结束,可以下架但不能删除
+                    status 1:上架状态
+                           2:下架状态
+                    编辑:只要是下架状态就可以编辑 status==2
+                    上架:只要是下架状态就可以上架 status==2
+                    下架:上级状态且(未参与活动或活动结束/下线) status==1&&(verify_status==0 || verify_status ==2)
+                    删除:下架状态且未参与活动 status==2&&verify_status==0
+                -->
+                <span class="operate" ui-sref="main.addgoods({spu_id:goods.spu_id,status:'edit'})" ng-show="goods.status==2&&accessControl.mygoods.edit==1">编辑</span>
+                <span class="operate" ng-show="(goods.status==1&&accessControl.mygoods.edit==1)&&(goods.verify_status==0 || goods.verify_status==2)" ng-click="options.downStatus(goods.spu_id,2)">下架</span>
+                <span class="operate" ng-show="goods.status==2&&accessControl.mygoods.edit==1" ng-click="options.upStatus(goods.spu_id,1)">上架</span>
+                <span class="operate" ng-click="options.deleteGoods(goods.spu_id)" ng-show="goods.status==2&&accessControl.mygoods.delete==1&&goods.verify_status==0">删除</span>
+                <span ng-show="goods.verify_status==1">活动进行中...</span>
+            </td>
+        </tr>
+        <tr ng-repeat="sku in goods.skus| limitTo:1-goods.skus.length">
+            <td class="goods-box">
+                <div class="goods-sku">
+                    <div class="img-box" ng-repeat="url in imgUrlList track by $index" ng-if="sku.img_sku_id==url.bundle_number">
+                        <img ng-src="{{url.img_url}}" alt="">
+                    </div>
+                    <ul class="goods-detail">
+                        <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                        <li ng-show="sku.barcode"><span>商品条码:</span>{{sku.barcode}}</li>
+                        <li class="params">{{goods.spu_name}}&nbsp;{{sku.sku_name}}
+                        </li>
+                        <li><span ng-show="sku.specification.length">【
+                            <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}} </span> 】
+                            </span></li>
+                    </ul>
+                </div>
+            </td>
+            <td>{{sku.market_price}}</td>
+            <td>{{sku.groupon_price}}</td>
+            <td>{{sku.cost_price}}</td>
+        </tr>
+    </tbody>
+</table>

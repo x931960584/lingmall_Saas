@@ -1,0 +1,17 @@
+<div class="updatefeemodal">
+    <div class="order-status">
+        <div class="fee-box">
+            <div class="fee">
+                <span>运费合计:</span>{{data.current_freight}}
+            </div>
+            <div class="fee">
+                <span>修改运费:</span>
+                <input type="text" ng-model="data.update_fee" ng-blur="data.updateFeeInput(data.update_fee)">
+            </div>
+            <div class="fee fee-memo">
+                <span>*备注:</span>
+                <input type="text" ng-model="data.update_fee_memo" maxlength="50">
+            </div>
+        </div>
+    </div>
+</div>

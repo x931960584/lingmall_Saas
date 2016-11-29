@@ -1,0 +1,224 @@
+<div class="addgoods">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-sm-12 col-md-12 col-lg-12" ng-hide="pageStatus=='edit' || pageStatus=='view'">添加商品</div>
+            <div class="page-title col-sm-12 col-md-12 col-lg-12" ng-show="pageStatus=='edit'">编辑商品</div>
+            <div class="page-title col-sm-12 col-md-12 col-lg-12" ng-show="pageStatus=='view'">查看商品</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 content">
+                <div class="addgoods-content">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="addgoods-top row-padding-2">基础信息</div>
+                    </div>
+                    <div class="addgoods-info">
+                        <div class="col-sm-6 col-md-6 col-lg-6 info-list">
+                            <ul>
+                                <li class="input-box">
+                                    <span class="name">商品名称<span>*</span></span>
+                                    <div class="info">
+                                        <input type="text" placeholder="请输入商品名称,最多50个字" minlength="1" maxlength="50" class="form-control" ng-model="name" ng-disabled="pageStatus=='view'">
+                                    </div>
+                                </li>
+                                <li class="input-box">
+                                    <span class="name">商品分类</span>
+                                    <div class="info">
+                                        <div class="input-group category-box">
+                                            <div class="category-box form-control" disabled>{{category?category:'请选择分类'}}
+                                                <span class="icon-box" >
+                                                    <button class="category-icon fa fa-caret-down" ng-click="showCategoryBox($event)" ng-disabled="pageStatus=='view'" ng-class="{'cur-default':pageStatus=='view'}"></button>
+                                                </span>
+                                            </div>
+                                            <div ng-show="showCategoryList" class="category-list">
+                                                <tree-view tree-data="categoryTree" tree-Options="categoryTreeOptions" selected-item="categoryTreeItem"></tree-view>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="input-box">
+                                    <span class="name">商品品牌</span>
+                                    <div class="info">
+                                        <div class="input-group input-dropdown">
+                                            <input type="text" class="form-control" placeholder="请选择品牌" ng-model="brand" disabled>
+                                            <div class="input-group-btn" uib-dropdown>
+                                                <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle ng-disabled="pageStatus=='view'"> <span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                                    <li ng-click="selectBrand('','')"><a href>无</a></li>
+                                                    <li ng-repeat="brand in brandsList" ng-click="selectBrand(brand.brand_name,brand.brand_id)"><a href>{{brand.brand_name}}</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="input-box">
+                                    <span class="name">关键字</span>
+                                    <div class="info">
+                                        <input type="text" placeholder='可输入最多5个关键字,用英文","逗号隔开' class="form-control" ng-model="keyword" maxlength="50" ng-disabled="pageStatus=='view'">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 info-list">
+                            <ul>
+                                <li class="input-box">
+                                    <span class="name">商品编码<span>*</span></span>
+                                    <div class="info">
+                                        <input type="text" class="form-control" ng-model="spu_code" maxlength="32" ng-disabled="pageStatus=='view'">
+                                    </div>
+                                </li>
+                                <li class="input-box">
+                                    <span class="name">计量单位</span>
+                                    <div class="info">
+                                        <div class="input-group input-dropdown">
+                                            <input type="text" class="form-control" placeholder="件" ng-model="unit" disabled>
+                                            <div class="input-group-btn" uib-dropdown>
+                                                <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle ng-disabled="pageStatus=='view'"> <span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
+                                                    <li ng-repeat="unit in unitList" ng-click="selectUnit(unit.name)"><a href>{{unit.name}}</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="input-box">
+                                    <span class="name">排序值</span>
+                                    <div class="info">
+                                        <input type="text" maxlength="5" validate="number" placeholder="越小越靠前,最大值99999" class="form-control" ng-model="sort" min="0" ng-disabled="pageStatus=='view'">
+                                    </div>
+                                </li>
+                                <!-- <li class="input-box">
+                                    <span class="name">是否上架</span>
+                                    <div class="info">
+                                        <div class="status">
+                                            <input type="radio" name="status" class="radio" ng-click="status=1" checked="status==1" ng-disabled="pageStatus=='view'"> 上架
+                                        </div>
+                                        <div class="status">
+                                            <input type="radio" name="status" class="radio" ng-click="status=2" checked="status==2" ng-disabled="pageStatus=='view'"> 下架
+                                        </div>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="addgoods-speci">
+                            <div specs-Directive item-Group="itemGroup" sku-Group="skuGroup" options="options" template-Url="views/common/ngsku/ngsku.html" page-Status="pageStatus">
+                            </div>
+                        </div>
+
+                        <div class="addgoods-attrs">
+                            <div specs-Directive item-Group="others" sku-Group="othersGroup" options="othersOptions" template-Url="views/common/ngsku/ngsku.html" page-Status="pageStatus">
+                            </div>
+                        </div>
+                        <div class="addgoods-intro">
+                            <div class="title row-padding-2">商品简介</div>
+                            <div class="content">
+                                <div ueditor goods-Desc="goodsDesc" page-Status="pageStatus"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="add-btn btn" ng-click="addGood()" ng-hide="pageStatus=='edit'||pageStatus=='view'">添加</div>
+                            <div class="add-btn btn" ng-click="editGoods()" ng-show="pageStatus=='edit'">保存</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 上传图片 弹出框 -->
+<div class="popup-box" ng-show="uploadOptions.uploadBox">
+    <div class="upload-position" addupload uploader="uploader" get-Upload-Token="getUploadToken" upload-Options="uploadOptions" browse-Button-Id="browse_button_id" uploader-Files='uploaderFiles' page-Status="pageStatus">
+        <div class="upload-box col-ms-9 col-md-9 col-lg-9">
+            <div class="title">上传图片
+                <i class="iconfont" ng-click="uploadOptions.uploadBox=false">&#xe624;</i>
+            </div>
+            <div class="upload-content">
+                <div class="col-ms-12 col-md-12 col-lg-12 upload-img">
+                    <div class="left col-ms-6 col-md-6 col-lg-6" id="leftContainer" upload-Options="uploadOptions">
+                        <p>商品主图</p><br/>
+                        <ul id="leftInputContainer" upload-Container>
+                            <div class="imgtext" ng-show="uploadOptions.uploader.leftImgList.length?false:uploadOptions.isHTML5?true:false">请将文件拖放到此区域
+                                <input type="file" id="leftPickfiles" name="browse_button" ng-show="false">
+                            </div>
+                            <li ng-repeat="item in uploadOptions.uploader.leftImgList">
+                                <img ng-src="{{item.img_url}}" alt="" class="upload-img_url">
+                                <i class="iconfont" ng-hide="pageStatus=='view'" ng-click="uploadOptions.modifyPics($index,item,0,'left')">&#xe624;</i>
+                            </li>
+                            <li class="last" ng-show="uploadOptions.uploader.leftImgList.length&&uploadOptions.uploader.leftImgList.length<15&&pageStatus!=='view'" ng-click="uploadOptions.fileInputClick('leftPickfiles')">
+                                <span class="fa fa-plus fa-2x"></span>
+                            </li>
+                        </ul>
+                        <div ng-hide="pageStatus=='view'" class="img-box">
+                            <p class="red text">(最多15张,单张不超过20M,支持JPEG,JPG,PNG)</p>
+                            <table class="img-table">
+                                <tr ng-show="uploadOptions.uploader.leftUploaderFiles.length">
+                                    <td>文件</td>
+                                    <td>大小</td>
+                                    <td>进度</td>
+                                    <td>状态</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tr ng-repeat="file in uploadOptions.uploader.leftUploaderFiles">
+                                    <td>{{file.name}}</td>
+                                    <td ng-bind="(file.size/1024/1024).toFixed(2)+'M'"></td>
+                                    <td>{{file.percent}}%</td>
+                                    <td ng-bind="uploaderStatus[file.status-1].name"></td>
+                                    <td>
+                                        <span ng-show="file.status!==5" ng-click="uploadOptions.removeFile(uploadOptions.uploader.leftUploaderFiles,file,$index,'left')">取消</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="upload-btn-box">
+                                <span class="upload-btn" ng-click="uploadOptions.uploader.leftUploader.start()">上传全部</span>
+                                <span class="cancel-btn" ng-click="uploadOptions.removeAllFiles('left')">取消全部</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right col-ms-6 col-md-6 col-lg-6" id="rightContainer" upload-Options="uploadOptions">
+                        <p>商品详情图</p><br/>
+                        <ul id="rightInputContainer" upload-Container>
+                            <div class="imgtext" ng-show="uploadOptions.uploader.rightImgList.length?false:uploadOptions.isHTML5?true:false">请将文件拖放到此区域
+                                <input type="file" id="rightPickfiles" name="browse_button" ng-show="false">
+                            </div>
+                            <li ng-repeat="item in uploadOptions.uploader.rightImgList | orderBy:item.sequence">
+                                <img ng-src="{{item.img_url}}" alt="" class="upload-img_url">
+                                <i class="iconfont" ng-hide="pageStatus=='view'" ng-click="uploadOptions.modifyPics($index,item,0,'right')">&#xe624;</i>
+                            </li>
+                            <li class="last" ng-show="uploadOptions.uploader.rightImgList.length&&uploadOptions.uploader.rightImgList.length<5&&pageStatus!=='view'" ng-click="uploadOptions.fileInputClick('rightPickfiles')">
+                                <span class="fa fa-plus fa-2x"></span>
+                            </li>
+                        </ul>
+                        <div ng-hide="pageStatus=='view'" class="img-box">
+                            <p class="red text">(最多5张,单张不超过20M,支持JPEG,JPG,PNG)</p>
+                            <table class="img-table">
+                                <tr ng-show="uploadOptions.uploader.rightUploaderFiles.length">
+                                    <td>文件</td>
+                                    <td>大小</td>
+                                    <td>进度</td>
+                                    <td>状态</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tr ng-repeat="file in uploadOptions.uploader.rightUploaderFiles">
+                                    <td>{{file.name}}</td>
+                                    <td ng-bind="(file.size/1024/1024).toFixed(2)+'M'"></td>
+                                    <td>{{file.percent}}%</td>
+                                    <td ng-bind="uploaderStatus[file.status-1].name"></td>
+                                    <td>
+                                        <span ng-show="file.status!==5" ng-click="uploadOptions.removeFile(uploadOptions.uploader.rightUploaderFiles,file,$index,'right')">取消</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="upload-btn-box">
+                                <span class="upload-btn" ng-click="uploadOptions.uploader.rightUploader.start()">上传全部</span>
+                                <span class="cancel-btn" ng-click="uploadOptions.removeAllFiles('right')">取消全部</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="post-btn">
+                <span class="cancel" ng-click="uploadOptions.uploadBox=false">关闭</span>
+            </div>
+        </div>
+    </div>
+</div>

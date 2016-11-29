@@ -1,0 +1,81 @@
+<div class="ngsku">
+    <div class="spec" ng-show="options.autoCreatSKU?(pageStatus!=='view'&&pageStatus!=='edit'):pageStatus!=='view'">
+        <input type="checkbox" ng-model="options.hasSpecs" ng-change="options.initSKU()" ng-checked="options.hasSpecs">{{options.checkBoxTitle}} (输入结束后按回车键,添加下一个)
+    </div>
+    <div class="addgoods-spec" ng-show="options.autoCreatSKU?(pageStatus=='view'||pageStatus=='edit'):pageStatus=='view'">
+        <div class="title" ng-bind="options.statusTitle"></div>
+    </div>
+    <div ng-show="options.hasSpecs?(options.autoCreatSKU&&pageStatus!=='edit'&&pageStatus!=='view'?true:!options.autoCreatSKU):false" class="options-box">
+        <div class="combo-box" ng-repeat="item in itemGroup">
+            <div class="spec-name">
+                <input type="text" class="name-input" ng-model="item.key" ng-focus="options.getOldItemKey(item.key)" ng-blur="options.setItemKey(item,item.key)" maxlength="{{options.item.maxKeyLength}}" ng-disabled="options.autoCreatSKU&&pageStatus=='edit'&&pageStatus=='view'?true:pageStatus=='view'&&!options.autoCreatSKU">
+            </div>
+            <div item-children class="spec-list">
+                <div class="spec-value" ng-repeat="perItem in item.children" ng-show='perItem.value'>{{perItem.value}}
+                    <i class="iconfont" ng-show="options.autoCreatSKU&&pageStatus!=='edit'&&pageStatus!=='view'?true:pageStatus!=='view'&&!options.autoCreatSKU" ng-click="options.removeItem(item,perItem)">&#xe624;</i>
+                </div>
+                <input type="text" size="2" class="spec-input" ng-keydown="options.addItem($event,item,item.inputval)" ng-model="item.inputval" ng-blur="options.addItem('unfocus',item,item.inputval)" maxlength="{{options.item.maxChildrenValueLength}}" ng-show="pageStatus=='edit'&&!options.autoCreatSKU?(options.item.maxChildrenLength>1?(item.children.length<options.item.maxChildrenLength):(options.item.maxChildrenLength==1&&item.children.length==1?(item.children[0].value?false:true):false)):(pageStatus!=='view'&&pageStatus!=='edit'&&(options.item.maxChildrenLength>1?(item.children.length<options.item.maxChildrenLength):(options.item.maxChildrenLength==1&&item.children.length==1?(item.children[0].value?false:true):false)))">
+            </div>
+            <div class="spec-del" ng-show="options.autoCreatSKU?(itemGroup.length>1&&pageStatus!=='view'&&pageStatus!=='edit'):pageStatus!=='view'" ng-click="options.removeItemGroup(item)">
+                <i class="iconfont">&#xe624;</i>
+            </div>
+        </div>
+        <div class="add-spec" ng-show="pageStatus!=='view'&&itemGroup.length<options.item.maxItemLength">
+            <a ng-click="options.addItemGroup()"><i class="fa fa-plus fa-1x"></i> {{options.addBtnTitle}}</a>
+        </div>
+    </div>
+    <div ng-show="options.autoCreatSKU" class="goods-list">
+        <table class="table" cellpadding="0" cellspacing="0">
+            <tr class="title">
+                <td class="index">序号</td>
+                <td class="img">主图<span>*</span></td>
+                <td class="spec-title" ng-repeat="item in itemGroup">{{item.key}}</td>
+                <td class="title">商品副标题<span>*</span></td>
+                <td class="code">商品编码</td>
+                <td class="code">条形码</td>
+                <td class="weight">物流重量
+                    <br/>(KG)</td>
+                <td class="market-price">市场价</td>
+                <td class="sale-price">订货价<span>*</span></td>
+                <td class="cost-price">成本价</td>
+                <!-- <td class="stock">库存</td> -->
+                <td class="operate">操作</td>
+            </tr>
+            <tr ng-repeat="sku in skuGroup">
+                <td>{{$index+1}}</td>
+                <td>
+                    <div class="img-box" ng-init="showUploadBtn=false" ng-click="options.showUploadBox(sku)" ng-mouseover="showUploadBtn=true" ng-mouseleave="showUploadBtn=false">
+                        <img ng-show="sku.mainImgUrl" ng-src="{{sku.mainImgUrl}}" alt="">
+                        <div class="showuploadbtn" ng-show="!sku.mainImgUrl?true:showUploadBtn?true:false" ng-bind="!sku.mainImgUrl?'上传':'查看'"></div>
+                    </div>
+                </td>
+                <td ng-repeat="spec in sku.specification" ng-bind="spec.value"></td>
+                <td>
+                    <input class="form-control" type="text" placeholder="请输入商品副标题" maxlength="20" size="20" ng-model="sku.sku_name" ng-disabled="pageStatus=='view'">
+                </td>
+                <td>
+                    <input class="form-control" type="text" maxlength="32" ng-model="sku.sku_code" ng-disabled="pageStatus=='view'">
+                </td>
+                <td>
+                    <input class="form-control" type="text" maxlength="32" ng-model="sku.barcode" ng-disabled="pageStatus=='view'">
+                </td>
+                <td>
+                    <input class="form-control" placeholder="0.00" type="text" maxlength="6" ng-model="sku.weight" ng-disabled="pageStatus=='view'">
+                </td>
+                <td>
+                    <input class="form-control" placeholder="0.00" type="text" maxlength="6" ng-model="sku.market_price" ng-disabled="pageStatus=='view'">
+                </td>
+                <td>
+                    <input class="form-control" placeholder="0.00" type="text" maxlength="6" ng-model="sku.groupon_price" ng-disabled="pageStatus=='view'">
+                </td>
+                <td>
+                    <input class="form-control" placeholder="0.00" type="text" maxlength="6" ng-model="sku.cost_price" ng-disabled="pageStatus=='view'">
+                </td>
+                <!-- <td>
+                    <input class="form-control" type="text" maxlength="8" ng-model="sku.stock_count" ng-disabled="pageStatus=='view'">
+                </td> -->
+                <td><a ng-show="skuGroup.length>1&&pageStatus!=='view'" ng-click="options.removeSKU(sku)">删除</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

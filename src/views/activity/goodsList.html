@@ -1,0 +1,72 @@
+<table>
+    <thead>
+        <tr class="title">
+            <th>
+                <input type="checkbox">
+            </th>
+            <th>商品名称</th>
+            <th>品牌</th>
+            <th>分类</th>
+            <!-- <th>库存数量</th> -->
+            <th>单位</th>
+            <th>市场价</th>
+            <th>订货价</th>
+            <th>成本价</th>
+            <th>状态</th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="goods in mygoodsList">
+        <tr ng-repeat="sku in goods.skus| limitTo:1">
+            <td class="middle"><input type="checkbox" ng-click="skuCheck(sku,goods.keyword,$event)"></td>
+            <td class="goods-box">
+                <div class="goods-sku">
+                    <div class="img-box" ng-repeat="url in imgList track by $index" ng-show="sku.img_sku_id==url.bundle_number">
+                        <img ng-src="{{url.img_url}}" alt="">
+                    </div>
+                    <ul class="goods-detail">
+                        <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                        <li><span>商品条码:</span>{{sku.barcode}}</li>
+                        <li><span>商品副标题:</span>{{sku.sku_name}}</li>
+                        <li class="params">{{sku.sku_name}}【
+                            <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}},</span>
+                            】
+                        </li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </div>
+            </td>
+            <td rowspan="{{goods.skus.length}}">{{goods.brand.brand_name}}</td>
+            <td rowspan="{{goods.skus.length}}">{{goods.supplier_category.supplier_category_name}}</td>
+            <td rowspan="{{goods.skus.length}}">{{goods.unit}}</td>
+            <td>{{sku.market_price}}</td>
+            <td>{{sku.groupon_price}}</td>
+            <td>{{sku.cost_price}}</td>
+            <td rowspan="{{goods.skus.length}}">{{sheLves[goods.status].shelvesname}}</td>
+            
+        </tr>
+        <tr ng-repeat="sku in goods.skus| limitTo:1-goods.skus.length">
+            <td class="middle"><input type="checkbox" ng-click="skuCheck(sku,goods.keyword,$event)"></td>
+            <td class="goods-box">
+                <div class="goods-sku">
+                    <div class="img-box" ng-repeat="url in imgList track by $index" ng-show="sku.img_sku_id==url.bundle_number">
+                        <img ng-src="{{url.domain+'/'+url.key+'-thumbnail100'}}" alt="">
+                    </div>
+                    <ul class="goods-detail">
+                        <li><span>商品编码:</span>{{sku.sku_code}}</li>
+                        <li><span>商品条码:</span>{{sku.barcode}}</li>
+                        <li><span>商品副标题:</span>{{sku.sku_name}}</li>
+                        <li class="params">{{sku.sku_name}}【
+                            <span ng-repeat="spec in sku.specification">{{spec.key+':'+spec.value}},</span>
+                            】
+                        </li>
+                    </ul>
+                     <div style="clear:both"></div>
+                </div>
+            </td>
+            <td>{{sku.market_price}}</td>
+            <td>{{sku.groupon_price}}</td>
+            <td>{{sku.cost_price}}</td>
+            
+        </tr>
+    </tbody>
+</table>

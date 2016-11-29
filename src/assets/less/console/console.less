@@ -1,0 +1,168 @@
+@import "../common/colors.less";
+.console {
+    font-family: "微软雅黑";
+    height: 100%;
+    .content-bg {
+        height: 100%;
+        padding-bottom: 15px;
+        .bg-color {
+            background-color: #fff;
+            height: 100%;
+            .page-title {
+                font-size: 1.6em;
+                padding: 20px 15px;
+                background-color: @main-color-background;
+            }
+            .content {
+                display: inline-block;
+                background-color: #fff;
+                font-size: 1.4em;
+                .console-content {
+                    display: inline-block;
+                    width: 100%;
+                    .order-statistics {
+                        height: 197px;
+                        padding: 0 8px;
+                        -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+                        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+                        .order-title {
+                            font-size: 12px;
+                            line-height: 30px;
+                            border-bottom: 1px solid @main-color-border;
+                        }
+                        ul {
+                            display: flex;
+                            -webkit-display: flex;
+                            li {
+                                height: 164px;
+                                line-height: 164px;
+                                text-align: center;
+                                cursor: pointer;
+                                flex: 4;
+                                .num {
+                                    font-size: 2em;
+                                    display: inline-block;
+                                    position: relative;
+                                    width: 50px;
+                                    height: 50px;
+                                    line-height: 50px;
+                                    text-align: center;
+                                    .add {
+                                        width: 20px;
+                                        height: 20px;
+                                        line-height: 20px;
+                                        text-align: center;
+                                        display: inline-block;
+                                        position: absolute;
+                                        top: 0;
+                                        right: -8px;
+                                    }
+                                }
+                                .yellow {
+                                    color: @main-color-yellow;
+                                }
+                            }
+                        }
+                    }
+                }
+                .notice-box {
+                    padding-right: 0;
+                    .notice-list {
+                    	height: 197px;
+                        padding: 0 8px;
+                        -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+                        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+                        .notice-title {
+                            font-size: 12px;
+                            line-height: 30px;
+                            border-bottom: 1px solid @main-color-border;
+                            .more {
+                                float: right;
+                                cursor: pointer;
+                            }
+                        }
+                        ul {
+                            li {
+                                width: 100%;
+                                border-bottom: 1px solid @main-color-border;
+                                cursor: pointer;
+                                .notice-text {
+                                    width: 74%;
+                                    line-height: 30px;
+                                    display: inline-block;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                }
+                                .notice-date {
+                                    float: right;
+                                    width: 15%;
+                                    min-width: 85px;
+                                    line-height: 30px;
+                                    text-align: right;
+                                    color: @main-color-text-light;
+                                    display: inline-block;
+                                }
+                            }
+                            li:last-child {
+                                border-bottom: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.company_cent{
+    .form_group{
+        width: 100%;
+        display: inline-block;
+        .control_label{
+            font-weight: normal;
+            float: left;
+            width: 100px;
+            font-size: 1.4em;
+            line-height: 34px;
+            text-align: right;
+            i{
+                color: red;
+                padding-right: 4px;
+            }
+        }
+        .control_input{
+            float: left;
+            width: 80%;
+            margin-left:15px;
+            button{
+                width: 100%;
+            }
+            ul{
+                width: 100%;
+                padding: 6px 0px;
+                li{
+                    line-height: 18px;
+                }
+            }
+            .sect_font{
+                float: left;
+            }
+            .caret{
+                float: right;
+                margin: 8px 0px;
+            }
+            .creat_dao{
+                margin-left:10px; 
+            }
+            .font_color{
+                color: #868686;
+            }
+            .error_input{
+                border-color: red;
+            }
+        }
+    }
+    .form-control[disabled]{
+        background-color: #fff;
+    }
+}

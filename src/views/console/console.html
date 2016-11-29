@@ -1,0 +1,53 @@
+<div class="console">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-ms-12 col-md-12 col-lg-12">我的零猫</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 content">
+                <div class="console-content row-margin-2">
+                    <div class="order-statistics col-sm-7 col-md-7 col-lg-7">
+                        <div class="order-title">销售订单</div>
+                        <ul>
+                            <li ng-click="linkToOrder(1,'待支付')">
+                                <span class="num yellow">{{unpay>99?99:unpay || 0}}
+									<span class="add" ng-show="unpay>99">+</span>
+                                </span>
+                                <span class="status">待支付</span>
+                            </li>
+                            <li ng-click="linkToOrder(2,'待发货')">
+                                <span class="num yellow">{{unsend>99?99:unsend || 0}}
+									<span class="add" ng-show="unsend>99">+</span>
+                                </span>
+                                <span>待发货</span>
+                            </li>
+                            <li ng-click="linkToOrder(3,'确认收货')">
+                                <span class="num yellow">{{sended>99?99:sended || 0}}
+									<span class="add" ng-show="sended>99">+</span>
+                                </span>
+                                <span>确认收货</span>
+                            </li>
+                            <li ng-click="linkToOrder(4,'待结单')">
+                                <span class="num yellow">{{received>99?99:received || 0}}
+									<span class="add" ng-show="received>99">+</span>
+                                </span>
+                                <span>待结单</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="notice-box col-sm-5 col-md-5 col-lg-5">
+                        <div class="notice-list">
+                            <div class="notice-title">平台通知
+                                <span class="more" ui-sref="main.platform">更多</span>
+                            </div>
+                            <ul>
+                                <li ng-repeat="notice in noticeList" ng-click="viewNoticeDetail(notice.notice_id)">
+                                    <span class="notice-text">{{notice.title}}</span>
+                                    <span class="notice-date">{{notice.updated_at.slice(0,10)}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

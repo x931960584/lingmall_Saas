@@ -1,0 +1,130 @@
+@import "../common/colors.less";
+.activity_check {
+    width: 100%;
+    height: 100%;
+    .bg_cent {
+        padding: 0px 15px 15px 15px;
+        height: 100%;
+    }
+    .container-fluid {
+        height: 100%;
+    }
+    .all_color {
+        background-color: #fff;
+        height: 100%;
+        width: 100%;
+    }
+    .title {
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .activity_check_cent {
+        background-color: #fff;
+        margin-bottom: 15px;
+        .check_top {
+            .check_span {
+                margin-bottom: 15px;
+                font-size: 1.4em;
+                span {
+                    padding-right: 15px;
+
+                }
+            }
+        }
+        .check_list {
+            width: 100%;
+            display: inline-block;
+            .list_font {
+                font-size: 1.6em;
+            }
+            .pager-box {
+                padding: 15px 0px;
+                text-align: center;
+            }
+            .list_table {
+                margin-top: 20px;
+            }
+            .table {
+                border: 1px solid @main-color-border;
+                thead {
+                    background-color: @main-color-background-table-title;
+                    border: 1px solid @main-color-border;
+                    th {
+                        text-align: center;
+                        vertical-align: middle;
+                        height: 50px;
+                        border-bottom: none;
+                        font-size: 1.4em;
+                        font-weight: normal;
+                    }
+                }
+                tbody {
+                    td {
+                        vertical-align: middle;
+                        text-align: center;
+                        padding: 12px 8px;
+                    }
+                    a {
+                        margin: 8px;
+                        display: block;
+                    }
+                    .position_yun {
+                        position: absolute;
+                        margin-left: 0px;
+                        thead {
+                            background-color: @main-color-background-table-title;
+                            border-collapse: collapse;
+                        }
+                        th,
+                        td {
+                            padding: 12px 25px;
+                            border: 1px solid @main-color-border;
+                        }
+                    }
+                }
+                .dontCent{
+                    text-align: left;
+                }
+                .pro_name {
+                    .pro_img {
+                        float: left;
+                        height: 80px;
+                        line-height: 80px;
+                        padding: 0px 15px;
+                        img {
+                            vertical-align: middle;
+                            max-height: 80px;
+                            width: 80px;
+
+                        }
+                    }
+                    .pro_name_de {
+                        text-align: left;
+                        padding: 10px;
+                        ul{
+                                display: table-cell;
+                            }
+                            li{
+                                line-height: 18px;
+                            }
+                    }
+                }
+            }
+        }
+        .editor_btn {
+            display: inline-block;
+            padding: 0px 15px;
+        }
+    }
+}
+
+.lug_detail {
+    margin-bottom: 15px;
+}
+
+.lug_canal{
+    text-align: right;
+    float: right;
+    cursor: pointer;
+}

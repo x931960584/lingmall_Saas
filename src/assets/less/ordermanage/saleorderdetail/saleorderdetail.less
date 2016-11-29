@@ -1,0 +1,135 @@
+@import "../../common/colors.less";
+.saleorderdetail {
+	font-family: "微软雅黑";
+	.page-title {
+		font-size:1.6em;
+		padding:20px 15px;
+	}
+	.content {
+		display: inline-block;
+		font-size: 14px;
+		.saleorderdetail-content {
+			.info-box {
+				background-color:#fff;
+				padding:10px 20px;
+				margin-bottom:20px;
+			}
+			.order-info {
+				ul {
+					display: flex;
+					-webkit-display:flex;
+					li {
+						flex:3;
+						line-height:30px;
+						text-align: left;
+					}
+				}
+			}
+			.distri-info {
+				.title {
+					font-size:16px;
+					line-height: 30px;
+				}
+				ul {
+					li {
+						line-height: 30px;
+					}
+				}
+			}
+			.goods-info {
+				.title {
+					.title-text {
+						height:60px;
+						line-height: 60px;
+					}
+					.cancel-btn {
+						float:right;
+						margin-right:20px;
+						margin-top:10px;
+						padding:10px;
+						cursor: pointer;
+						color:#fff;
+						background-color:@main-color;
+					}
+				}
+				.goods-content {
+					.goods-table {
+						width:100%;
+						.thead {
+							background-color:@main-color-background-table-title;
+							td {
+								line-height: 50px;
+								text-align: center;
+							}
+						}
+						tr {
+							td {
+								line-height: 34px;
+								vertical-align: middle;
+								text-align: center;
+							}
+						}
+						.goods-box {
+							display: inline-block;
+							padding:10px;
+							.img-box {
+								float: left;
+								width:80px;
+								height:80px;
+								line-height: 80px;
+								background-color: #fff;
+								margin-right:10px;
+							}
+							img {
+								width:80px;
+								height:auto;
+								vertical-align: middle;
+							}
+							.goods-detail {
+								display: table-cell;
+								text-align: left;
+								li {
+									line-height: 20px;
+									color:#949494;
+									text-align: left;
+								}
+								.params {
+									color:@main-color-text;
+								}
+							}
+						}
+					}
+				}
+				.total-box {
+					float: right;
+					margin-right:10px;
+					.total-list {
+						li {
+							line-height: 26px;
+							.money {
+								color:red;
+							}
+						}
+						.memo-box {
+							max-width:300px;
+							span {
+								display: inline-block;
+							}
+							.memo-title {
+								float: left;
+								width: 42px;
+							}
+							.memo-content {
+								max-width: 255px;
+								word-wrap:break-word;
+							}
+						}
+					}
+				}
+				.clear {
+					clear: both;
+				}
+			}
+		}
+	}
+}

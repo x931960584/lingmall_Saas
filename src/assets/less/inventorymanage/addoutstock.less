@@ -1,0 +1,131 @@
+@import "../common/colors.less";
+.add_outstoct{
+	width: 100%;
+	height: 100%;
+	.bg_cent{
+		padding: 0px 15px 15px 15px;
+        height: 100%;
+	}
+	.container-fluid {
+        height: 100%;
+    }
+    .all_color {
+        background-color: #fff;
+        height: 100%;
+        width: 100%;
+    }
+    .title {
+        width: 100%;
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .addoutstoct_cent{
+        width: 100%;
+        display: inline-block;
+        background-color: #fff;
+        margin-bottom: 15px;
+        .bef_span{
+            width: 100px;
+            text-align: right;
+            display:inline-block;
+            float: left;
+            line-height: 34px;
+            font-weight: normal;
+            i{
+                color: red;
+                padding-right: 3px;
+            }
+        }
+        .right_span{
+            display: inline-block;
+            line-height: 34px;
+            padding-left: 15px;
+            font-weight: normal;
+        }
+        .stock_table{
+            border: 1px solid @main-color-border;
+            thead{
+                border: 1px solid @main-color-border;
+                .index_Num{
+                    width: 80px;
+                }
+            }
+            th{
+                background-color: #f6fafa;
+                height: 50px;
+                text-align: center;
+                vertical-align: middle;
+                border-bottom: none;
+                font-size: 1.4em;
+                font-weight: normal;
+                i{
+                    color: red;
+                    padding-right: 3px;
+                }
+            }
+            tbody {
+                td {
+                    text-align: center;
+                    vertical-align: middle;
+                    padding: 6px;
+                    a {
+                        padding: 0px 6px;
+                    }
+                    .input-w {
+                        
+                        display: inline-block;
+                    }
+                    .td_pro {
+                        .pro_img {
+                            float: left;
+                            height: 80px;
+                            line-height: 80px;
+                            padding: 0px 15px;
+                            img {
+                                vertical-align: middle;
+                                max-height: 80px;
+                                width: 80px;
+                            }
+                        }
+                        .pro_li {
+                            text-align: left;
+                            padding: 12px;
+                            margin: 0px;
+                            padding-left: 10px;
+                            ul{
+                                display: table-cell;
+                            }
+                            li{
+                                line-height: 18px;
+                            }
+                        }
+                    }
+                }
+                .td_pro {
+                    width: 100%;
+                }
+            }
+        }
+        .btn_can{
+            margin-right: 15px;
+        }
+    }
+    .form-control{
+        font-weight: normal;
+    }
+    .disabled_ware{
+        color: #ccc;
+        cursor: no-drop;
+    }
+    .disabled_ware:hover{
+        color: #ccc;
+    }
+    .pretermit{
+        padding: 0px 5px;
+        background-color: @main-color;
+        margin-left: 4px;
+        color: #fff;
+
+    }
+}

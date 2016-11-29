@@ -1,0 +1,485 @@
+<!--组织架构 -->
+<!-- <div class="organize">
+    <div class="container-fluid content-bg">
+        <div class="bg-color">
+            <div class="page-title col-sm-12 col-md-12 col-lg-12">组织架构</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 row-padding-2">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-padding-0">
+                    <div class="organize-list">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="box-title">组织架构列表</div>
+                            <div class="search-box">
+                                <div class="input-group search-input">
+                                    <input type="text" class="form-control" placeholder="请输入关键字" maxlength="16" ng-model="keyword_ugn">
+                                    <i class="iconfont" ng-click="keyword_ugn=null">&#xe624;</i>
+                                    <span class="input-group-addon search-btn" ng-click="getUserGroup()">搜索</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <ul class="edit-box">
+                                <li ng-click="showAddUserGroup()">
+                                    <i class="iconfont" ng-class="{'gray':accessControl.org.add==0||currentUserGroup==''||currentUserGroup.user_group_status==2}">&#xe61e;</i>
+                                </li>
+                                <li ng-click="showEditUserGroup()">
+                                    <i class="iconfont" ng-class="{'gray':accessControl.org.edit==0||currentUserGroup==''}">&#xe620;</i>
+                                </li>
+                                <li ng-click="showSeeUserGroup()">
+                                    <i class="iconfont" ng-class="{'gray':accessControl.org.view==0||currentUserGroup==''}">&#xe61c;</i>
+                                </li>
+                                <li ng-click="showDelUserGroup()">
+                                    <i class="iconfont" ng-class="{'gray':accessControl.org.delete==0||currentUserGroup==''||currentUserGroup.level==0}">&#xe61f;</i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="company-list">
+                            <tree-view tree-data="tree" tree-Options="treeOptions" selected-item="selectedItem"></tree-view>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                    <div class="user-list">
+                        <div class="user-title">用户列表</div>
+                        <div class="user-edit">
+                            <div class="add" ng-click="addUser()">
+                                <i class="iconfont" ng-class="{'gray':accessControl.org.useradd==0||currentUserGroup==''||currentUserGroup.user_group_status==2}">&#xe61e;</i>
+                            </div>
+                            <div class="search-box">
+                                <div class="input-group search-input">
+                                    <input type="text" class="form-control" placeholder="请输入手机号码或用户姓名" ng-model="keyword" maxlength="16">
+                                    <i class="iconfont" ng-click="keyword=null">&#xe624;</i>
+                                    <span class="input-group-addon search-btn btn-primary" ng-click="getUserList()">搜索</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info-table">
+                            <table class="user-info">
+                                <tr>
+                                    <th>序号</th>
+                                    <th>用户ID</th>
+                                    <th>用户账号</th>
+                                    <th>用户姓名</th>
+                                    <th>所属部门</th>
+                                    <th>所属角色</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr ng-repeat="(index,user) in userList">
+                                    <td>{{index+1}}</td>
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.mobile}}</td>
+                                    <td>{{user.name==''?'未填写':user.name}}</td>
+                                    <td>{{user.user_group_name}}</td>
+                                    <td>
+                                        <span ng-show="user.role_name!='main'&&user.role_name!='child'">{{user.role_name==''?'未填写':user.role_name ||currAccountInfo.role_name}}</span>
+                                        <span ng-show="user.role_name=='main'">主账号</span>
+                                        <span ng-show="user.role_name=='child'">无</span>
+                                    </td>
+                                    <td>{{user.status==1?'启用':'禁用'}}</td>
+                                    <td>
+                                        <a href="" ng-show="accessControl.org.useradd==1" ng-click="seeAccount(user.uuid,index)">查看</a>
+                                        <a href="" ng-show="is_main==1&&accessControl.org.useredit==1" ng-click="showEditAccount(user.uuid)">编辑</a>
+                                        <a href="" ng-show="accessControl.org.userdelete==1" ng-click="showDelAccount(user.uuid)" ng-hide="user.role_name=='main'">删除</a>
+                                        <a href="" ng-show="accessControl.org.useredit==1" ng-click="showDisAccount(user.uuid,user.status)" ng-hide="user.role_name=='main'">{{user.status==1?'禁用':'启用'}}</a>
+                                        <a href="" ng-click="showMainAccount(user.uuid)" ng-show="accessControl.org.ismain==1&&'{{user.role_name}}'!='main'">设为主账号</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="pager-box">
+                                <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" first-text="首页" previous-text="上一页" next-text="下一页" last-text="最后页" items-per-page="8" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" ng-change="setPage()"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--添加组织架构用户组 -->
+<!-- <div class="popup-box" ng-show="showAddCompany">
+    <div class="popup-content col-xs-6 col-md-6 col-lg-6">
+        <div class="edit-org col-xs-12 col-md-12 col-lg-12">
+            <div class="left-box">
+                <div class="title">
+                    添加组织架构
+                    <i class="iconfont close" ng-click="cancel()">&#xe624;</i>
+                </div>
+                <div class="content">
+                    <div class="right-box col-xs-12 col-md-12 col-lg-12">
+                        <div class="info-list">
+                            <span class="name">上级组织*</span>
+                            <div class="org-name-input">{{currentUserGroup.user_group_name}}</div>
+                        </div>
+                        <div class="info-list">
+                            <span class="name">组织名称*</span>
+                            <input type="text" placeholder="请输入组织架构名称,1-16位字符" maxlength="16" class="org-name-input" ng-model="addUserGroupName" ng-blur="validateUserGroupName(addUserGroupName)">
+                            <div class="warm-info" ng-show="userGroupNameErr">
+                                <span></span>
+                                <div class="notice">请输入组织架构名称,1-16位字符</div>
+                            </div>
+                        </div>
+                        <div class="info-list">
+                            <span class="name">启用状态*:</span>
+                            <div class="status-btn">
+                                <input type="radio" name="status1" ng-click="addUserGroupStatus=1" ng-checked="addUserGroupStatus==1">启用
+                            </div>
+                            <div class="status-btn">
+                                <input type="radio" name="status1" ng-click="addUserGroupStatus=2" ng-checked="addUserGroupStatus==2">禁用
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="org-btn confirm" ng-click="addUserGroup(addUserGroupName,addUserGroupStatus)">确定</div>
+                    <div class="org-btn cancel" ng-click="cancel()">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--修改组织架构用户组 -->
+<!-- <div class="popup-box" ng-show="showEditCompany">
+    <div class="popup-content col-xs-6 col-md-6 col-lg-6">
+        <div class="edit-org col-xs-12 col-md-12 col-lg-12">
+            <div class="left-box">
+                <div class="title">
+                    编辑组织架构
+                    <i class="iconfont close" ng-click="cancel()">&#xe624;</i>
+                </div>
+                <div class="content">
+                    <div class="right-box col-xs-12 col-md-12 col-lg-12">
+                        <div class="info-list usergroup-box" ng-show="currentUserGroup.level!=0">
+                            <span class="name">上级组织*:</span>
+                            <div class="org-name-input">{{setUserGroupNameBefore||org.user_group_name||currentUserGroup.user_group_name}}
+                                <i class="caret-down" ng-class="user_group_list?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="user_group_list=!user_group_list"></i>
+                                <div class="usergroup-list" ng-show="user_group_list">
+                                    <tree-view tree-data="selectUserGroupTree" tree-Options="selectUserGroupTreeOptions" selected-item="selectedUserGroupTreeItem"></tree-view>
+                                </div>
+                            </div>
+                            <div class="notice"></div>
+                        </div>
+                        <div class="info-list">
+                            <span class="name">组织名称*:</span>
+                            <input type="text" maxlength="16" class="org-name-input" ng-model="currUserGroupName" ng-blur="validateUserGroupName(currUserGroupName)">
+                            <div class="warm-info" ng-show="userGroupNameErr">
+                                <span></span>
+                                <div class="notice">请输入组织架构名称,1-16位字符</div>
+                            </div>
+                        </div>
+                        <div class="info-list" ng-show="currentUserGroup.level!=0">
+                            <span class="name">启用状态*:</span>
+                            <div class="status-btn">
+                                <input type="radio" name="status2" ng-click="currentUserGroupStatus=1" ng-checked="currentUserGroupStatus==1">启用
+                            </div>
+                            <div class="status-btn">
+                                <input type="radio" name="status2" ng-click="currentUserGroupStatus=2" ng-checked="currentUserGroupStatus==2">禁用
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="org-btn confirm" ng-click="editUserGroup(currUserGroupName,currentUserGroupStatus)">确定</div>
+                    <div class="org-btn cancel" ng-click="cancel()">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--查看组织架构用户组 -->
+<!-- <div class="popup-box" ng-show="showSeeCompany">
+    <div class="popup-content col-xs-6 col-md-6 col-lg-6">
+        <div class="edit-org col-xs-8 col-md-8 col-lg-8">
+            <div class="company-detail ">
+                <div class="title">查看组织架构
+                    <i class="iconfont close" ng-click="cancel()">&#xe624;</i>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li>
+                            <span class="name">组织架构名称 :</span>{{currentUserGroup.user_group_name}}</li>
+                        <li>
+                            <span class="name">所属组织 :</span> {{org.user_group_name||currentUserGroup.user_group_name}}</li>
+                        <li>
+                            <span class="name">启用状态 :</span>
+                            <span class="active" ng-show="currentUserGroup.user_group_status==1" ng-click="currentUserGroup.user_group_status=1">启用</span>
+                            <span class="active" ng-show="currentUserGroup.user_group_status==2" ng-click="currentUserGroup.user_group_status=2">禁用</span>
+                        </li>
+                        <li>
+                            <span class="name">创建时间 :</span> {{currentUserGroup.created_at}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--删除组织架构用户组(账号) -->
+<!-- <div class="popup-box" ng-show="showDelCompany">
+    <div class="col-xs-6 col-md-6 col-lg-6 popup-content">
+        <div class="edit-org col-xs-6 col-md-6 col-lg-6">
+            <div class="del-company">
+                <div class="title">提示信息
+                    <div class="iconfont close" ng-click="cancel()">&#xe624;</div>
+                </div>
+                <div class="del-text">是否确认删除?</div>
+                <div class="bottom del-btn">
+                    <div class="del-btn cancel" ng-click="cancel()">取消</div>
+                    <div class="del-btn confirm" ng-click="delUserGroup()">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- 右侧 -->
+<!--增加用户列表 -->
+<!-- <div class="popup-box" ng-show="showAddAccountBox">
+    <div class="col-xs-6 col-md-6 col-lg-6 popup-content">
+        <div class="edit-org col-xs-12 col-md-12 col-lg-12">
+            <div class="left-box">
+                <div class="title">
+                    添加用户账号
+                    <i class="iconfont close" ng-click="cancel()">&#xe624;</i>
+                </div>
+                <div class="content">
+                    <div class="right-box user-list col-xs-12 col-md-12 col-lg-12">
+                        <div class="info-list">
+                            <span class="name">手机号码*:</span>
+                            <input type="text" placeholder="请输入手机号作为登录账号" ng-model="addMobile" class="org-name-input" ng-blur="validateMobile(addMobile)">
+                            <div class="warm-info" ng-show="mobileRegErr">
+                                <span></span>
+                                <div class="notice">请输入正确的手机号码</div>
+                            </div>
+                        </div>
+                        <div class="info-list small-text-box">
+                            <span class="name">密码*:</span>
+                            <input type="password" placeholder="******" maxlength="20" ng-model="addPassword" ng-blur="validatePwd(addPassword)">
+                            <a class="init-pwd-btn" ng-click="initPwd=!initPwd">
+                                <i class="iconfont">&#xe627;</i>
+                                <span>关于初始密码</span><br/>
+                                <span class="small-text" ng-show="initPwd">初始密码:lm123456</span>
+                            </a>
+                            <div class="init-pwd" ng-show="initPwd">初始密码:lm123456</div>
+                            <div class="warm-info" ng-show="pwdRegErr">
+                                <span></span>
+                                <div class="notice">请输入6-20位密码,必须包含字母与数字</div>
+                            </div>
+                        </div>
+                        <div class="info-list">
+                            <span class="name">用户姓名:</span>
+                            <input type="text" placeholder="请输入用户姓名,1-16位字符" maxlength="16" ng-model="addName">
+                        </div>
+                        <div class="info-list">
+                            <span class="name">所属组织*:</span>
+                            <div class="org-name-input" ng-model="addUserGroupId">{{currentUserGroup.user_group_name}}</div>
+                        </div>
+                        <div class="info-list ">
+                            <span class="name">所属角色:</span>
+                            <div class="choose-role">
+                                <div class="org-name-input choose-input" ng-model="addRoleName">{{addRoleName||'请选择所属角色'}}
+                                    <i class="caret-down" ng-class="showRolelist?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="showRolelist=!showRolelist"></i>
+                                </div>
+                                <ul class="role-list" ng-show="showRolelist">
+                                    <li ng-click="setAddRoleId(role.name,role.role_id)" ng-repeat="role in rolesList| filter:{status:1}">{{role.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-list">
+                            <span class="name">启用状态*:</span>
+                            <div class="status-btn">
+                                <input type="radio" name="status3" ng-click="addAccountStatus=1" ng-model="addAccountStatus" ng-checked="addAccountStatus==1">启用
+                            </div>
+                            <div class="status-btn">
+                                <input type="radio" name="status3" ng-click="addAccountStatus=2" ng-checked="addAccountStatus==2" ng-model="addAccountStatus">禁用
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="org-btn confirm" ng-click="addChildAccount(addMobile,addPassword,addName,addUserGroupId,addRoleId,addAccountStatus)">确定</div>
+                    <div class="org-btn cancel" ng-click="cancel()">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--查看用户 -->
+<!-- <div class="popup-box" ng-show="showSeeAccountBox">
+    <div class="popup-content col-xs-6 col-md-6 col-lg-6">
+        <div class="edit-org col-xs-8 col-md-8 col-lg-8">
+            <div class="company-detail ">
+                <div class="title">查看用户
+                    <i class="iconfont close" ng-click="cancel()">&#xe624;</i>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li>
+                            <span class="name">用户ID :</span>{{singleUserData.id}}
+                        </li>
+                        <li>
+                            <span class="name">启用状态 :</span> <span class="active">{{singleUserData.status==1?'启用':'禁用'}}</span>
+                        </li>
+                        <li>
+                            <span class="name">手机号码 :</span>{{singleUserData.mobile}}
+                        </li>
+                        <li>
+                            <span class="name">密码 :</span>********
+                        </li>
+                        <li>
+                            <span class="name">用户姓名 :</span>{{singleUserData.name==''?'未填写':singleUserData.name}}
+                        </li>
+                        <li>
+                            <span class="name">所属部门 :</span>{{singleUserData.user_group_name}}
+                        </li>
+                        <li>
+                            <span class="name">所属角色 :</span>{{singleUserData.role_name}}
+                        </li>
+                        <li>
+                            <span class="name">创建时间 :</span> {{singleUserData.created_at}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- 编辑用户-->
+<!-- <div class="popup-box" ng-show="showEditAccountBox">
+    <div class="col-xs-6 col-md-6 col-lg-6 popup-content">
+        <div class="edit-org col-xs-12 col-md-12 col-lg-12">
+            <div class="left-box">
+                <div class="title">
+                    编辑用户账号
+                    <i class="iconfont close" ng-click="cancel()">&#xe624;</i>
+                </div>
+                <div class="content">
+                    <div class="right-box user-list col-xs-12 col-md-12 col-lg-12">
+                        <div class="info-list">
+                            <span class="name">手机号码*:</span>
+                            <input type="text" class="org-name-input readonly" ng-model="currAccountInfoMobile" ng-blur="validateMobile(currAccountInfoMobile)" readonly="true">
+                            <div class="warm-info" ng-show="mobileRegErr">
+                                <span></span>
+                                <div class="notice">请输入正确的手机号码</div>
+                            </div>
+                        </div>
+                        <div class="info-list small-text-box">
+                            <span class="name">密码*:</span>
+                            <input type="password" maxlength="20" ng-model="currAccountInfoPassword" ng-blur="validatePwd(currAccountInfoPassword)">
+                            <a class="init-pwd-btn" ng-click="initPwd=!initPwd">
+                                <i class="iconfont">&#xe627;</i>
+                                <span>关于初始密码</span><br/>
+                                <span class="small-text" ng-show="initPwd">初始密码:lm123456</span>
+                            </a>
+                            <div class="init-pwd" ng-show="initPwd">初始密码:lm123456</div>
+                            <div class="warm-info" ng-show="pwdRegErr">
+                                <span></span>
+                                <div class="notice">请输入6-20位密码,必须包含字母与数字</div>
+                            </div>
+                        </div>
+                        <div class="info-list">
+                            <span class="name">用户姓名:</span>
+                            <input type="text" maxlength="16" ng-model="currAccountInfoName">
+                        </div>
+                        <div class="info-list" ng-show="currAccountInfo.status!=2">
+                            <span class="name">所属组织*:</span>
+                            <div class="org-name-input choose-org-name">{{account_user_group_name || currAccountInfo.user_group_name}}
+                                <i class="caret-down" ng-class="role_list?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="role_list=!role_list"></i>
+                                <div class="account-usergroup-list" ng-show="role_list">
+                                    <tree-view tree-data="selectTree" tree-Options="selectTreeOptions" selected-item="selectedTreeItem"></tree-view>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-list" ng-hide="currAccountInfo.role_name=='main'||currAccountInfo.status==2">
+                            <span class="name">所属角色:</span>
+                            <div class="choose-role">
+                                <div class="org-name-input choose-input" ng-model="addRoleName">{{addRoleName == 'child'?'无':addRoleName||(currAccountInfo.role_name=='child'?'无':currAccountInfo.role_name)}}
+                                    <i class="caret-down" ng-class="showRolelist?'fa fa-caret-down rotate180 trans-delay-024s':'fa fa-caret-down trans-delay-024s'" ng-click="showRolelist=!showRolelist"></i>
+                                </div>
+                                <ul class="role-list" ng-show="showRolelist">
+                                    <li ng-click="setAddRoleId(role.name,role.role_id)" ng-repeat="role in rolesList| filter:{status:1}">{{role.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-list" ng-show="currAccountInfo.role_name!='main'">
+                            <span class="name">启用状态*:</span>
+                            <div class="status-btn">
+                                <input type="radio" name="status4" ng-click="currAccountInfoStatus=1" ng-checked="currAccountInfoStatus==1">启用
+                            </div>
+                            <div class="status-btn">
+                                <input type="radio" name="status4" ng-click="currAccountInfoStatus=2" ng-checked="currAccountInfoStatus==2">禁用
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="org-btn confirm" ng-click="editUser(currAccountInfoMobile,currAccountInfoPassword,currAccountInfoName,account_user_group_name,account_user_group_id,addRoleName,currAccountInfoStatus)">确定</div>
+                    <div class="org-btn cancel" ng-click="cancel()">取消</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- 删除用户列表账号-->
+<!-- <div class="popup-box" ng-show="showDelAccountBox">
+    <div class="col-xs-6 col-md-6 col-lg-6 popup-content">
+        <div class="edit-org col-xs-6 col-md-6 col-lg-6">
+            <div class="del-company">
+                <div class="title">提示信息
+                    <div class="iconfont close" ng-click="cancel()">&#xe624;</div>
+                </div>
+                <div class="del-text">是否确认删除?</div>
+                <div class="bottom del-btn">
+                    <div class="del-btn cancel" ng-click="cancel()">取消</div>
+                    <div class="del-btn confirm" ng-click="delAccount()">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--设为主账号 -->
+<!-- <div class="popup-box" ng-show="showSetMainAccountBox">
+    <div class="col-xs-6 col-md-6 col-lg-6 popup-content">
+        <div class="edit-org col-xs-6 col-md-6 col-lg-6">
+            <div class="del-company">
+                <div class="title">提示信息
+                    <div class="iconfont close" ng-click="cancel()">&#xe624;</div>
+                </div>
+                <div class="del-text">是否确认转让主账号?</div>
+                <div class="bottom del-btn">
+                    <div class="del-btn cancel" ng-click="cancel()">取消</div>
+                    <div class="del-btn confirm" ng-click="setMainAccount()">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--禁用 -->
+<!-- <div class="popup-box" ng-show="showDisAccountBox">
+    <div class="col-xs-6 col-md-6 col-lg-6 popup-content">
+        <div class="edit-org col-xs-6 col-md-6 col-lg-6">
+            <div class="del-company">
+                <div class="title">提示信息
+                    <div class="iconfont close" ng-click="cancel()">&#xe624;</div>
+                </div>
+                <div class="del-text">是否确认<span>{{setStatus==1?'启用':'禁用'}}</span>?</div>
+                <div class="bottom del-btn">
+                    <div class="del-btn cancel" ng-click="cancel()">取消</div>
+                    <div class="del-btn confirm" ng-click="disUser()">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--删除成功提示 -->
+<!-- <div class="popup-box" ng-show="showDelSuccess">
+    <div class="col-xs-6 col-md-6 col-lg-6 popup-content">
+        <div class="edit-org col-xs-6 col-md-6 col-lg-6">
+            <div class="del-company">
+                <div class="title">提示信息
+                    <div class="iconfont close" ng-click="cancel()">&#xe624;</div>
+                </div>
+                <div class="del-text">删除成功!</div>
+                <div class="bottom del-btn">
+                    <div class="del-btn confirm" ng-click="showDelSuccess=false">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

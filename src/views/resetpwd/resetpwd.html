@@ -1,0 +1,20 @@
+<div class="resetpwd">
+    <div class="title">重置密码</div>
+    <div class="notice warn">{{resetMessage}}</div>
+    <div class="user-box input">
+        <i class="iconfont">&#xe615;</i>
+        <input type="text" placeholder="请输入手机号码" class="base" ng-model="mobile" ng-blur="validateMobile(mobile)">
+            <div class="notice warn center" ng-show="mobileRegErr">请输入正确的手机号码</div>
+    </div>
+    <div class="pwd-box input">
+        <i class="iconfont">&#xe614;</i>
+        <input type="password" placeholder="请设置新密码" class="base" ng-model="pwd" ng-blur="validatePwd(pwd)" ng-click="validateReset('pwd')">
+            <div class="notice warn" ng-show="pwdRegErr">请输入6-20位密码,必须包含字母与数字</div>
+    </div>
+    <div class="repwd-box input">
+        <i class="iconfont">&#xe614;</i>
+        <input type="password" placeholder="确认新密码" class="base" ng-model="repwd" ng-click="validateReset('repwd')">
+        <div class="notice warn" ng-show="validateRepwdErr">两次密码输入不一致!</div>
+    </div>
+    <div class="submit-btn base" ng-click="resetPwd()">提交</div>
+</div>

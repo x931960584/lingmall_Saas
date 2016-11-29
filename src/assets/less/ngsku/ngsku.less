@@ -1,0 +1,211 @@
+@import "../common/colors.less";
+.ngsku {
+    .spec {
+        text-align: left;
+        line-height: 30px;
+        background-color: @main-color-background;
+        input[type=checkbox] {
+            float: left;
+            margin: 9px 5px 0 10px;
+        }
+    }
+    .options-box {
+        background-color: @main-color-background;
+        .combo-box {
+            height: auto;
+            width: 100%;
+            padding: 10px;
+            display: inline-block;
+            .spec-name {
+                float: left;
+                line-height: 30px;
+                background-color: #fff;
+                display: inline-block;
+                .name-input {
+                    max-width: 140px;
+                    margin: 0 10px;
+                    outline: none;
+                    border: none;
+                }
+            }
+            .spec-list {
+                float: left;
+                min-height: 32px;
+                line-height: 30px;
+                display: inline-block;
+                margin-left: 20px;
+                padding-left: 10px;
+                width: 80%;
+                text-align: left;
+                background-color: #fff;
+                cursor: text;
+                .spec-value {
+                    padding: 0 10px;
+                    margin-top: 5px;
+                    line-height: 22px;
+                    background-color: @main-color;
+                    border-radius: 3px;
+                    margin-right: 10px;
+                    color: #fff;
+                    display: inline-block;
+                    position: relative;
+                    i {
+                        font-size: 12px;
+                        cursor: pointer;
+                        width: 18px;
+                        height: 18px;
+                        line-height: 18px;
+                        border: 1px solid #eee;
+                        border-radius: 9px;
+                        position: absolute;
+                        top: -9px;
+                        right: -9px;
+                        background-color: #fff;
+                        color: #333;
+                        text-align: center;
+                    }
+                }
+                .spec-input {
+                    line-height: 30px;
+                    padding: auto 2px;
+                    border: none;
+                    outline: none;
+                }
+            }
+            .spec-del {
+                display: inline-block;
+                line-height: 30px;
+                cursor: pointer;
+            }
+        }
+        .add-spec {
+            text-align: left;
+            cursor: pointer;
+            line-height: 30px;
+            padding-left: 10px;
+            color: @main-color;
+        }
+    }
+    .goods-list {
+        margin-top: 20px;
+        .table {
+            width: 100%;
+            border: 1px solid @main-color-border;
+            font-size: 12px;
+            tr {
+                border-bottom: 1px solid @main-color-border;
+                td {
+                    line-height: 30px;
+                    text-align: center;
+                    vertical-align: middle;
+                    padding: 2px;
+                    font-size: 14px;
+                    border-right: 1px solid @main-color-border;
+                    input {
+                        padding-left: 10px;
+                        line-height: 24px;
+                    }
+                    .img-box {
+                        position: relative;
+                        width: 60px;
+                        height: 60px;
+                        cursor: pointer;
+                        line-height: 60px;
+                        img {
+                            width: 60px;
+                            height: 60px;
+                            max-height: 60px;
+                            vertical-align: middle;
+                        }
+                        .showuploadbtn {
+                            position: absolute;
+                            color: #fff;
+                            width: 60px;
+                            height: 60px;
+                            line-height: 60px;
+                            padding: 0 auto;
+                            left: 0;
+                            top: 0;
+                            background: #000;
+                            opacity: 0.3;
+                        }
+                    }
+                    a {
+                        cursor: pointer;
+                    }
+                }
+                .index {
+                    width: 40px;
+                    padding: auto 5px;
+                }
+                .img {
+                    width: 60px;
+                    padding: auto 5px;
+                }
+                .title {
+                    max-width: 15%;
+                    padding: auto 5px;
+                }
+                .code {
+                    max-width: 15%;
+                    padding: auto 5px;
+                }
+                .weight {
+                    width: 80px;
+                    padding: auto 5px;
+                }
+                .market-price {
+                    width: 80px;
+                    padding: auto 5px;
+                }
+                .sale-price {
+                    width: 80px;
+                    padding: auto 5px;
+                }
+                .cost-price {
+                    width: 80px;
+                    padding: auto 5px;
+                }
+                .stock {
+                    width: 90px;
+                    padding: auto 5px;
+                }
+                .operate {
+                    width: 50px;
+                    padding: auto 5px;
+                }
+                td:last-child {
+                    border-right: none;
+                }
+            }
+            tr.title {
+                background: @main-color-background-table-title;
+                span {
+                    color: red;
+                    margin-left: 5px;
+                }
+                td.spec-title {
+                    min-width: 30px;
+                    max-width: 80px;
+                    padding: auto 5px;
+                    background: @main-color-background;
+                }
+            }
+            tr:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+    .disabled {
+        cursor: no-drop;
+    }
+    i.disabled {
+        cursor: no-drop!important;
+    }
+    .bg-fff {
+        background-color: #fff;
+    }
+    input[disabled] {
+        background-color: #fff;
+    }
+}

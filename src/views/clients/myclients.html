@@ -1,0 +1,128 @@
+<div class="my_clients">
+    <div class="container-fluid bg_cent">
+        <div class="all_color">
+            <div class="title col-sm-12 col-md-12 col-lg-12">
+                <span>客户管理</span>
+            </div>
+            <div class="clients_cent col-sm-12 col-md-12 col-lg-12">
+                <div class="clients_seacrh col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-padding-0">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-padding-0">
+                                <input type="text" class="form-control" placeholder="客户名称/客户编号" ng-model="keyWord">
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-padding-0 sear_margin">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input_bg" placeholder="客户类型" readonly="true" ng-model="cataName">
+                                    <div class="input-group-btn" uib-dropdown ng-model="catagoryId">
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" uib-dropdown-menu>
+                                            <li ng-click="cataAll()"><a>全部客户类型</a></li>
+                                            <li ng-repeat="cata in cataLists" ng-click="cataLi(cata.name,cata.catagory_id)"><a>{{cata.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-padding-0 sear_margin">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input_bg" placeholder="客户等级" readonly="true" ng-model="rankName">
+                                    <div class="input-group-btn" uib-dropdown ng-model="gradeId">
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2" uib-dropdown-menu>
+                                            <li ng-click="rankAll()"><a>全部客户等级</a></li>
+                                            <li ng-repeat="rank in rankLists" ng-click="rankLi(rank.name,rank.grade_id)"><a>{{rank.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-padding-0 sear_margin">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input_bg" placeholder="所属销售区域" readonly="true" ng-model="regName">
+                                    <div class="input-group-btn" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu3" uib-dropdown-menu>
+                                            <li ng-click="regAll()"><a>全部销售区域</a></li>
+                                            <li ng-repeat="reg in regionLists" ng-click="regLi(reg.name,reg.region_id)"><a>{{reg.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-padding-0 sear_margin">
+                                <a class="more_a" ng-click="iconShow=!iconShow">更多筛选条件<span class="glyphicon glyphicon-chevron-down" ng-hide="iconShow"></span><span class="glyphicon glyphicon-chevron-up" ng-show="iconShow"></span></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2 col-padding-0 text_right">
+                            <button class="btn btn-primary padding_btn" ng-click="searchClient()">检索</button>
+                            <button class="btn btn-primary" ui-sref="main.addclients">新增客户</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-padding-0 more_top" ng-show="iconShow">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-padding-0">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-padding-0">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input_bg" placeholder="平台供应关系" readonly="true" ng-model="supplyName">
+                                    <div class="input-group-btn" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" uib-dropdown-toggle><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu4" uib-dropdown-menu>
+                                            <li ng-repeat="sup in supplyRelat" ng-click="supLi(sup.name,sup.supply_id)"><a>{{sup.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sear_line">
+                                <div class="line_position">
+                                    <span class="city_title">所在地区:</span><span class="city_span">{{locaProvince}}</span>省<span class="city_span">{{locaCity}}</span>市<span class="city_creat" ng-click="proCity($event)"><span class="caret"></span></span>
+                                    <div class="city_position" ng-show="cityShow" ng-click="cCity($event)">
+                                        <tree-view tree-data="operTree" tree-Options="operTreeOptions" selected-item="operSelectedItem" dis-Area="'warehouseArea'"></tree-view>
+                                        <div class="city_clear" ng-click="cityClear()"><a>清除</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clients_tab col-sm-12 col-md-12 col-lg-12 col-padding-0 row-padding-2">
+                    <table class="table table-hover table_list">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox">
+                                </th>
+                                <th>客户编号</th>
+                                <th>客户名称</th>
+                                <th>所在地区</th>
+                                <th>客户类型</th>
+                                <th>客户等级</th>
+                                <th>所属销售区域</th>
+                                <th>结算方式</th>
+                                <th>营业员</th>
+                                <th>平台供应关系</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="cli in clientsList">
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td>{{cli.no}}</td>
+                                <td>{{cli.name}}</td>
+                                <td>{{cli.address.province}}&nbsp;&nbsp;{{cli.address.city}}&nbsp;&nbsp;{{cli.address.district}}</td>
+                                <td>{{cli.catagory.name}}</td>
+                                <td>{{cli.grade.name}}</td>
+                                <td>{{cli.region.name}}</td>
+                                <td>{{cli.business.settlement.name}}</td>
+                                <td>{{cli.business.salesman_name}}</td>
+                                <td>{{verifyFlag[cli.verify_flag].name}}</td>
+                                <td><a ui-sref="main.checkclients({id : cli.customer_id})">查看</a><a ui-sref="main.addclients({id : cli.customer_id})">编辑</a><a ng-click="forClient(cli.customer_id)" ng-show="cli.status==1">禁用</a><a ng-click="toClient(cli.customer_id)" ng-show="cli.status==2">启用</a><a ng-show="cli.verify_flag==0" ng-click="delClient(cli.customer_id)">删除</a><a ng-show="cli.verify_flag==0" ng-click="invitClient()">邀请</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pager-box">
+                    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="6" first-text="首页" previous-text="上一页" next-text="下一页" last-text="末页" class="pagination-sm pager-list" boundary-link-numbers="true" boundary-links="true" rotate="false" items-per-page="10" ng-change="setPage()"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,238 @@
+@import "../common/colors.less";
+.main {
+    font-family: "微软雅黑";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    .main-content {
+        padding: 0;
+    }
+    .lm-navbar {
+        height: 60px;
+        background-color: #fff;
+        z-index: 99999;
+        box-shadow: 1px 1px 6px #d9d9d9;
+        -moz-box-shadow: 1px 1px 6px #d9d9d9;
+        -ms-box-shadow: 1px 1px 6px #d9d9d9;
+        -o-box-shadow: 1px 1px 6px #d9d9d9;
+        -webkit-box-shadow: 1px 1px 6px #d9d9d9;
+        .logo-img {
+            float: left;
+            width: 150px;
+            height: 60px;
+            text-align: center;
+            background-color: yellow;
+            display: inline-block;
+            img {
+                margin-top: -3px;
+            }
+        }
+        .navbar-center {
+            float: left;
+            width: 150px;
+            border-right: 1px solid #f1f1f1;
+            line-height: 60px;
+            color: #333;
+            text-align: center;
+            font-size: 1.6em;
+            cursor: pointer;
+        }
+        .navbar-center:hover {
+            background: @main-color-gray;
+        }
+        .navbar-right {
+            float: right;
+            color: #333;
+            .bar-btn-top {
+                float: left;
+                min-width: 60px;
+                height: 60px;
+                line-height: 48px;
+                padding: 6px 20px;
+                text-align: center;
+                border-left: 1px solid #f1f1f1;
+                cursor: pointer;
+                i {
+                    margin-top: 10px;
+                    font-size: 2.6em;
+                }
+                span {
+                    font-size: 1.6em;
+                }
+            }
+            .bar-btn-top:hover {
+                background: #f1f1f1
+            }
+            .dropdown {
+                float: left;
+                display: inline-block;
+                min-width: 220px;
+                height: 60px;
+                line-height: 60px;
+                padding-left: 30px;
+                padding-right: 30px;
+                cursor: pointer;
+                border-left: 1px solid #f1f1f1;
+                .userinfo {
+                    height: 60px;
+                    line-height: 60px;
+                    font-size: 1.6em;
+                    i {
+                        margin: 6px;
+                        font-size: 1.3em;
+                    }
+                    i:last-child {
+                        font-size: 1em;
+                    }
+                }
+                .dropdown-list {
+                    position: absolute;
+                    width: 100%;
+                    left: -1px;
+                    top: 60px;
+                    background-color: #fff;
+                    border: 1px solid @main-color-border;
+                    border-top: none;
+                    border-radius: 0px;
+                    z-index: 2;
+                    box-shadow: 0px 1px 3px #d9d9d9;
+                    -moz-box-shadow: 0px 1px 3px #d9d9d9;
+                    -ms-box-shadow: 0px 1px 3px #d9d9d9;
+                    -o-box-shadow: 0px 1px 3px #d9d9d9;
+                    -webkit-box-shadow: 0px 1px 3px #d9d9d9;
+                    li {
+                        width: 100%;
+                        height: 40px;
+                        line-height: 40px;
+                        padding: 0 30px;
+                        font-size: 1.4em;
+                        text-align: left;
+                        i {
+                            margin-right: 20px;
+                        }
+                    }
+                    li:hover {
+                        background-color: @main-color;
+                        color: #fff;
+                    }
+                }
+            }
+            .dropdown:hover {
+                background: #f1f1f1
+            }
+        }
+    }
+    .row-content {
+        width: 100%;
+        background-color: @main-color-background;
+        position: absolute;
+        z-index: -1;
+        top: 60px;
+        left: 0;
+        bottom: 0;
+        .menuContainer {
+            width: 150px;
+            display: block;
+            position: fixed;
+            z-index: 998;
+            overflow-x: hidden;
+            top: 60px;
+            bottom: 0px;
+        }
+        .menulist {
+            width: 170px;
+            height: 100%;
+            overflow: auto;
+            overflow-x: hidden;
+            background-color: rgb(41, 48, 56);
+            .menu-box {
+                margin-bottom: 40px;
+            }
+            .menu {
+                width: 100%;
+                line-height: 30px;
+                color: #fff;
+                font-size: 1.3em;
+                cursor: pointer;
+                i {
+                    margin-right: 10px;
+                    color: #fff;
+                }
+            }
+            .bottom {
+                height: 40px;
+                width: 150px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 99999;
+                background: #ffff00;
+                line-height: 45px;
+                color: #000;
+                text-align: center;
+                font-size: 1.3em;
+                user-select: none;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+            }
+            .parent {
+                padding-left: 25px;
+                height: 42px;
+                line-height: 42px;
+                background: #37424f;
+                border-bottom: 1px solid #414d5c;
+            }
+            .parent:hover {
+                background: #414D5C;
+            }
+            .focus {
+                background: #22282E;
+                border-bottom: none;
+            }
+            .current {
+                background-color: @main-color!important;
+            }
+            .sub-menu {
+                ul {
+                    li {
+                        height: 40px;
+                        line-height: 40px;
+                        overflow: hidden;
+                        background-color: #293038;
+                        color: #fff;
+                        text-align: left;
+                        border-bottom: 1px solid #333;
+                        cursor: pointer;
+                        .child-text {
+                            padding-left: 25px;
+                            color: #fff;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            display: block;
+                        }
+                    }
+                    li:hover {
+                        background: #37424F
+                    }
+                }
+            }
+            .companyNumber {
+                color: #fff;
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                padding-left: 20px;
+            }
+        }
+        .right-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin-left: 150px;
+            overflow-y: auto;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+<div class="operation-warehouse">
+	<div class="disable-box" ng-show="data.pageStatus=='disable'">
+		<div class="disable-text">确认要禁用此仓库吗?</div>
+		<div class="disable-text red">禁用后,此仓库将不允许任何出库入库等库存操作!</div>
+	</div>
+	<div class="enable-box" ng-show="data.pageStatus=='enable'">
+		<div class="enable-text">确认要启用此仓库吗?</div>
+	</div>
+	<div class="delete-box" ng-show="data.pageStatus=='delete'">
+		<div class="delete-text">确定要删除此仓库吗?</div>
+	</div>
+</div>

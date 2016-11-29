@@ -1,0 +1,111 @@
+@import "../common/colors.less";
+.audit_outstoct {
+    width: 100%;
+    height: 100%;
+    .bg_cent {
+        padding: 0px 15px 15px 15px;
+        height: 100%;
+    }
+    .container-fluid {
+        height: 100%;
+    }
+    .all_color {
+        background-color: #fff;
+        height: 100%;
+        width: 100%;
+    }
+    .title {
+        width: 100%;
+        font-size: 1.6em;
+        padding: 20px;
+        background-color: @main-color-background;
+    }
+    .auditoutstoct_cent{
+        width: 100%;
+        display: inline-block;
+        background-color: #fff;
+        margin-bottom: 15px;
+        .bef_span{
+            width: 100px;
+            text-align: right;
+            display:inline-block;
+            float: left;
+            line-height: 34px;
+            font-weight: normal;
+            i{
+                color: red;
+            }
+        }
+        .right_span{
+            line-height: 34px;
+            font-weight: normal;
+        }
+        .title_span{
+            font-size: 1.4em;
+            line-height: 34px;
+        }
+        .audit_btn{
+            text-align: right;
+        }
+        .stock_table{
+            thead{
+                border: 1px solid @main-color-border;
+            }
+            th{
+                background-color: #f6fafa;
+                height: 50px;
+                text-align: center;
+                vertical-align: middle;
+                border-bottom: none;
+                font-size: 1.4em;
+                font-weight: normal;
+
+            }
+            .out_memo{
+                        width: 300px;
+                    }
+            tbody{
+                border: 1px solid @main-color-border;
+                tr td{
+                    height: 50px;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+                .td_pro {
+                        .pro_img {
+                            float: left;
+                            height: 80px;
+                            line-height: 80px;
+                            padding: 0px 15px;
+                            img {
+                                vertical-align: middle;
+                                max-height: 80px;
+                                width: 80px;
+                            }
+                        }
+                        .pro_li {
+                            text-align: left;
+                            padding: 12px;
+                            margin: 0px;
+                            padding-left: 10px;
+                            ul{
+                                display: table-cell;
+                            }
+                            li{
+                                line-height: 18px;
+                            }
+                        }
+                    }
+                    .td_memo{
+                        word-break: break-all
+                    }
+                    
+            }
+        }
+        .btn_can{
+            margin-right: 15px;
+        }
+        
+    }
+    
+}

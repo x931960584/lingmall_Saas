@@ -1,0 +1,26 @@
+<ul class="tree-view">
+    <label ng-click="treeOptions.itemExpendedAll(treeData)"><i ng-class="treeOptions.isExpendAll?'fa fa-minus':'fa fa-plus'"></i><span class="text-field" ng-bind="treeOptions.isExpendAll?'关闭全部':'展开全部'"></span></label>
+    <p ng-show="selectAllShow"><i class="fa fa-leaf"></i><span class="text-field" ng-click="treeOptions.eventCallback('itemClicked','', $event);">{{selectAllText}}</span></p>
+    <li ng-repeat="item in treeData track by $index" ng-include="itemTemplateUrl || '/treeItem.html'"></li>
+</ul>
+<script type="text/ng-template" id="/treeItem.html">
+    <i ng-click="treeOptions.itemExpended(item, $event);" class="{{treeOptions.getItemIcon(item,treeOptions.isLeafIconClass,treeOptions.notExpendIconClass,treeOptions.isExpendIconClass)}}"></i>
+    <input type="checkbox" ng-model="item.isChecked" class="check-box" ng-if="treeOptions.canChecked" ng-click="treeOptions.eventCallback('itemCheckedChanged', item, $event)" ng-checked="item.isChecked" ng-disabled="pageName=='view'">
+    <!-- //组织架构列表 -->
+    <span ng-show="item.ugid" ng-class="selectedItem.$item.ugid==item.ugid?'text-field current':'text-field'" ng-click="treeOptions.eventCallback('itemClicked', item, $event)">{{item[treeOptions.textField]}}</span>
+    <!-- //分类 自定义添加'全部分类'字段(在我的商品列表,和拼团活动列表中使用) -->
+    <span ng-show="item.supplier_category_id&&selectAllShow==true" ng-class="selectedItem.$item.supplier_category_id==item.supplier_category_id?'text-field current':'text-field'" ng-click="treeOptions.eventCallback('itemClicked', item, $event)">{{item[treeOptions.textField]}}</span>
+    <!-- //分类 不添加'全部分类字段' 增加非最后层级不能点击选中限制条件(在添加商品中使用) -->
+    <span ng-show="item.supplier_category_id&&selectAllShow!=true" ng-class="item.childs?(selectAllShow==true?'text-field':'disabled text-field'):(selectedItem.$item.supplier_category_id==item.supplier_category_id?'text-field current':'text-field')" ng-click="treeOptions.eventCallback('itemClicked', item, $event)">{{item[treeOptions.textField]}}</span>
+    <!-- //零猫运营分类 增加非最后层级不能点击选中限制条件 (在拼团活动列表中使用) -->
+    <span ng-show="item.operation_category_id" ng-class="item.childs?(selectAllShow==true?'text-field':'disabled text-field'):(selectedItem.$item.operation_category_id==item.operation_category_id?'text-field current':'text-field')" ng-click="treeOptions.eventCallback('itemClicked', item, $event)">{{item[treeOptions.textField]}}</span>
+    <!-- //城市列表 仓库管理  省级不能点击选择-->
+    <span ng-show="item.type&&item.city_name&&disArea=='warehouseArea'" class="text-field" ng-class="{'disabled text-current': item.type=='province'}" ng-click="treeOptions.eventCallback('itemClicked', item, $event)">{{item[treeOptions.textField]}}</span>
+    <!-- //城市列表 仓库管理 -->
+    <span ng-show="item.type&&item.city_name&&disArea!=='warehouseArea'" class="text-field" ng-class="{'current text-current': item.isChecked == true}" ng-click="treeOptions.eventCallback('itemClicked', item, $event)">{{item[treeOptions.textField]}}</span>
+
+    <ul ng-if="!treeOptions.isLeaf(item)" ng-show="item.isExpend">
+        <li ng-repeat="item in item[treeOptions.childrenField]" ng-include="itemTemplateUrl || '/treeItem.html'">
+        </li>
+    </ul>
+</script>
